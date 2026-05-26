@@ -22,9 +22,12 @@ export function ServicesStrip() {
           {SERVICES.map((s, i) => (
             <div
               key={i}
-              className={`flex items-center gap-4 px-6 py-7 cursor-pointer group border-r border-zinc-100 last:border-r-0 hover:bg-zinc-50 transition-all duration-300 ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`flex items-center gap-4 px-5 sm:px-6 py-6 sm:py-7 cursor-pointer group hover:bg-zinc-50 transition-all duration-300
+                ${i % 2 === 0 ? "border-r border-zinc-100" : ""}
+                ${i < 2 ? "border-b border-zinc-100 md:border-b-0" : ""}
+                ${i < SERVICES.length - 1 ? "md:border-r md:border-zinc-100" : "md:border-r-0"}
+                ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+              `}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <div className="w-12 h-12 bg-amber-500 flex items-center justify-center text-xl flex-shrink-0 group-hover:bg-amber-400 group-hover:scale-110 group-hover:shadow-[0_4px_16px_rgba(245,158,11,0.4)] transition-all duration-300">
@@ -159,7 +162,7 @@ export function About() {
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Visual side */}
           <div
-            className={`relative transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
+            className={`relative pb-8 lg:pb-0 transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
           >
             <div className="w-full h-[400px] bg-zinc-900 flex items-center justify-center overflow-hidden relative">
               {/* Pulsing amber center glow */}

@@ -22,14 +22,15 @@ export default function TopBar() {
   return (
     <div className="bg-zinc-900 text-zinc-400 text-[13px]">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center py-[6px]">
-        <div className="flex gap-5 flex-wrap">
+        <div className="flex gap-4 items-center">
           <span>
             📞{" "}
             <a href="tel:3176707071" className="text-white font-semibold hover:text-amber-500 transition-colors">
               316 381 5694
             </a>
           </span>
-          <span>
+          <span className="hidden md:inline text-zinc-600">|</span>
+          <span className="hidden md:inline">
             ✉{" "}
             <a href="mailto:comercioexterior@coninmaqsas.com" className="text-white font-semibold hover:text-amber-500 transition-colors">
               comercioexterior@coninmaqsas.com

@@ -7,7 +7,7 @@ export default function Hero() {
   useEffect(() => { setMounted(true); }, []);
 
   return (
-    <section className="relative min-h-[600px] flex items-center bg-zinc-900 overflow-hidden">
+    <section className="relative bg-zinc-900 overflow-hidden">
       {/* Animated amber glow orbs */}
       <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[130px] animate-float pointer-events-none" />
       <div className="absolute bottom-16 -left-24 w-[400px] h-[400px] bg-amber-600/8 rounded-full blur-[100px] animate-float-slow pointer-events-none" style={{ animationDelay: "-4s" }} />
@@ -21,8 +21,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10 py-20 pb-36 w-full">
-        <div className="max-w-[640px]">
+      {/* Main content — flujo normal, sin absolute */}
+      <div className="max-w-6xl mx-auto px-6 relative z-10 pt-16 sm:pt-24 pb-14 sm:pb-20 w-full min-h-[420px] flex items-center">
+        <div className="max-w-[640px] w-full">
           {/* Pill badge */}
           <div
             className={`inline-flex items-center gap-2 border border-amber-500/30 bg-amber-500/10 backdrop-blur-sm px-4 py-2 mb-6 transition-all duration-700 ${
@@ -45,7 +46,7 @@ export default function Hero() {
             }`}
             style={{
               fontFamily: "'Oswald', sans-serif",
-              fontSize: "clamp(38px, 5vw, 62px)",
+              fontSize: "clamp(34px, 5vw, 62px)",
               transitionDelay: "180ms",
             }}
           >
@@ -56,7 +57,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className={`text-zinc-400 font-light text-[17px] mb-8 max-w-[500px] leading-relaxed transition-all duration-700 ${
+            className={`text-zinc-400 font-light text-[15px] sm:text-[17px] mb-8 max-w-[500px] leading-relaxed transition-all duration-700 ${
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ transitionDelay: "320ms" }}
@@ -67,21 +68,21 @@ export default function Hero() {
           </p>
 
           <div
-            className={`flex gap-4 flex-wrap transition-all duration-700 ${
+            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 transition-all duration-700 ${
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ transitionDelay: "460ms" }}
           >
             <Link
               to="/maquinaria-pesada"
-              className="bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)]"
+              className="bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)]"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               Ver Maquinaria
             </Link>
             <Link
               to="/contacto"
-              className="border border-white/25 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-white/10 hover:border-white/50 hover:-translate-y-0.5 backdrop-blur-sm transition-all duration-200"
+              className="border border-white/25 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 text-center hover:bg-white/10 hover:border-white/50 hover:-translate-y-0.5 backdrop-blur-sm transition-all duration-200"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               Solicitar Cotización
@@ -90,24 +91,24 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Stats bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-amber-500/95 backdrop-blur-sm">
+      {/* Stats bar — en flujo normal, no absolute */}
+      <div className="relative z-10 bg-amber-500/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {STATS.map((s, i) => (
               <div
                 key={i}
                 className={`text-center py-5 px-3 group hover:bg-black/10 transition-colors cursor-default ${
-                  i < STATS.length - 1 ? "border-r border-black/10" : ""
-                }`}
+                  i % 2 === 0 && i < STATS.length - 1 ? "border-r border-black/10" : ""
+                } ${i < 2 ? "border-b border-black/10 md:border-b-0" : ""} md:border-r md:last:border-r-0`}
               >
                 <span
-                  className="block font-black text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom"
+                  className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom"
                   style={{ fontFamily: "'Oswald', sans-serif" }}
                 >
                   {s.num}
                 </span>
-                <span className="text-[11px] font-semibold text-black/60 uppercase tracking-wider">
+                <span className="text-[10px] sm:text-[11px] font-semibold text-black/60 uppercase tracking-wider">
                   {s.label}
                 </span>
               </div>
