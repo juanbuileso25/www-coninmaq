@@ -151,13 +151,12 @@ export default function Header({ scrolled }: HeaderProps) {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between py-3 gap-4">
             {/* Logo */}
-            <Link to="/" className="flex-shrink-0 group" onClick={closeMenu}>
-              <span
-                className="font-black text-[26px] tracking-[2px] text-zinc-900 group-hover:text-zinc-700 transition-colors"
-                
-              >
-                CON<span className="text-brand-accent group-hover:text-brand-accent-light transition-colors">INMAQ</span>
-              </span>
+            <Link to="/" className="flex-shrink-0" onClick={closeMenu}>
+              <img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="Coninmaq"
+                className="h-10 w-auto"
+              />
             </Link>
 
             {/* Desktop nav */}

@@ -15,13 +15,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <Link to="/">
-              <span
-                className="block font-black text-[22px] tracking-[2px] text-white mb-4"
-                
-              >
-                CON<span className="text-brand-accent">INMAQ</span>
-              </span>
+            <Link to="/" className="inline-block mb-4">
+              <img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="Coninmaq"
+                className="h-9 w-auto"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
             </Link>
             <p className="text-[14px] text-zinc-400 font-normal leading-relaxed mb-5">
               Impulsamos el progreso con soluciones en maquinaria pesada en Colombia. Más de 7 años ofreciendo respaldo, calidad y un servicio que marca la diferencia.
