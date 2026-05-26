@@ -91,7 +91,7 @@ export default function Header({ scrolled }: HeaderProps) {
           <div className="hidden lg:flex flex-col gap-1 flex-shrink-0">
             <a
               href="tel:3163815694"
-              className="bg-amber-500 text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:bg-amber-400 hover:shadow-[0_4px_16px_rgba(245,158,11,0.4)] transition-all duration-200 text-center"
+              className="bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(245,158,11,0.45)] transition-all duration-200 text-center"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               📞 Llámanos
@@ -141,7 +141,7 @@ export default function Header({ scrolled }: HeaderProps) {
             </div>
           ))}
           <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-800">
-            <a href="tel:3176707071" className="flex-1 bg-amber-500 text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 text-center hover:bg-amber-400 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <a href="tel:3176707071" className="flex-1 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 text-center hover:from-amber-300 hover:to-amber-400 transition-all duration-200" style={{ fontFamily: "'Oswald', sans-serif" }}>
               📞 Llamar
             </a>
             <a href="https://tienda.coninmaq.com" className="flex-1 bg-zinc-800 text-white font-bold text-[13px] tracking-wide uppercase py-3 text-center hover:bg-zinc-700 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>

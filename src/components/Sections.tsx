@@ -232,7 +232,7 @@ export function About() {
             </div>
             <Link
               to="/nosotros"
-              className="inline-block bg-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(245,158,11,0.4)] transition-all duration-200"
+              className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               Conocer más
@@ -309,7 +309,7 @@ export function Products() {
                     href="https://wa.link/bax4s3"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:bg-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.4)] transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200"
                     style={{ fontFamily: "'Oswald', sans-serif" }}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[14px] h-[14px] shrink-0">
@@ -326,7 +326,7 @@ export function Products() {
         <div className="text-center mt-12">
           <Link
             to="/maquinaria-pesada"
-            className="inline-block bg-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:bg-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(245,158,11,0.4)] transition-all duration-200"
+            className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
             style={{ fontFamily: "'Oswald', sans-serif" }}
           >
             Ver todo el catálogo
@@ -370,7 +370,7 @@ export function CTABanner() {
           <div className="flex gap-4 flex-shrink-0 flex-wrap">
             <a
               href="tel:3176707071"
-              className="bg-zinc-900 text-white font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-800 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] transition-all duration-200"
+              className="bg-gradient-to-b from-zinc-800 to-zinc-900 text-white font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-zinc-700 hover:to-zinc-800 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)] transition-all duration-200"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               📞 316 381 5694
@@ -379,7 +379,7 @@ export function CTABanner() {
               href="https://wa.link/bax4s3"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-2 border-zinc-900 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-all duration-200"
+              className="inline-flex items-center gap-2 border-2 border-zinc-900/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-zinc-900 transition-all duration-200"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] shrink-0">

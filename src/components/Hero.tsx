@@ -74,14 +74,14 @@ export default function Hero() {
           >
             <Link
               to="/maquinaria-pesada"
-              className="bg-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-[0_8px_32px_rgba(245,158,11,0.45)]"
+              className="bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)]"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               Ver Maquinaria
             </Link>
             <Link
               to="/contacto"
-              className="border border-white/20 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/5 transition-all duration-200"
+              className="border border-white/25 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-white/10 hover:border-white/50 hover:-translate-y-0.5 backdrop-blur-sm transition-all duration-200"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
               Solicitar Cotización
