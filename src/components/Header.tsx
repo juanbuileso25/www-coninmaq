@@ -172,7 +172,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <div className="hidden lg:flex flex-col gap-1 flex-shrink-0">
               <a
                 href="tel:3163815694"
-                className="inline-flex items-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(255,200,55,0.45)] transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-[#FFE07A] hover:to-brand-accent-light hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(255,200,55,0.45)] transition-all duration-200"
                 
               >
                 <Icon icon="mdi:phone" width={14} />
@@ -220,7 +220,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-800">
               <a
                 href="tel:3176707071"
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-[#7CD300] hover:to-brand-accent-light transition-all duration-200"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-[#FFE07A] hover:to-brand-accent-light transition-all duration-200"
                 
               >
                 <Icon icon="mdi:phone" width={15} />

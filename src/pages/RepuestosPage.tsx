@@ -24,7 +24,7 @@ function PartCard({ part }: { part: Part }) {
   return (
     <Link
       to={`/repuestos/${part.brand}/${part.slug}`}
-      className="bg-white border border-zinc-200 hover:border-[#7CD300] hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group flex flex-col"
+      className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group flex flex-col"
     >
       {/* Visual header */}
       <div className="h-32 bg-gradient-to-br from-zinc-800 to-zinc-900 relative overflow-hidden flex items-center justify-center">
@@ -549,7 +549,7 @@ export function RepuestoDetailPage() {
                   </a>
                   <a
                     href="/contacto"
-                    className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#7CD300] hover:to-brand-accent-light hover:shadow-[0_6px_20px_rgba(255,200,55,0.45)] hover:-translate-y-0.5 transition-all duration-200"
+                    className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#FFE07A] hover:to-brand-accent-light hover:shadow-[0_6px_20px_rgba(255,200,55,0.45)] hover:-translate-y-0.5 transition-all duration-200"
                     
                   >
                     <Icon icon="mdi:file-document-outline" width={18} />

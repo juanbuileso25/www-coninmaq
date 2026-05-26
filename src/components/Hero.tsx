@@ -74,7 +74,7 @@ export default function Hero() {
           >
             <Link
               to="/maquinaria-pesada"
-              className="bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:from-[#7CD300] hover:to-brand-accent-light hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)]"
+              className="bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:from-[#FFE07A] hover:to-brand-accent-light hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)]"
               
             >
               Ver Maquinaria

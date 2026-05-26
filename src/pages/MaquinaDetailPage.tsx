@@ -363,7 +363,7 @@ function SidebarCard({
           </a>
           <a
             href="/contacto"
-            className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#7CD300] hover:to-brand-accent-light hover:shadow-[0_6px_20px_rgba(255,200,55,0.45)] hover:-translate-y-0.5 transition-all duration-200"
+            className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#FFE07A] hover:to-brand-accent-light hover:shadow-[0_6px_20px_rgba(255,200,55,0.45)] hover:-translate-y-0.5 transition-all duration-200"
             
           >
             <Icon icon="mdi:file-document-outline" width={18} />
@@ -403,7 +403,7 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
             <Link
               key={i}
               to={p.href}
-              className="bg-white border border-zinc-200 hover:border-[#7CD300] hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
             >
               <div
                 className={`h-36 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} flex items-center justify-center relative overflow-hidden`}
