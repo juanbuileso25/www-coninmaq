@@ -9,7 +9,7 @@ const SOCIAL_ICON: Record<string, string> = {
 
 export default function TopBar() {
   return (
-    <div className="bg-black text-zinc-400 text-[13px]">
+    <div className="bg-zinc-900 text-zinc-400 text-[13px]">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center py-[6px]">
         <div className="flex gap-4 items-center">
           <span className="flex items-center gap-1.5">

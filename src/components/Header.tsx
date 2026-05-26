@@ -38,7 +38,7 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
       </NavLink>
 
       {item.sub && open && (
-        <ul className="absolute top-full left-0 min-w-[210px] bg-black border-t-[3px] border-brand-accent shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-50 animate-fade-in">
+        <ul className="absolute top-full left-0 min-w-[210px] bg-zinc-900 border-t-[3px] border-brand-accent shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-50 animate-fade-in">
           {item.sub.map((sub) => (
             <li key={sub.label}>
               <Link
@@ -204,13 +204,13 @@ export default function Header({ scrolled }: HeaderProps) {
       >
         {/* Overlay oscuro detrás */}
         <div
-          className="absolute inset-0 bg-black/50"
+          className="absolute inset-0 bg-zinc-900/50"
           onClick={closeMenu}
         />
 
         {/* Panel del menú con scroll interno */}
         <div
-          className="relative bg-black overflow-y-auto"
+          className="relative bg-zinc-900 overflow-y-auto"
           style={{ maxHeight: `calc(100dvh - ${menuTop}px)` }}
         >
           <div className="px-6 py-4">

@@ -6,7 +6,7 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Page header */}
-      <div className="bg-black py-16 relative overflow-hidden">
+      <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -52,10 +52,10 @@ export default function NosotrosPage() {
 
             <div className="grid grid-cols-2 gap-5">
               {[
-                { num: "+7", label: "Años de experiencia", color: "bg-black text-white" },
+                { num: "+7", label: "Años de experiencia", color: "bg-zinc-900 text-white" },
                 { num: "+500", label: "Máquinas vendidas", color: "bg-brand-accent text-zinc-900" },
                 { num: "+8", label: "Marcas distribuidas", color: "bg-brand-accent text-zinc-900" },
-                { num: "100%", label: "Compromiso con el cliente", color: "bg-black text-white" },
+                { num: "100%", label: "Compromiso con el cliente", color: "bg-zinc-900 text-white" },
               ].map((stat, i) => (
                 <div key={i} className={`${stat.color} p-8 flex flex-col justify-center`}>
                   <span className="font-black text-[42px] leading-none block mb-1" >

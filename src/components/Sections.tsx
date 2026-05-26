@@ -122,7 +122,7 @@ export function Categories() {
 export function Brands() {
   const doubled = [...BRANDS, ...BRANDS];
   return (
-    <section className="bg-black py-16 overflow-hidden">
+    <section className="bg-zinc-900 py-16 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
           eyebrow="Marcas Representadas"
@@ -133,8 +133,8 @@ export function Brands() {
       </div>
       {/* Marquee */}
       <div className="relative mt-4">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-zinc-900 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-zinc-900 to-transparent z-10 pointer-events-none" />
         <div className="flex animate-ticker whitespace-nowrap">
           {doubled.map((brand, i) => (
             <div
@@ -166,7 +166,7 @@ export function About() {
           <div
             className={`relative pb-8 lg:pb-0 transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
           >
-            <div className="w-full h-[400px] bg-black flex items-center justify-center overflow-hidden relative">
+            <div className="w-full h-[400px] bg-zinc-900 flex items-center justify-center overflow-hidden relative">
               {/* Pulsing amber center glow */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-48 h-48 bg-brand-accent/10 rounded-full blur-3xl animate-pulse" />
@@ -383,7 +383,7 @@ export function CTABanner() {
               href="https://wa.link/bax4s3"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-2 border-black/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-black hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-black transition-all duration-200"
+              className="inline-flex items-center gap-2 border-2 border-zinc-900/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-zinc-900 transition-all duration-200"
               
             >
               <Icon icon="mdi:whatsapp" width={20} />
@@ -428,7 +428,7 @@ export function Testimonials() {
               </p>
               <div className="flex items-center gap-3 border-t border-zinc-100 pt-4">
                 <div
-                  className="w-11 h-11 bg-black flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300"
+                  className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300"
                   
                 >
                   {t.initials}

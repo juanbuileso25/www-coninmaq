@@ -50,7 +50,7 @@ function PartCard({ part }: { part: Part }) {
             {part.type}
           </span>
         </div>
-        <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-sm px-2 py-1">
+        <div className="absolute bottom-3 right-3 bg-zinc-900/50 backdrop-blur-sm px-2 py-1">
           <span className="text-white text-[10px] font-bold">{part.code}</span>
         </div>
       </div>
@@ -133,7 +133,7 @@ export function RepuestosListPage() {
   return (
     <>
       {/* Page header */}
-      <div className="bg-black py-16 relative overflow-hidden">
+      <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: DOT_PATTERN }}
@@ -194,7 +194,7 @@ export function RepuestosListPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide transition-all duration-200 ${
                   activeCategory === cat
-                    ? "bg-black text-white"
+                    ? "bg-zinc-900 text-white"
                     : "bg-white text-zinc-500 border border-zinc-200 hover:border-zinc-400"
                 }`}
               >
@@ -242,7 +242,7 @@ export function RepuestosListPage() {
           )}
 
           {/* Callout */}
-          <div className="mt-14 bg-black p-8 relative overflow-hidden">
+          <div className="mt-14 bg-zinc-900 p-8 relative overflow-hidden">
             <div
               className="absolute inset-0 opacity-[0.04]"
               style={{ backgroundImage: DOT_PATTERN }}
@@ -293,7 +293,7 @@ export function RepuestoDetailPage() {
 
   if (!part) {
     return (
-      <div className="bg-black min-h-[60vh] flex items-center justify-center">
+      <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
         <div className="text-center px-6">
           <span
             className="font-black text-[80px] text-brand-accent/20 block"
@@ -326,7 +326,7 @@ export function RepuestoDetailPage() {
   return (
     <>
       {/* Dark header */}
-      <div className="bg-black py-8 relative overflow-hidden">
+      <div className="bg-zinc-900 py-8 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: DOT_PATTERN }}
@@ -396,7 +396,7 @@ export function RepuestoDetailPage() {
                     {part.type}
                   </span>
                 </div>
-                <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1.5">
+                <div className="absolute bottom-4 right-4 bg-zinc-900/60 backdrop-blur-sm px-3 py-1.5">
                   <span className="text-white text-[13px] font-bold tracking-wider">
                     {part.code}
                   </span>
@@ -471,7 +471,7 @@ export function RepuestoDetailPage() {
 
             {/* Right sidebar */}
             <div className="lg:sticky lg:top-24 lg:self-start space-y-4">
-              <div className="bg-black p-5">
+              <div className="bg-zinc-900 p-5">
                 <p className="text-brand-accent text-[10px] font-bold tracking-[3px] uppercase mb-1">
                   N.° de parte
                 </p>

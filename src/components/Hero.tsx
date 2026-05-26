@@ -7,7 +7,7 @@ export default function Hero() {
   useEffect(() => { setMounted(true); }, []);
 
   return (
-    <section className="relative bg-black overflow-hidden">
+    <section className="relative bg-zinc-900 overflow-hidden">
       {/* Animated amber glow orbs */}
       <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-brand-accent/10 rounded-full blur-[130px] animate-float pointer-events-none" />
       <div className="absolute bottom-16 -left-24 w-[400px] h-[400px] bg-brand-accent-dark/8 rounded-full blur-[100px] animate-float-slow pointer-events-none" style={{ animationDelay: "-4s" }} />
@@ -97,9 +97,9 @@ export default function Hero() {
             {STATS.map((s, i) => (
               <div
                 key={i}
-                className={`text-center py-5 px-3 group hover:bg-black/10 transition-colors cursor-default ${
-                  i % 2 === 0 && i < STATS.length - 1 ? "border-r border-black/10" : ""
-                } ${i < 2 ? "border-b border-black/10 md:border-b-0" : ""} md:border-r md:last:border-r-0`}
+                className={`text-center py-5 px-3 group hover:bg-zinc-900/10 transition-colors cursor-default ${
+                  i % 2 === 0 && i < STATS.length - 1 ? "border-r border-zinc-900/10" : ""
+                } ${i < 2 ? "border-b border-zinc-900/10 md:border-b-0" : ""} md:border-r md:last:border-r-0`}
               >
                 <span
                   className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom"

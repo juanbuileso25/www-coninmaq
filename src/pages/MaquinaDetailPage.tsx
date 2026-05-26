@@ -53,14 +53,14 @@ function MachineCarousel({
         </span>
 
         {/* View label */}
-        <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm px-3 py-1.5">
+        <div className="absolute bottom-4 left-4 bg-zinc-900/60 backdrop-blur-sm px-3 py-1.5">
           <span className="text-white text-[11px] font-bold tracking-[2px] uppercase">
             {slideLabels[active]}
           </span>
         </div>
 
         {/* Slide counter */}
-        <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm px-2.5 py-1">
+        <div className="absolute top-4 right-4 bg-zinc-900/50 backdrop-blur-sm px-2.5 py-1">
           <span className="text-white text-[11px] font-semibold">
             {active + 1} / {slideLabels.length}
           </span>
@@ -68,7 +68,7 @@ function MachineCarousel({
 
         {/* Condition overlay for used */}
         {isUsada && (
-          <div className="absolute top-4 left-4 bg-brand-gray/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5">
+          <div className="absolute top-4 left-4 bg-zinc-800/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5">
             <span className="text-brand-accent-light text-[10px] font-bold tracking-[2px] uppercase flex items-center gap-1.5">
               <Icon icon="mdi:shield-check-outline" width={13} />
               Certificada
@@ -79,14 +79,14 @@ function MachineCarousel({
         {/* Arrows */}
         <button
           onClick={() => setActive((active - 1 + slideLabels.length) % slideLabels.length)}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
           aria-label="Anterior"
         >
           <Icon icon="mdi:chevron-left" width={22} className="text-white" />
         </button>
         <button
           onClick={() => setActive((active + 1) % slideLabels.length)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
           aria-label="Siguiente"
         >
           <Icon icon="mdi:chevron-right" width={22} className="text-white" />
@@ -220,7 +220,7 @@ function SidebarCard({
   return (
     <div className="bg-white border border-zinc-200 shadow-sm">
       {/* Header */}
-      <div className="bg-black p-5">
+      <div className="bg-zinc-900 p-5">
         <p className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase mb-1">
           {product.brand}
         </p>
@@ -488,7 +488,7 @@ export default function MaquinaDetailPage() {
   // Fallback if not found
   if (!product) {
     return (
-      <div className="bg-black min-h-[60vh] flex items-center justify-center">
+      <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
         <div className="text-center px-6">
           <span
             className="font-black text-[80px] text-brand-accent/20 block"
@@ -539,7 +539,7 @@ export default function MaquinaDetailPage() {
   return (
     <>
       {/* Dark header */}
-      <div className="bg-black py-6 relative overflow-hidden">
+      <div className="bg-zinc-900 py-6 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: DOT_PATTERN }}

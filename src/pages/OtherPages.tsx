@@ -23,7 +23,7 @@ export function MaquinariaPage() {
   return (
     <>
       {/* Page header */}
-      <div className="bg-black py-16 relative overflow-hidden">
+      <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2" >
@@ -56,7 +56,7 @@ export function MaquinariaPage() {
                   </span>
                   {/* Año en la esquina superior derecha para usados */}
                   {isUsada && p.anio && (
-                    <span className="absolute top-3 right-3 bg-black/50 text-white text-[11px] font-bold px-2 py-1 backdrop-blur-sm">
+                    <span className="absolute top-3 right-3 bg-zinc-900/50 text-white text-[11px] font-bold px-2 py-1 backdrop-blur-sm">
                       {p.anio}
                     </span>
                   )}
@@ -113,7 +113,7 @@ export function ContactoPage() {
   return (
     <>
       {/* Page header */}
-      <div className="bg-black py-16 relative overflow-hidden">
+      <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -208,7 +208,7 @@ export function ContactoPage() {
 /* ── 404 Not Found ───────────────────────────────────────────────────────── */
 export function NotFoundPage() {
   return (
-    <div className="bg-black min-h-[60vh] flex items-center justify-center">
+    <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
       <div className="text-center px-6">
         <span className="font-black text-[120px] text-brand-accent/20 select-none block leading-none" >
           404
