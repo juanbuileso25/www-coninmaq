@@ -31,7 +31,7 @@ export function ServicesStrip() {
               `}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="w-12 h-12 bg-brand-accent flex items-center justify-center flex-shrink-0 group-hover:bg-brand-accent-light group-hover:scale-110 group-hover:shadow-[0_4px_16px_rgba(90,175,0,0.4)] transition-all duration-300 text-zinc-900">
+              <div className="w-12 h-12 bg-brand-accent flex items-center justify-center flex-shrink-0 group-hover:bg-brand-accent-light group-hover:scale-110 group-hover:shadow-[0_4px_16px_rgba(255,200,55,0.4)] transition-all duration-300 text-zinc-900">
                 <Icon icon={s.icon} width={24} />
               </div>
               <div>
@@ -185,7 +185,7 @@ export function About() {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-accent/30" />
             </div>
             {/* Experience badge */}
-            <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-brand-accent flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(90,175,0,0.5)] hover:scale-105 transition-transform duration-300">
+            <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-brand-accent flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(255,200,55,0.5)] hover:scale-105 transition-transform duration-300">
               <span
                 className="font-black text-[36px] text-zinc-900 leading-none"
                 
@@ -237,7 +237,7 @@ export function About() {
             </div>
             <Link
               to="/nosotros"
-              className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(90,175,0,0.5)] transition-all duration-200"
+              className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)] transition-all duration-200"
               
             >
               Conocer más
@@ -329,7 +329,7 @@ export function Products() {
         <div className="text-center mt-12">
           <Link
             to="/maquinaria-pesada"
-            className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(90,175,0,0.5)] transition-all duration-200"
+            className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)] transition-all duration-200"
             
           >
             Ver todo el catálogo

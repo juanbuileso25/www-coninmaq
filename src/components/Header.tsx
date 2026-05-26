@@ -173,7 +173,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <div className="hidden lg:flex flex-col gap-1 flex-shrink-0">
               <a
                 href="tel:3163815694"
-                className="inline-flex items-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(90,175,0,0.45)] transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(255,200,55,0.45)] transition-all duration-200"
                 
               >
                 <Icon icon="mdi:phone" width={14} />

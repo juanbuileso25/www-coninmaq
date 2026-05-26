@@ -7,9 +7,9 @@ export default {
         sans: ["'Poppins'", "sans-serif"],
       },
       colors: {
-        'brand-accent':       '#5AAF00',
-        'brand-accent-light': '#6BC400',
-        'brand-accent-dark':  '#4A9200',
+        'brand-accent':       '#FFC837',
+        'brand-accent-light': '#FFD55C',
+        'brand-accent-dark':  '#E6A800',
         'brand-gray':         '#323335',
       },
       animation: {
