@@ -6,7 +6,8 @@ import { MaquinariaPage, ContactoPage, NotFoundPage } from "../pages/OtherPages"
 import MaquinaDetailPage from "../pages/MaquinaDetailPage";
 import { RepuestosListPage, RepuestoDetailPage } from "../pages/RepuestosPage";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
   {
     path: "/",
     element: <Layout />,
@@ -31,6 +32,8 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFoundPage /> },
     ],
   },
-]);
+  ],
+  { basename: import.meta.env.BASE_URL }
+);
 
 export default router;
