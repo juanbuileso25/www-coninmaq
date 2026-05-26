@@ -17,10 +17,9 @@ export default function Footer() {
           <div>
             <Link to="/" className="inline-block mb-4">
               <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
+                src={`${import.meta.env.BASE_URL}logo-yellow.png`}
                 alt="Coninmaq"
                 className="h-9 w-auto"
-                style={{ filter: "brightness(0) invert(1)" }}
               />
             </Link>
             <p className="text-[14px] text-zinc-400 font-normal leading-relaxed mb-5">
