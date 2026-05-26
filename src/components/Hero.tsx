@@ -1,0 +1,120 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { STATS } from "../data";
+
+export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  return (
+    <section className="relative min-h-[600px] flex items-center bg-zinc-900 overflow-hidden">
+      {/* Animated amber glow orbs */}
+      <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[130px] animate-float pointer-events-none" />
+      <div className="absolute bottom-16 -left-24 w-[400px] h-[400px] bg-amber-600/8 rounded-full blur-[100px] animate-float-slow pointer-events-none" style={{ animationDelay: "-4s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-amber-500/5 rounded-full blur-[80px] animate-float pointer-events-none" style={{ animationDelay: "-7s" }} />
+
+      {/* Dot pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5A800' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10 py-20 pb-36 w-full">
+        <div className="max-w-[640px]">
+          {/* Pill badge */}
+          <div
+            className={`inline-flex items-center gap-2 border border-amber-500/30 bg-amber-500/10 backdrop-blur-sm px-4 py-2 mb-6 transition-all duration-700 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
+            style={{ transitionDelay: "50ms" }}
+          >
+            <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
+            <span
+              className="text-amber-400 font-bold text-[11px] tracking-[2.5px] uppercase"
+              style={{ fontFamily: "'Oswald', sans-serif" }}
+            >
+              Líderes en Colombia
+            </span>
+          </div>
+
+          <h1
+            className={`font-black uppercase text-white leading-[1.05] mb-5 transition-all duration-700 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: "clamp(38px, 5vw, 62px)",
+              transitionDelay: "180ms",
+            }}
+          >
+            Soluciones en<br />
+            <span className="text-amber-500 drop-shadow-[0_0_30px_rgba(245,158,11,0.35)]">
+              Maquinaria Pesada
+            </span>
+          </h1>
+
+          <p
+            className={`text-zinc-400 font-light text-[17px] mb-8 max-w-[500px] leading-relaxed transition-all duration-700 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
+            style={{ transitionDelay: "320ms" }}
+          >
+            Más de dos décadas de experiencia en venta, importación y
+            mantenimiento de maquinaria pesada nueva y usada. Marcas líderes
+            como CASE, CATERPILLAR, HITACHI y DYNAPAC.
+          </p>
+
+          <div
+            className={`flex gap-4 flex-wrap transition-all duration-700 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
+            style={{ transitionDelay: "460ms" }}
+          >
+            <Link
+              to="/maquinaria-pesada"
+              className="bg-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-[0_8px_32px_rgba(245,158,11,0.45)]"
+              style={{ fontFamily: "'Oswald', sans-serif" }}
+            >
+              Ver Maquinaria
+            </Link>
+            <Link
+              to="/contacto"
+              className="border border-white/20 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/5 transition-all duration-200"
+              style={{ fontFamily: "'Oswald', sans-serif" }}
+            >
+              Solicitar Cotización
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats bar */}
+      <div className="absolute bottom-0 left-0 right-0 bg-amber-500/95 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {STATS.map((s, i) => (
+              <div
+                key={i}
+                className={`text-center py-5 px-3 group hover:bg-black/10 transition-colors cursor-default ${
+                  i < STATS.length - 1 ? "border-r border-black/10" : ""
+                }`}
+              >
+                <span
+                  className="block font-black text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom"
+                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                >
+                  {s.num}
+                </span>
+                <span className="text-[11px] font-semibold text-black/60 uppercase tracking-wider">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
