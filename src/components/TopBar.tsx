@@ -9,19 +9,19 @@ const SOCIAL_ICON: Record<string, string> = {
 
 export default function TopBar() {
   return (
-    <div className="bg-zinc-900 text-zinc-400 text-[13px]">
+    <div className="bg-black text-zinc-400 text-[13px]">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center py-[6px]">
         <div className="flex gap-4 items-center">
           <span className="flex items-center gap-1.5">
-            <Icon icon="mdi:phone" width={14} className="text-amber-500" />
-            <a href="tel:3176707071" className="text-white font-semibold hover:text-amber-500 transition-colors">
+            <Icon icon="mdi:phone" width={14} className="text-brand-accent" />
+            <a href="tel:3176707071" className="text-white font-semibold hover:text-brand-accent transition-colors">
               316 381 5694
             </a>
           </span>
           <span className="hidden md:inline text-zinc-700">|</span>
           <span className="hidden md:flex items-center gap-1.5">
-            <Icon icon="mdi:email-outline" width={14} className="text-amber-500" />
-            <a href="mailto:comercioexterior@coninmaqsas.com" className="text-white font-semibold hover:text-amber-500 transition-colors">
+            <Icon icon="mdi:email-outline" width={14} className="text-brand-accent" />
+            <a href="mailto:comercioexterior@coninmaqsas.com" className="text-white font-semibold hover:text-brand-accent transition-colors">
               comercioexterior@coninmaqsas.com
             </a>
           </span>
@@ -34,7 +34,7 @@ export default function TopBar() {
               aria-label={s.label}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-500 hover:text-amber-500 transition-colors"
+              className="text-zinc-500 hover:text-brand-accent transition-colors"
             >
               <Icon icon={SOCIAL_ICON[s.label] ?? "mdi:link"} width={16} />
             </a>

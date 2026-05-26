@@ -21,7 +21,7 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
         to={item.href}
         className={({ isActive }) =>
           `relative inline-flex items-center gap-1 font-semibold text-[14px] tracking-wider uppercase px-3 py-2 transition-colors group ${
-            isActive ? "text-amber-500" : "text-zinc-700 hover:text-amber-500"
+            isActive ? "text-brand-accent" : "text-zinc-700 hover:text-brand-accent"
           }`
         }
         
@@ -34,19 +34,19 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
             className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           />
         )}
-        <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+        <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-brand-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
       </NavLink>
 
       {item.sub && open && (
-        <ul className="absolute top-full left-0 min-w-[210px] bg-zinc-900 border-t-[3px] border-amber-500 shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-50 animate-fade-in">
+        <ul className="absolute top-full left-0 min-w-[210px] bg-black border-t-[3px] border-brand-accent shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-50 animate-fade-in">
           {item.sub.map((sub) => (
             <li key={sub.label}>
               <Link
                 to={sub.href}
-                className="flex items-center gap-2 px-5 py-[10px] text-[13px] text-zinc-400 hover:bg-amber-500 hover:text-zinc-900 transition-all duration-150 border-b border-white/5 group/sub"
+                className="flex items-center gap-2 px-5 py-[10px] text-[13px] text-zinc-400 hover:bg-brand-accent hover:text-zinc-900 transition-all duration-150 border-b border-white/5 group/sub"
                 onClick={() => setOpen(false)}
               >
-                <Icon icon="mdi:chevron-right" width={14} className="text-amber-500 group-hover/sub:text-zinc-900 transition-colors" />
+                <Icon icon="mdi:chevron-right" width={14} className="text-brand-accent group-hover/sub:text-zinc-900 transition-colors" />
                 {sub.label}
               </Link>
             </li>
@@ -64,7 +64,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
     return (
       <Link
         to={item.href}
-        className="block text-zinc-300 py-3 text-sm border-b border-zinc-800 hover:text-amber-500 transition-colors font-semibold uppercase tracking-wide"
+        className="block text-zinc-300 py-3 text-sm border-b border-zinc-800 hover:text-brand-accent transition-colors font-semibold uppercase tracking-wide"
         
         onClick={onClose}
       >
@@ -77,7 +77,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
     <div className="border-b border-zinc-800">
       <button
         type="button"
-        className="w-full flex items-center justify-between text-zinc-300 py-3 text-sm font-semibold uppercase tracking-wide hover:text-amber-500 transition-colors"
+        className="w-full flex items-center justify-between text-zinc-300 py-3 text-sm font-semibold uppercase tracking-wide hover:text-brand-accent transition-colors"
         
         onClick={() => setOpen((v) => !v)}
       >
@@ -85,7 +85,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
         <Icon
           icon="mdi:chevron-down"
           width={16}
-          className={`transition-transform duration-200 ${open ? "rotate-180 text-amber-500" : ""}`}
+          className={`transition-transform duration-200 ${open ? "rotate-180 text-brand-accent" : ""}`}
         />
       </button>
 
@@ -96,10 +96,10 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
           <Link
             key={sub.label}
             to={sub.href}
-            className="flex items-center gap-1.5 pl-4 text-zinc-400 py-2.5 text-[13px] hover:text-amber-500 transition-colors border-b border-zinc-800/50 last:border-0"
+            className="flex items-center gap-1.5 pl-4 text-zinc-400 py-2.5 text-[13px] hover:text-brand-accent transition-colors border-b border-zinc-800/50 last:border-0"
             onClick={onClose}
           >
-            <Icon icon="mdi:chevron-right" width={14} className="text-amber-500/60 flex-shrink-0" />
+            <Icon icon="mdi:chevron-right" width={14} className="text-brand-accent/60 flex-shrink-0" />
             {sub.label}
           </Link>
         ))}
@@ -142,7 +142,7 @@ export default function Header({ scrolled }: HeaderProps) {
     <>
       <header
         ref={headerRef}
-        className={`sticky top-0 z-50 border-b-[3px] border-amber-500 transition-all duration-300 ${
+        className={`sticky top-0 z-50 border-b-[3px] border-brand-accent transition-all duration-300 ${
           scrolled
             ? "bg-white/90 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
             : "bg-white shadow-none"
@@ -156,7 +156,7 @@ export default function Header({ scrolled }: HeaderProps) {
                 className="font-black text-[26px] tracking-[2px] text-zinc-900 group-hover:text-zinc-700 transition-colors"
                 
               >
-                CON<span className="text-amber-500 group-hover:text-amber-400 transition-colors">INMAQ</span>
+                CON<span className="text-brand-accent group-hover:text-brand-accent-light transition-colors">INMAQ</span>
               </span>
             </Link>
 
@@ -173,7 +173,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <div className="hidden lg:flex flex-col gap-1 flex-shrink-0">
               <a
                 href="tel:3163815694"
-                className="inline-flex items-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(245,158,11,0.45)] transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(90,175,0,0.45)] transition-all duration-200"
                 
               >
                 <Icon icon="mdi:phone" width={14} />
@@ -183,7 +183,7 @@ export default function Header({ scrolled }: HeaderProps) {
 
             {/* Hamburger */}
             <button
-              className="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] text-zinc-700 hover:text-amber-500 transition-colors"
+              className="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] text-zinc-700 hover:text-brand-accent transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Abrir menú"
             >
@@ -210,7 +210,7 @@ export default function Header({ scrolled }: HeaderProps) {
 
         {/* Panel del menú con scroll interno */}
         <div
-          className="relative bg-zinc-900 overflow-y-auto"
+          className="relative bg-black overflow-y-auto"
           style={{ maxHeight: `calc(100dvh - ${menuTop}px)` }}
         >
           <div className="px-6 py-4">
@@ -221,7 +221,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-800">
               <a
                 href="tel:3176707071"
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-amber-300 hover:to-amber-400 transition-all duration-200"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-[#7CD300] hover:to-brand-accent-light transition-all duration-200"
                 
               >
                 <Icon icon="mdi:phone" width={15} />

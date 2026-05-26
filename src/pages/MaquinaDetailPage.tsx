@@ -6,12 +6,12 @@ import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 import { MACHINE_DETAIL_MAP } from "../data/detailData";
 import type { Product, MachineDetailData } from "../types";
 
-const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5A800' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
+const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235AAF00' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
 const CONDITION_COLOR: Record<string, string> = {
   Excelente: "text-emerald-600 bg-emerald-50 border-emerald-200",
   "Muy bueno": "text-blue-600 bg-blue-50 border-blue-200",
-  Bueno: "text-amber-600 bg-amber-50 border-amber-200",
+  Bueno: "text-brand-accent-dark bg-amber-50 border-amber-200",
 };
 
 const CONDITION_BAR: Record<string, number> = {
@@ -45,7 +45,7 @@ function MachineCarousel({
           style={{ backgroundImage: DOT_PATTERN }}
         />
         <span
-          className="font-black text-[90px] md:text-[130px] text-amber-500/15 select-none group-hover:scale-105 transition-transform duration-700"
+          className="font-black text-[90px] md:text-[130px] text-brand-accent/15 select-none group-hover:scale-105 transition-transform duration-700"
           
           aria-hidden="true"
         >
@@ -68,8 +68,8 @@ function MachineCarousel({
 
         {/* Condition overlay for used */}
         {isUsada && (
-          <div className="absolute top-4 left-4 bg-zinc-800/80 backdrop-blur-sm border border-amber-500/30 px-3 py-1.5">
-            <span className="text-amber-400 text-[10px] font-bold tracking-[2px] uppercase flex items-center gap-1.5">
+          <div className="absolute top-4 left-4 bg-brand-gray/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5">
+            <span className="text-brand-accent-light text-[10px] font-bold tracking-[2px] uppercase flex items-center gap-1.5">
               <Icon icon="mdi:shield-check-outline" width={13} />
               Certificada
             </span>
@@ -79,14 +79,14 @@ function MachineCarousel({
         {/* Arrows */}
         <button
           onClick={() => setActive((active - 1 + slideLabels.length) % slideLabels.length)}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-amber-500 flex items-center justify-center transition-colors duration-200"
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
           aria-label="Anterior"
         >
           <Icon icon="mdi:chevron-left" width={22} className="text-white" />
         </button>
         <button
           onClick={() => setActive((active + 1) % slideLabels.length)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-amber-500 flex items-center justify-center transition-colors duration-200"
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
           aria-label="Siguiente"
         >
           <Icon icon="mdi:chevron-right" width={22} className="text-white" />
@@ -99,7 +99,7 @@ function MachineCarousel({
               key={i}
               onClick={() => setActive(i)}
               className={`w-2 h-2 transition-all duration-200 ${
-                i === active ? "bg-amber-500 w-5" : "bg-white/30 hover:bg-white/60"
+                i === active ? "bg-brand-accent w-5" : "bg-white/30 hover:bg-white/60"
               }`}
               aria-label={`Imagen ${i + 1}`}
             />
@@ -114,7 +114,7 @@ function MachineCarousel({
             key={i}
             onClick={() => setActive(i)}
             className={`flex-1 h-[72px] bg-gradient-to-br ${gradient} relative overflow-hidden border-2 transition-all duration-200 ${
-              i === active ? "border-amber-500" : "border-transparent opacity-60 hover:opacity-80"
+              i === active ? "border-brand-accent" : "border-transparent opacity-60 hover:opacity-80"
             }`}
           >
             <div
@@ -122,7 +122,7 @@ function MachineCarousel({
               style={{ backgroundImage: DOT_PATTERN }}
             />
             <span
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-amber-500/30 select-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-brand-accent/30 select-none"
               
             >
               {code}
@@ -151,7 +151,7 @@ function DetailTabs({ product, detail }: { product: Product; detail: MachineDeta
             onClick={() => setTab(t)}
             className={`px-5 py-3 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 border-b-2 -mb-[2px] ${
               tab === t
-                ? "border-amber-500 text-amber-600"
+                ? "border-brand-accent text-brand-accent-dark"
                 : "border-transparent text-zinc-400 hover:text-zinc-700"
             }`}
             
@@ -167,7 +167,7 @@ function DetailTabs({ product, detail }: { product: Product; detail: MachineDeta
           <div className="space-y-2.5">
             {detail?.highlights.map((h: string, i: number) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="w-5 h-5 bg-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-5 h-5 bg-brand-accent flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Icon icon="mdi:check" width={12} className="text-zinc-900" />
                 </div>
                 <p className="text-[13px] text-zinc-700 leading-relaxed">{h}</p>
@@ -187,7 +187,7 @@ function DetailTabs({ product, detail }: { product: Product; detail: MachineDeta
               >
                 <span className="flex items-center gap-2 text-[12px] font-semibold text-zinc-500 uppercase tracking-wide">
                   {spec.icon && (
-                    <Icon icon={spec.icon} width={14} className="text-amber-500" />
+                    <Icon icon={spec.icon} width={14} className="text-brand-accent" />
                   )}
                   {spec.label}
                 </span>
@@ -220,8 +220,8 @@ function SidebarCard({
   return (
     <div className="bg-white border border-zinc-200 shadow-sm">
       {/* Header */}
-      <div className="bg-zinc-900 p-5">
-        <p className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase mb-1">
+      <div className="bg-black p-5">
+        <p className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase mb-1">
           {product.brand}
         </p>
         <h2
@@ -233,7 +233,7 @@ function SidebarCard({
         <div className="mt-2 flex gap-2 flex-wrap">
           <span
             className={`inline-block text-[10px] font-bold tracking-[2px] uppercase px-3 py-1 ${
-              isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
+              isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
             }`}
             
           >
@@ -255,7 +255,7 @@ function SidebarCard({
           <div className="grid grid-cols-2 gap-3">
             {product.anio && (
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
-                <Icon icon="mdi:calendar-outline" width={20} className="text-amber-500 mx-auto mb-1" />
+                <Icon icon="mdi:calendar-outline" width={20} className="text-brand-accent mx-auto mb-1" />
                 <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Año</p>
                 <p className="text-[18px] font-black text-zinc-900" >
                   {product.anio}
@@ -264,7 +264,7 @@ function SidebarCard({
             )}
             {product.horasUso && (
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
-                <Icon icon="mdi:clock-outline" width={20} className="text-amber-500 mx-auto mb-1" />
+                <Icon icon="mdi:clock-outline" width={20} className="text-brand-accent mx-auto mb-1" />
                 <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Horas</p>
                 <p className="text-[18px] font-black text-zinc-900" >
                   {product.horasUso}
@@ -289,7 +289,7 @@ function SidebarCard({
             </div>
             <div className="h-2 bg-zinc-100 w-full">
               <div
-                className="h-2 bg-amber-500 transition-all duration-700"
+                className="h-2 bg-brand-accent transition-all duration-700"
                 style={{ width: `${barWidth}%` }}
               />
             </div>
@@ -324,7 +324,7 @@ function SidebarCard({
               </div>
             )}
             <div className="flex items-center gap-3 p-3 bg-amber-50 border border-amber-100">
-              <Icon icon="mdi:airplane" width={18} className="text-amber-600 flex-shrink-0" />
+              <Icon icon="mdi:airplane" width={18} className="text-brand-accent-dark flex-shrink-0" />
               <div>
                 <p className="text-[10px] text-amber-700 font-bold uppercase tracking-wide">Importación directa</p>
                 <p className="text-[13px] font-bold text-amber-800">Sin intermediarios</p>
@@ -363,7 +363,7 @@ function SidebarCard({
           </a>
           <a
             href="/contacto"
-            className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_6px_20px_rgba(245,158,11,0.45)] hover:-translate-y-0.5 transition-all duration-200"
+            className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#7CD300] hover:to-brand-accent-light hover:shadow-[0_6px_20px_rgba(90,175,0,0.45)] hover:-translate-y-0.5 transition-all duration-200"
             
           >
             <Icon icon="mdi:file-document-outline" width={18} />
@@ -371,7 +371,7 @@ function SidebarCard({
           </a>
           <a
             href="tel:3163815694"
-            className="flex items-center justify-center gap-2 w-full border border-zinc-200 text-zinc-600 font-semibold text-[12px] tracking-wide uppercase py-2.5 hover:border-amber-500 hover:text-amber-600 transition-all duration-200"
+            className="flex items-center justify-center gap-2 w-full border border-zinc-200 text-zinc-600 font-semibold text-[12px] tracking-wide uppercase py-2.5 hover:border-brand-accent hover:text-brand-accent-dark transition-all duration-200"
           >
             <Icon icon="mdi:phone" width={15} />
             316 381 5694
@@ -396,38 +396,38 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
           
         >
           También te puede{" "}
-          <span className="text-amber-500">interesar</span>
+          <span className="text-brand-accent">interesar</span>
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {related.map((p, i) => (
             <Link
               key={i}
               to={p.href}
-              className="bg-white border border-zinc-200 hover:border-amber-300 hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white border border-zinc-200 hover:border-[#7CD300] hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
             >
               <div
                 className={`h-36 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} flex items-center justify-center relative overflow-hidden`}
               >
                 <span
-                  className="font-black text-[44px] text-amber-500/15 select-none group-hover:scale-110 transition-transform duration-500"
+                  className="font-black text-[44px] text-brand-accent/15 select-none group-hover:scale-110 transition-transform duration-500"
                   
                 >
                   {p.code}
                 </span>
                 <span
                   className={`absolute top-2 left-2 text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 ${
-                    isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
+                    isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
                   }`}
                 >
                   {p.badge}
                 </span>
               </div>
               <div className="p-4">
-                <p className="text-amber-500 text-[10px] font-bold tracking-[2px] uppercase mb-0.5">
+                <p className="text-brand-accent text-[10px] font-bold tracking-[2px] uppercase mb-0.5">
                   {p.brand}
                 </p>
                 <h4
-                  className="font-bold text-[15px] uppercase text-zinc-900 group-hover:text-amber-600 transition-colors"
+                  className="font-bold text-[15px] uppercase text-zinc-900 group-hover:text-brand-accent-dark transition-colors"
                   
                 >
                   {p.model}
@@ -456,8 +456,8 @@ function WhyUsStrip() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {WHY_ITEMS.map((item, i) => (
             <div key={i} className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-amber-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Icon icon={item.icon} width={20} className="text-amber-500" />
+              <div className="w-10 h-10 bg-brand-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Icon icon={item.icon} width={20} className="text-brand-accent" />
               </div>
               <div>
                 <p
@@ -488,10 +488,10 @@ export default function MaquinaDetailPage() {
   // Fallback if not found
   if (!product) {
     return (
-      <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
+      <div className="bg-black min-h-[60vh] flex items-center justify-center">
         <div className="text-center px-6">
           <span
-            className="font-black text-[80px] text-amber-500/20 block"
+            className="font-black text-[80px] text-brand-accent/20 block"
             
           >
             ?
@@ -504,7 +504,7 @@ export default function MaquinaDetailPage() {
           </h1>
           <Link
             to="/maquinaria-pesada"
-            className="inline-flex items-center gap-2 bg-amber-500 text-zinc-900 font-bold text-[13px] uppercase px-6 py-3"
+            className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[13px] uppercase px-6 py-3"
           >
             <Icon icon="mdi:arrow-left" width={16} />
             Ver inventario
@@ -539,7 +539,7 @@ export default function MaquinaDetailPage() {
   return (
     <>
       {/* Dark header */}
-      <div className="bg-zinc-900 py-6 relative overflow-hidden">
+      <div className="bg-black py-6 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: DOT_PATTERN }}
@@ -547,17 +547,17 @@ export default function MaquinaDetailPage() {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-[11px] text-zinc-500 mb-4 flex-wrap">
-            <Link to="/" className="hover:text-amber-500 transition-colors">
+            <Link to="/" className="hover:text-brand-accent transition-colors">
               Inicio
             </Link>
             <Icon icon="mdi:chevron-right" width={12} />
-            <Link to="/maquinaria-pesada" className="hover:text-amber-500 transition-colors">
+            <Link to="/maquinaria-pesada" className="hover:text-brand-accent transition-colors">
               Maquinaria Pesada
             </Link>
             <Icon icon="mdi:chevron-right" width={12} />
             <Link
               to={`/maquinaria-pesada/${categoria}`}
-              className="hover:text-amber-500 transition-colors"
+              className="hover:text-brand-accent transition-colors"
             >
               {catLabel}
             </Link>
@@ -568,7 +568,7 @@ export default function MaquinaDetailPage() {
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
               <span
-                className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-1"
+                className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-1"
                 
               >
                 {product.brand}
@@ -582,7 +582,7 @@ export default function MaquinaDetailPage() {
             </div>
             <span
               className={`inline-block text-[12px] font-bold tracking-[2px] uppercase px-4 py-2 self-end ${
-                isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
+                isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
               }`}
               
             >

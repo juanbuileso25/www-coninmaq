@@ -20,7 +20,7 @@ export default function Footer() {
                 className="block font-black text-[22px] tracking-[2px] text-white mb-4"
                 
               >
-                CON<span className="text-amber-500">INMAQ</span>
+                CON<span className="text-brand-accent">INMAQ</span>
               </span>
             </Link>
             <p className="text-[14px] text-zinc-400 font-normal leading-relaxed mb-5">
@@ -34,7 +34,7 @@ export default function Footer() {
                   aria-label={s.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 bg-white/[0.06] flex items-center justify-center hover:bg-amber-500 hover:text-zinc-900 text-zinc-400 transition-all duration-200"
+                  className="w-9 h-9 bg-white/[0.06] flex items-center justify-center hover:bg-brand-accent hover:text-zinc-900 text-zinc-400 transition-all duration-200"
                 >
                   <Icon icon={SOCIAL_ICON[s.label] ?? "mdi:link"} width={18} />
                 </a>
@@ -46,7 +46,7 @@ export default function Footer() {
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
               <h4
-                className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-amber-500 inline-block"
+                className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-brand-accent inline-block"
                 
               >
                 {title}
@@ -56,9 +56,9 @@ export default function Footer() {
                   <li key={label}>
                     <Link
                       to="#"
-                      className="flex items-center gap-2 text-[14px] text-zinc-400 hover:text-amber-500 transition-colors group"
+                      className="flex items-center gap-2 text-[14px] text-zinc-400 hover:text-brand-accent transition-colors group"
                     >
-                      <Icon icon="mdi:chevron-right" width={16} className="text-amber-500 group-hover:translate-x-0.5 transition-transform" />
+                      <Icon icon="mdi:chevron-right" width={16} className="text-brand-accent group-hover:translate-x-0.5 transition-transform" />
                       {label}
                     </Link>
                   </li>
@@ -70,7 +70,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4
-              className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-amber-500 inline-block"
+              className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-brand-accent inline-block"
               
             >
               Contacto
@@ -78,7 +78,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {CONTACT_ITEMS.map((item, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-[14px] text-zinc-400">
-                  <Icon icon={item.icon} width={16} className="text-amber-500 mt-0.5 shrink-0" />
+                  <Icon icon={item.icon} width={16} className="text-brand-accent mt-0.5 shrink-0" />
                   <span>{item.text}</span>
                 </li>
               ))}
@@ -89,8 +89,8 @@ export default function Footer() {
         <div className="border-t border-white/[0.08] py-5 flex flex-col md:flex-row justify-between items-center text-[13px] text-zinc-400 gap-2">
           <span>© {new Date().getFullYear()} Coninmaq S.A.S — Todos los derechos reservados</span>
           <div className="flex gap-4">
-            <Link to="/politica-privacidad" className="hover:text-amber-500 transition-colors">Política de privacidad</Link>
-            <Link to="/terminos" className="hover:text-amber-500 transition-colors">Términos de uso</Link>
+            <Link to="/politica-privacidad" className="hover:text-brand-accent transition-colors">Política de privacidad</Link>
+            <Link to="/terminos" className="hover:text-brand-accent transition-colors">Términos de uso</Link>
           </div>
         </div>
       </div>

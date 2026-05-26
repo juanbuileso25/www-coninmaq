@@ -6,6 +6,12 @@ export default {
       fontFamily: {
         sans: ["'Poppins'", "sans-serif"],
       },
+      colors: {
+        'brand-accent':       '#5AAF00',
+        'brand-accent-light': '#6BC400',
+        'brand-accent-dark':  '#4A9200',
+        'brand-gray':         '#323335',
+      },
       animation: {
         "fade-in-up": "fadeInUp 0.65s ease forwards",
         "fade-in": "fadeIn 0.5s ease forwards",

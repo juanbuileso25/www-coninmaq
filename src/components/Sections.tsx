@@ -31,12 +31,12 @@ export function ServicesStrip() {
               `}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="w-12 h-12 bg-amber-500 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-400 group-hover:scale-110 group-hover:shadow-[0_4px_16px_rgba(245,158,11,0.4)] transition-all duration-300 text-zinc-900">
+              <div className="w-12 h-12 bg-brand-accent flex items-center justify-center flex-shrink-0 group-hover:bg-brand-accent-light group-hover:scale-110 group-hover:shadow-[0_4px_16px_rgba(90,175,0,0.4)] transition-all duration-300 text-zinc-900">
                 <Icon icon={s.icon} width={24} />
               </div>
               <div>
                 <h3
-                  className="font-bold text-[14px] uppercase tracking-wide text-zinc-900 group-hover:text-amber-600 transition-colors"
+                  className="font-bold text-[14px] uppercase tracking-wide text-zinc-900 group-hover:text-brand-accent-dark transition-colors"
                   
                 >
                   {s.title}
@@ -84,10 +84,10 @@ export function Categories() {
               {/* zoom layer */}
               <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out" />
               {/* amber border glow on hover */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-amber-500/40 transition-all duration-300" />
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-brand-accent/40 transition-all duration-300" />
               {/* watermark text */}
               <div
-                className="absolute inset-0 flex items-center justify-center font-black text-[80px] text-amber-500/[0.1] select-none leading-none tracking-tighter group-hover:text-amber-500/[0.18] transition-all duration-500"
+                className="absolute inset-0 flex items-center justify-center font-black text-[80px] text-brand-accent/[0.1] select-none leading-none tracking-tighter group-hover:text-brand-accent/[0.18] transition-all duration-500"
                 
                 aria-hidden="true"
               >
@@ -96,14 +96,14 @@ export function Categories() {
               {/* content */}
               <div className="relative z-10 p-6 w-full">
                 <h3
-                  className="font-bold text-[22px] text-white uppercase tracking-wide mb-1 group-hover:text-amber-400 transition-colors duration-300"
+                  className="font-bold text-[22px] text-white uppercase tracking-wide mb-1 group-hover:text-brand-accent-light transition-colors duration-300"
                   
                 >
                   {cat.label}
                 </h3>
                 <p className="text-white/60 text-[13px] font-normal mb-3">{cat.desc}</p>
                 <span
-                  className="inline-flex items-center gap-2 bg-amber-500 text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3.5 py-[6px] group-hover:bg-amber-400 group-hover:gap-3 transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3.5 py-[6px] group-hover:bg-brand-accent-light group-hover:gap-3 transition-all duration-300"
                   
                 >
                   Ver equipos
@@ -122,7 +122,7 @@ export function Categories() {
 export function Brands() {
   const doubled = [...BRANDS, ...BRANDS];
   return (
-    <section className="bg-zinc-900 py-16 overflow-hidden">
+    <section className="bg-black py-16 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
           eyebrow="Marcas Representadas"
@@ -133,16 +133,16 @@ export function Brands() {
       </div>
       {/* Marquee */}
       <div className="relative mt-4">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-zinc-900 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-zinc-900 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         <div className="flex animate-ticker whitespace-nowrap">
           {doubled.map((brand, i) => (
             <div
               key={i}
-              className="inline-flex items-center gap-4 px-8 py-5 border-r border-white/[0.06] group cursor-default hover:bg-amber-500/10 transition-colors duration-300"
+              className="inline-flex items-center gap-4 px-8 py-5 border-r border-white/[0.06] group cursor-default hover:bg-brand-accent/10 transition-colors duration-300"
             >
               <span
-                className="font-bold text-[15px] text-zinc-500 group-hover:text-amber-400 transition-colors duration-300 uppercase tracking-widest"
+                className="font-bold text-[15px] text-zinc-500 group-hover:text-brand-accent-light transition-colors duration-300 uppercase tracking-widest"
                 
               >
                 {brand}
@@ -166,26 +166,26 @@ export function About() {
           <div
             className={`relative pb-8 lg:pb-0 transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
           >
-            <div className="w-full h-[400px] bg-zinc-900 flex items-center justify-center overflow-hidden relative">
+            <div className="w-full h-[400px] bg-black flex items-center justify-center overflow-hidden relative">
               {/* Pulsing amber center glow */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 bg-amber-500/10 rounded-full blur-3xl animate-pulse" />
+                <div className="w-48 h-48 bg-brand-accent/10 rounded-full blur-3xl animate-pulse" />
               </div>
               <span
-                className="relative font-black text-[110px] text-amber-500/[0.13] select-none tracking-tighter"
+                className="relative font-black text-[110px] text-brand-accent/[0.13] select-none tracking-tighter"
                 
                 aria-hidden="true"
               >
                 PART
               </span>
-              <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-amber-500" />
-              <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-amber-500" />
+              <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-brand-accent" />
+              <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-brand-accent" />
               {/* Animated corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-amber-500/30" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-amber-500/30" />
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-brand-accent/30" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-accent/30" />
             </div>
             {/* Experience badge */}
-            <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-amber-500 flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(245,158,11,0.5)] hover:scale-105 transition-transform duration-300">
+            <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-brand-accent flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(90,175,0,0.5)] hover:scale-105 transition-transform duration-300">
               <span
                 className="font-black text-[36px] text-zinc-900 leading-none"
                 
@@ -208,7 +208,7 @@ export function About() {
               
             >
               Líderes en{" "}
-              <span className="text-amber-500">Maquinaria Pesada</span>{" "}
+              <span className="text-brand-accent">Maquinaria Pesada</span>{" "}
               en Colombia
             </h2>
             <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-4">
@@ -230,14 +230,14 @@ export function About() {
                   }`}
                   style={{ transitionDelay: `${300 + i * 60}ms` }}
                 >
-                  <span className="w-1.5 h-1.5 bg-amber-500 rounded-full flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-brand-accent rounded-full flex-shrink-0" />
                   {f}
                 </div>
               ))}
             </div>
             <Link
               to="/nosotros"
-              className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
+              className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(90,175,0,0.5)] transition-all duration-200"
               
             >
               Conocer más
@@ -264,7 +264,7 @@ export function Products() {
           {PRODUCTS.map((p, i) => (
             <div
               key={i}
-              className={`bg-white border border-zinc-200 hover:border-amber-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group ${
+              className={`bg-white border border-zinc-200 hover:border-[#7CD300] hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
@@ -273,16 +273,16 @@ export function Products() {
                 className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i]} relative overflow-hidden flex items-center justify-center`}
               >
                 {/* Glow on hover */}
-                <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/5 transition-all duration-300" />
+                <div className="absolute inset-0 bg-brand-accent/0 group-hover:bg-brand-accent/5 transition-all duration-300" />
                 <span
-                  className="font-black text-[52px] text-amber-500/20 select-none group-hover:scale-110 group-hover:text-amber-500/30 transition-all duration-500"
+                  className="font-black text-[52px] text-brand-accent/20 select-none group-hover:scale-110 group-hover:text-brand-accent/30 transition-all duration-500"
                   
                   aria-hidden="true"
                 >
                   {p.code}
                 </span>
                 <span
-                  className="absolute top-3 left-3 bg-amber-500 text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1 shadow-lg"
+                  className="absolute top-3 left-3 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1 shadow-lg"
                   
                 >
                   {p.badge}
@@ -290,11 +290,11 @@ export function Products() {
               </div>
 
               <div className="p-5">
-                <p className="text-amber-500 text-[11px] font-bold tracking-[2px] uppercase mb-1">
+                <p className="text-brand-accent text-[11px] font-bold tracking-[2px] uppercase mb-1">
                   {p.brand}
                 </p>
                 <h3
-                  className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-amber-600 transition-colors duration-200"
+                  className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-brand-accent-dark transition-colors duration-200"
                   
                 >
                   {p.model}
@@ -305,7 +305,7 @@ export function Products() {
                 <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
                   <Link
                     to={p.href}
-                    className="text-amber-500 font-bold text-[13px] uppercase tracking-wide hover:text-amber-600 hover:gap-2 transition-all duration-200 flex items-center gap-1"
+                    className="text-brand-accent font-bold text-[13px] uppercase tracking-wide hover:text-brand-accent-dark hover:gap-2 transition-all duration-200 flex items-center gap-1"
                     
                   >
                     Ver specs →
@@ -329,7 +329,7 @@ export function Products() {
         <div className="text-center mt-12">
           <Link
             to="/maquinaria-pesada"
-            className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
+            className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-[#7CD300] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(90,175,0,0.5)] transition-all duration-200"
             
           >
             Ver todo el catálogo
@@ -343,7 +343,7 @@ export function Products() {
 /* ── CTA Banner ──────────────────────────────────────────────────────────── */
 export function CTABanner() {
   return (
-    <section className="relative bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 py-16 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-brand-accent via-brand-accent-light to-brand-accent py-16 overflow-hidden">
       {/* Diagonal animated stripe */}
       <div
         className="absolute inset-0 opacity-[0.06]"
@@ -383,7 +383,7 @@ export function CTABanner() {
               href="https://wa.link/bax4s3"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-2 border-zinc-900/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-zinc-900 transition-all duration-200"
+              className="inline-flex items-center gap-2 border-2 border-black/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-black hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-black transition-all duration-200"
               
             >
               <Icon icon="mdi:whatsapp" width={20} />
@@ -407,20 +407,20 @@ export function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <div
               key={i}
-              className={`bg-white border-l-4 border-amber-500 shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-300 p-7 relative group ${
+              className={`bg-white border-l-4 border-brand-accent shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-300 p-7 relative group ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${i * 120}ms` }}
             >
               {/* Quote mark */}
               <span
-                className="absolute top-3 right-5 font-black text-[64px] text-amber-500/20 leading-none select-none group-hover:text-amber-500/30 transition-colors duration-300"
+                className="absolute top-3 right-5 font-black text-[64px] text-brand-accent/20 leading-none select-none group-hover:text-brand-accent/30 transition-colors duration-300"
                 
                 aria-hidden="true"
               >
                 "
               </span>
-              <div className="flex gap-0.5 text-amber-500 mb-4">
+              <div className="flex gap-0.5 text-brand-accent mb-4">
                 {[...Array(5)].map((_, i) => <Icon key={i} icon="mdi:star" width={14} />)}
               </div>
               <p className="text-[14px] text-zinc-500 font-normal leading-relaxed mb-5">
@@ -428,7 +428,7 @@ export function Testimonials() {
               </p>
               <div className="flex items-center gap-3 border-t border-zinc-100 pt-4">
                 <div
-                  className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-amber-500 flex-shrink-0 group-hover:bg-amber-500 group-hover:text-zinc-900 transition-all duration-300"
+                  className="w-11 h-11 bg-black flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300"
                   
                 >
                   {t.initials}
