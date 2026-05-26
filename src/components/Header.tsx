@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 import { Link, NavLink } from "react-router-dom";
 import type { NavItem } from "../types";
 import { NAV_ITEMS } from "../data";
@@ -19,15 +20,20 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
       <NavLink
         to={item.href}
         className={({ isActive }) =>
-          `relative font-semibold text-[14px] tracking-wider uppercase px-3 py-2 block transition-colors group ${
+          `relative inline-flex items-center gap-1 font-semibold text-[14px] tracking-wider uppercase px-3 py-2 transition-colors group ${
             isActive ? "text-amber-500" : "text-zinc-700 hover:text-amber-500"
           }`
         }
         style={{ fontFamily: "'Oswald', sans-serif" }}
       >
         {item.label}
-        {item.sub && <span className="ml-1 text-[10px] opacity-60">▾</span>}
-        {/* Underline indicator */}
+        {item.sub && (
+          <Icon
+            icon="mdi:chevron-down"
+            width={14}
+            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          />
+        )}
         <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
       </NavLink>
 
@@ -40,7 +46,7 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
                 className="flex items-center gap-2 px-5 py-[10px] text-[13px] text-zinc-400 hover:bg-amber-500 hover:text-zinc-900 transition-all duration-150 border-b border-white/5 group/sub"
                 onClick={() => setOpen(false)}
               >
-                <span className="text-amber-500 group-hover/sub:text-zinc-900 transition-colors">›</span>
+                <Icon icon="mdi:chevron-right" width={14} className="text-amber-500 group-hover/sub:text-zinc-900 transition-colors" />
                 {sub.label}
               </Link>
             </li>
@@ -91,10 +97,11 @@ export default function Header({ scrolled }: HeaderProps) {
           <div className="hidden lg:flex flex-col gap-1 flex-shrink-0">
             <a
               href="tel:3163815694"
-              className="bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(245,158,11,0.45)] transition-all duration-200 text-center"
+              className="inline-flex items-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(245,158,11,0.45)] transition-all duration-200"
               style={{ fontFamily: "'Oswald', sans-serif" }}
             >
-              📞 Llámanos
+              <Icon icon="mdi:phone" width={14} />
+              Llámanos
             </a>
           </div>
 
@@ -132,20 +139,31 @@ export default function Header({ scrolled }: HeaderProps) {
                 <Link
                   key={sub.label}
                   to={sub.href}
-                  className="block pl-4 text-zinc-500 py-2 text-[13px] hover:text-amber-500 transition-colors border-b border-zinc-800/50"
+                  className="flex items-center gap-1.5 pl-4 text-zinc-500 py-2 text-[13px] hover:text-amber-500 transition-colors border-b border-zinc-800/50"
                   onClick={() => setMobileOpen(false)}
                 >
-                  › {sub.label}
+                  <Icon icon="mdi:chevron-right" width={14} className="text-amber-500/60" />
+                  {sub.label}
                 </Link>
               ))}
             </div>
           ))}
           <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-800">
-            <a href="tel:3176707071" className="flex-1 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 text-center hover:from-amber-300 hover:to-amber-400 transition-all duration-200" style={{ fontFamily: "'Oswald', sans-serif" }}>
-              📞 Llamar
+            <a
+              href="tel:3176707071"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-amber-300 hover:to-amber-400 transition-all duration-200"
+              style={{ fontFamily: "'Oswald', sans-serif" }}
+            >
+              <Icon icon="mdi:phone" width={15} />
+              Llamar
             </a>
-            <a href="https://tienda.coninmaq.com" className="flex-1 bg-zinc-800 text-white font-bold text-[13px] tracking-wide uppercase py-3 text-center hover:bg-zinc-700 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>
-              🛒 Tienda
+            <a
+              href="https://tienda.coninmaq.com"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-zinc-800 text-white font-bold text-[13px] tracking-wide uppercase py-3 hover:bg-zinc-700 transition-all duration-200"
+              style={{ fontFamily: "'Oswald', sans-serif" }}
+            >
+              <Icon icon="mdi:cart-outline" width={15} />
+              Tienda
             </a>
           </div>
         </div>

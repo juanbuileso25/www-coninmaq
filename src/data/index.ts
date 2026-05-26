@@ -66,22 +66,22 @@ export const STATS: Stat[] = [
 
 export const SERVICES: Service[] = [
     {
-        icon: "🏗️",
+        icon: "mdi:crane",
         title: "Maquinaria Nueva",
         desc: "Importación directa, últimas versiones",
     },
     {
-        icon: "🔧",
+        icon: "mdi:wrench-outline",
         title: "Maquinaria Usada",
         desc: "Equipos certificados y revisados",
     },
     {
-        icon: "⚙️",
+        icon: "mdi:cog-outline",
         title: "Repuestos",
         desc: "Más de 10.000 referencias disponibles",
     },
     {
-        icon: "🛠️",
+        icon: "mdi:hammer-wrench",
         title: "Mantenimiento",
         desc: "Servicio técnico especializado",
     },
@@ -211,10 +211,10 @@ export const FOOTER_LINKS: FooterLinks = {
 };
 
 export const CONTACT_ITEMS: ContactItem[] = [
-    { icon: "📍", text: "KM 20 Autopista norte Copacabana a Girardota" },
-    { icon: "📞", text: "316 381 5694" },
-    { icon: "✉", text: "comercioexterior@coninmaqsas.com" },
-    { icon: "🕐", text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm" },
+    { icon: "mdi:map-marker-outline", text: "KM 20 Autopista norte Copacabana a Girardota" },
+    { icon: "mdi:phone", text: "316 381 5694" },
+    { icon: "mdi:email-outline", text: "comercioexterior@coninmaqsas.com" },
+    { icon: "mdi:clock-outline", text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm" },
 ];
 
 export const CAT_GRADIENTS: string[] = [
