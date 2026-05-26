@@ -169,6 +169,69 @@ export const PRODUCTS: Product[] = [
     },
 ];
 
+export const USED_PRODUCTS: Product[] = [
+    {
+        brand: "CASE Construction",
+        model: "Excavadora CX130D",
+        desc: "Motor FPT de 98 HP, peso operativo 13.5 ton. Excelente estado general, mantenimiento preventivo al día.",
+        code: "CX130D",
+        badge: "Usada",
+        href: "/maquinaria-pesada/excavadoras/cx130d-usada",
+        anio: 2019,
+        horasUso: "4.200 hrs",
+    },
+    {
+        brand: "Komatsu",
+        model: "Bulldozer D65EX-17",
+        desc: "Motor Komatsu SAA6D114E de 168 HP. Tren de rodaje al 70%, ideal para movimiento de tierra.",
+        code: "D65EX",
+        badge: "Usada",
+        href: "/maquinaria-pesada/bulldozers/d65ex-usada",
+        anio: 2017,
+        horasUso: "7.800 hrs",
+    },
+    {
+        brand: "Caterpillar",
+        model: "Motoniveladora 120K",
+        desc: "Motor Cat C7.1 de 149 HP, hoja de 3.7 m. Revisada y certificada, lista para proyectos viales.",
+        code: "120K",
+        badge: "Usada",
+        href: "/maquinaria-pesada/motoniveladoras/120k-usada",
+        anio: 2018,
+        horasUso: "6.500 hrs",
+    },
+    {
+        brand: "DYNAPAC",
+        model: "Compactador CA250D",
+        desc: "Rodillo vibratorio de 10 ton, frecuencia doble. Operativo y con inspección técnica reciente.",
+        code: "CA250",
+        badge: "Usada",
+        href: "/maquinaria-pesada/compactadores/ca250d-usada",
+        anio: 2020,
+        horasUso: "3.100 hrs",
+    },
+    {
+        brand: "Bobcat",
+        model: "Minicargador S650",
+        desc: "Motor Bobcat de 74 HP, capacidad de carga 1.066 kg. En buenas condiciones, listo para entregar.",
+        code: "S650",
+        badge: "Usada",
+        href: "/maquinaria-pesada/minicargadores/s650-usada",
+        anio: 2021,
+        horasUso: "2.400 hrs",
+    },
+    {
+        brand: "Hitachi",
+        model: "Excavadora ZX135US-6",
+        desc: "Motor Isuzu de 98 HP, radio corto de giro. Perfecta para obras urbanas con espacio limitado.",
+        code: "ZX135",
+        badge: "Usada",
+        href: "/maquinaria-pesada/excavadoras/zx135-usada",
+        anio: 2018,
+        horasUso: "8.300 hrs",
+    },
+];
+
 export const TESTIMONIALS: Testimonial[] = [
     {
         text: "Excelente servicio, la excavadora llegó en perfectas condiciones y el acompañamiento técnico fue impecable. Recomendamos totalmente a Coninmaq para cualquier proyecto de gran escala.",

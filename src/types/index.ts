@@ -35,6 +35,8 @@ export interface Product {
   code: string;
   badge: string;
   href: string;
+  anio?: number;
+  horasUso?: string;
 }
 
 export interface Testimonial {

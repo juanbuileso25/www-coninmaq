@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
-import { PRODUCTS, PRODUCT_GRADIENTS } from "../data";
+import { PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
+
+const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5A800' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
 /* ── Maquinaria Page ─────────────────────────────────────────────────────── */
 export function MaquinariaPage() {
-  const allProducts = [
+  const { categoria } = useParams<{ categoria?: string }>();
+  const isUsada = categoria === "usada";
+  const isNueva = categoria === "nueva";
+
+  const newProducts = [
     ...PRODUCTS,
     {
       brand: "CASE Construction",
@@ -34,44 +40,81 @@ export function MaquinariaPage() {
     },
   ];
 
+  const products = isUsada ? USED_PRODUCTS : newProducts;
+
+  const pageTitle = isUsada
+    ? { eyebrow: "Maquinaria certificada", sub: "Usada", title: "Maquinaria", highlight: "Usada", sectionTitle: "Equipos Usados en Stock", sectionSub: "Maquinaria usada certificada lista para entrega inmediata en todo Colombia" }
+    : isNueva
+    ? { eyebrow: "Importación directa", sub: "Nueva", title: "Maquinaria", highlight: "Nueva", sectionTitle: "Equipos Nuevos en Stock", sectionSub: "Maquinaria nueva con garantía de fábrica lista para entrega en todo Colombia" }
+    : { eyebrow: "Nuestro inventario", sub: "", title: "Maquinaria", highlight: "Pesada", sectionTitle: "Equipos en Stock", sectionSub: "Maquinaria nueva y usada lista para entrega inmediata en todo Colombia" };
+
   return (
     <>
       {/* Page header */}
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5A800' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
-            Nuestro inventario
+            {pageTitle.eyebrow}
           </span>
           <h1 className="font-black text-[48px] uppercase text-white leading-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
-            Maquinaria <span className="text-amber-500">Pesada</span>
+            {pageTitle.title} <span className="text-amber-500">{pageTitle.highlight}</span>
           </h1>
         </div>
       </div>
 
       <section className="py-20 bg-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
-          <SectionTitle eyebrow="Inventario disponible" title="Equipos en Stock" subtitle="Maquinaria nueva y usada lista para entrega inmediata en todo Colombia" />
+          <SectionTitle eyebrow="Inventario disponible" title={pageTitle.sectionTitle} subtitle={pageTitle.sectionSub} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allProducts.map((p, i) => (
-              <div key={i} className="bg-white border border-zinc-200 hover:shadow-xl hover:-translate-y-1 transition-all group">
+            {products.map((p, i) => (
+              <div key={i} className="bg-white border border-zinc-200 hover:border-amber-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 group">
                 <div className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} relative overflow-hidden flex items-center justify-center`}>
                   <span className="font-black text-[48px] text-amber-500/20 select-none group-hover:scale-110 transition-transform duration-500" style={{ fontFamily: "'Oswald', sans-serif" }} aria-hidden="true">
                     {p.code}
                   </span>
-                  <span className="absolute top-3 left-3 bg-amber-500 text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  {/* Badge: ámbar para nueva, zinc para usada */}
+                  <span
+                    className={`absolute top-3 left-3 font-bold text-[11px] tracking-wider uppercase px-3 py-1 ${
+                      isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
+                    }`}
+                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                  >
                     {p.badge}
                   </span>
+                  {/* Año en la esquina superior derecha para usados */}
+                  {isUsada && p.anio && (
+                    <span className="absolute top-3 right-3 bg-black/50 text-white text-[11px] font-bold px-2 py-1 backdrop-blur-sm">
+                      {p.anio}
+                    </span>
+                  )}
                 </div>
+
                 <div className="p-5">
                   <p className="text-amber-500 text-[11px] font-bold tracking-[2px] uppercase mb-1">{p.brand}</p>
-                  <h3 className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>{p.model}</h3>
-                  <p className="text-[13px] text-zinc-500 font-light leading-relaxed mb-4">{p.desc}</p>
+                  <h3 className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-amber-600 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                    {p.model}
+                  </h3>
+                  <p className="text-[13px] text-zinc-500 font-light leading-relaxed mb-3">{p.desc}</p>
+
+                  {/* Info extra solo en /usada */}
+                  {isUsada && (
+                    <div className="flex items-center gap-4 py-3 mb-1 border-y border-zinc-100">
+                      {p.anio && (
+                        <span className="flex items-center gap-1.5 text-[12px] font-semibold text-zinc-600">
+                          <Icon icon="mdi:calendar-outline" width={15} className="text-amber-500" />
+                          Año {p.anio}
+                        </span>
+                      )}
+                      {p.horasUso && (
+                        <span className="flex items-center gap-1.5 text-[12px] font-semibold text-zinc-600">
+                          <Icon icon="mdi:clock-outline" width={15} className="text-amber-500" />
+                          {p.horasUso}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
                     <Link to={p.href} className="text-amber-500 font-bold text-[13px] uppercase tracking-wide hover:text-amber-700 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>
                       Ver specs →
