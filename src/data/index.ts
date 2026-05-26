@@ -142,6 +142,57 @@ export const BRANDS: string[] = [
     "Hyundai",
 ];
 
+export const NEW_PRODUCTS: Product[] = [
+    {
+        brand: "CASE Construction",
+        model: "Excavadora CX 210D Tier4",
+        desc: "Motor FPT de 156 HP, peso operativo 20.2 ton. Ideal para obra civil y minería a cielo abierto.",
+        code: "CX210D",
+        badge: "Nueva",
+        href: "/maquinaria-pesada/excavadoras/cx210d",
+    },
+    {
+        brand: "CASE Construction",
+        model: "Bulldozer 1150M Tier4",
+        desc: "Motor de 190 HP, potencia de tracción máxima. Diseñado para los trabajos de movimiento de tierra más exigentes.",
+        code: "1150M",
+        badge: "Nueva",
+        href: "/maquinaria-pesada/bulldozers/1150m",
+    },
+    {
+        brand: "YANMAR",
+        model: "Miniexcavadora VIO50-6a",
+        desc: "Motor Yanmar de 38.5 HP, peso operativo 5 ton. Cero vuelo trasero para trabajo en espacios reducidos.",
+        code: "VIO50",
+        badge: "Nueva",
+        href: "/maquinaria-pesada/miniexcavadoras/vio50",
+    },
+    {
+        brand: "CASE Construction",
+        model: "Retrocargadora 580N Tier4",
+        desc: "Motor de 95 HP, transmisión PowerShift. La elección ideal para proyectos de construcción medianos.",
+        code: "580N",
+        badge: "Nueva",
+        href: "/maquinaria-pesada/retrocargadoras/580n",
+    },
+    {
+        brand: "DYNAPAC",
+        model: "Compactador CA1500D",
+        desc: "Rodillo vibratorio de 15 ton. Alta frecuencia para compactación de suelos en proyectos viales.",
+        code: "CA15",
+        badge: "Nueva",
+        href: "/maquinaria-pesada/compactadores/ca1500d",
+    },
+    {
+        brand: "Hitachi",
+        model: "Excavadora ZX210LC-5B",
+        desc: "Motor Isuzu de 157 HP, alta eficiencia de combustible. Rendimiento superior en movimiento de tierra.",
+        code: "ZX210",
+        badge: "Nueva",
+        href: "/maquinaria-pesada/excavadoras/zx210lc",
+    },
+];
+
 export const PRODUCTS: Product[] = [
     {
         brand: "CASE Construction",

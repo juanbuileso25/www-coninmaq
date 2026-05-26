@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
-import { PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
+import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5A800' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
@@ -12,35 +12,7 @@ export function MaquinariaPage() {
   const isUsada = categoria === "usada";
   const isNueva = categoria === "nueva";
 
-  const newProducts = [
-    ...PRODUCTS,
-    {
-      brand: "CASE Construction",
-      model: "Retrocargadora 580N Tier4",
-      desc: "Motor de 95 HP, transmisión PowerShift. La elección ideal para proyectos de construcción medianos.",
-      code: "580N",
-      badge: "Nueva",
-      href: "/maquinaria-pesada/retrocargadoras/580n",
-    },
-    {
-      brand: "DYNAPAC",
-      model: "Compactador CA1500D",
-      desc: "Rodillo vibratorio de 15 ton. Alta frecuencia para compactación de suelos en proyectos viales.",
-      code: "CA15",
-      badge: "Nueva",
-      href: "/maquinaria-pesada/compactadores/ca1500d",
-    },
-    {
-      brand: "Hitachi",
-      model: "Excavadora ZX210LC-5B",
-      desc: "Motor Isuzu de 157 HP, alta eficiencia de combustible. Rendimiento superior en movimiento de tierra.",
-      code: "ZX210",
-      badge: "Nueva",
-      href: "/maquinaria-pesada/excavadoras/zx210lc",
-    },
-  ];
-
-  const products = isUsada ? USED_PRODUCTS : newProducts;
+  const products = isUsada ? USED_PRODUCTS : NEW_PRODUCTS;
 
   const pageTitle = isUsada
     ? { eyebrow: "Maquinaria certificada", sub: "Usada", title: "Maquinaria", highlight: "Usada", sectionTitle: "Equipos Usados en Stock", sectionSub: "Maquinaria usada certificada lista para entrega inmediata en todo Colombia" }

@@ -39,6 +39,36 @@ export interface Product {
   horasUso?: string;
 }
 
+export interface ProductSpec {
+  label: string;
+  value: string;
+  icon?: string;
+}
+
+export interface MachineDetailData {
+  slideLabels: string[];
+  specs: ProductSpec[];
+  highlights: string[];
+  garantia?: string;
+  entrega?: string;
+  condicion?: string;
+  inspeccion?: string;
+}
+
+export interface Part {
+  code: string;
+  slug: string;
+  name: string;
+  brand: string;
+  brandLabel: string;
+  desc: string;
+  compatibility: string[];
+  type: "OEM" | "Aftermarket";
+  category: string;
+  specs: ProductSpec[];
+  highlights: string[];
+}
+
 export interface Testimonial {
   text: string;
   name: string;
