@@ -34,18 +34,17 @@ export default function Hero() {
             <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
             <span
               className="text-amber-400 font-bold text-[11px] tracking-[2.5px] uppercase"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               Líderes en Colombia
             </span>
           </div>
 
           <h1
-            className={`font-black uppercase text-white leading-[1.05] mb-5 transition-all duration-700 ${
+            className={`font-extrabold uppercase text-white leading-[1.05] mb-5 transition-all duration-700 ${
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{
-              fontFamily: "'Oswald', sans-serif",
               fontSize: "clamp(34px, 5vw, 62px)",
               transitionDelay: "180ms",
             }}
@@ -57,7 +56,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className={`text-zinc-400 font-light text-[15px] sm:text-[17px] mb-8 max-w-[500px] leading-relaxed transition-all duration-700 ${
+            className={`text-zinc-400 font-normal text-[15px] sm:text-[17px] mb-8 max-w-[500px] leading-relaxed transition-all duration-700 ${
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ transitionDelay: "320ms" }}
@@ -76,14 +75,14 @@ export default function Hero() {
             <Link
               to="/maquinaria-pesada"
               className="bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)]"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               Ver Maquinaria
             </Link>
             <Link
               to="/contacto"
               className="border border-white/25 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 text-center hover:bg-white/10 hover:border-white/50 hover:-translate-y-0.5 backdrop-blur-sm transition-all duration-200"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               Solicitar Cotización
             </Link>
@@ -104,7 +103,7 @@ export default function Hero() {
               >
                 <span
                   className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {s.num}
                 </span>

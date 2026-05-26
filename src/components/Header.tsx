@@ -24,7 +24,7 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
             isActive ? "text-amber-500" : "text-zinc-700 hover:text-amber-500"
           }`
         }
-        style={{ fontFamily: "'Oswald', sans-serif" }}
+        
       >
         {item.label}
         {item.sub && (
@@ -65,7 +65,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
       <Link
         to={item.href}
         className="block text-zinc-300 py-3 text-sm border-b border-zinc-800 hover:text-amber-500 transition-colors font-semibold uppercase tracking-wide"
-        style={{ fontFamily: "'Oswald', sans-serif" }}
+        
         onClick={onClose}
       >
         {item.label}
@@ -78,7 +78,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
       <button
         type="button"
         className="w-full flex items-center justify-between text-zinc-300 py-3 text-sm font-semibold uppercase tracking-wide hover:text-amber-500 transition-colors"
-        style={{ fontFamily: "'Oswald', sans-serif" }}
+        
         onClick={() => setOpen((v) => !v)}
       >
         {item.label}
@@ -154,7 +154,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <Link to="/" className="flex-shrink-0 group" onClick={closeMenu}>
               <span
                 className="font-black text-[26px] tracking-[2px] text-zinc-900 group-hover:text-zinc-700 transition-colors"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 CON<span className="text-amber-500 group-hover:text-amber-400 transition-colors">INMAQ</span>
               </span>
@@ -174,7 +174,7 @@ export default function Header({ scrolled }: HeaderProps) {
               <a
                 href="tel:3163815694"
                 className="inline-flex items-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(245,158,11,0.45)] transition-all duration-200"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 <Icon icon="mdi:phone" width={14} />
                 Llámanos
@@ -222,7 +222,7 @@ export default function Header({ scrolled }: HeaderProps) {
               <a
                 href="tel:3176707071"
                 className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-amber-300 hover:to-amber-400 transition-all duration-200"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 <Icon icon="mdi:phone" width={15} />
                 Llamar

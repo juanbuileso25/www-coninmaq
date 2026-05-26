@@ -40,7 +40,7 @@ function PartCard({ part }: { part: Part }) {
         <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
           <span
             className="text-[9px] font-bold tracking-[2px] uppercase px-2 py-1 bg-amber-500 text-zinc-900"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             {part.brandLabel}
           </span>
@@ -62,7 +62,7 @@ function PartCard({ part }: { part: Part }) {
         </p>
         <h3
           className="font-bold text-[16px] uppercase text-zinc-900 mb-2 group-hover:text-amber-600 transition-colors leading-tight"
-          style={{ fontFamily: "'Oswald', sans-serif" }}
+          
         >
           {part.name}
         </h3>
@@ -91,7 +91,7 @@ function PartCard({ part }: { part: Part }) {
         <div className="flex items-center gap-2 border-t border-zinc-100 pt-3">
           <span
             className="text-amber-500 font-bold text-[12px] uppercase tracking-wide group-hover:text-amber-700 transition-colors flex-1"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             Ver detalle →
           </span>
@@ -101,7 +101,7 @@ function PartCard({ part }: { part: Part }) {
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
             className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[10px] tracking-wide uppercase px-2.5 py-1.5 hover:from-[#25D366] hover:to-[#1aaa50] transition-all duration-200"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             <Icon icon="mdi:whatsapp" width={13} />
             Cotizar
@@ -149,13 +149,13 @@ export function RepuestosListPage() {
           </nav>
           <span
             className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             +10.000 referencias disponibles
           </span>
           <h1
             className="font-black text-[48px] uppercase text-white leading-tight"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             Repuestos{" "}
             <span className="text-amber-500">{brandLabel}</span>
@@ -176,7 +176,7 @@ export function RepuestosListPage() {
                     ? "bg-amber-500 text-zinc-900 border-amber-500"
                     : "bg-white text-zinc-600 border-zinc-200 hover:border-amber-400 hover:text-amber-600"
                 }`}
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 {b !== "Todos" && (
                   <Icon icon={BRAND_ICONS[b]} width={15} />
@@ -251,13 +251,13 @@ export function RepuestosListPage() {
               <div>
                 <span
                   className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-1"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   ¿No encontró su repuesto?
                 </span>
                 <h3
                   className="font-black text-[24px] uppercase text-white"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   Tenemos +10.000 referencias{" "}
                   <span className="text-amber-500">disponibles</span>
@@ -271,7 +271,7 @@ export function RepuestosListPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-shrink-0 inline-flex items-center gap-2.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[13px] tracking-wider uppercase px-6 py-3.5 hover:shadow-[0_6px_20px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 <Icon icon="mdi:whatsapp" width={18} />
                 Consultar por WhatsApp
@@ -297,13 +297,13 @@ export function RepuestoDetailPage() {
         <div className="text-center px-6">
           <span
             className="font-black text-[80px] text-amber-500/20 block"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             ?
           </span>
           <h1
             className="font-black text-[28px] uppercase text-white mb-4"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             Repuesto no encontrado
           </h1>
@@ -353,13 +353,13 @@ export function RepuestoDetailPage() {
           </nav>
           <span
             className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-1"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             {part.brandLabel} — {part.category}
           </span>
           <h1
             className="font-black text-[36px] md:text-[44px] uppercase text-white leading-tight"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             {part.name}
           </h1>
@@ -386,7 +386,7 @@ export function RepuestoDetailPage() {
                 <div className="absolute top-4 left-4 flex gap-2">
                   <span
                     className="text-[10px] font-bold tracking-[2px] uppercase px-3 py-1 bg-amber-500 text-zinc-900"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     {part.brandLabel}
                   </span>
@@ -409,7 +409,7 @@ export function RepuestoDetailPage() {
               {/* Technical specs table */}
               <h3
                 className="font-black text-[18px] uppercase text-zinc-900 mb-4"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 Especificaciones <span className="text-amber-500">técnicas</span>
               </h3>
@@ -434,7 +434,7 @@ export function RepuestoDetailPage() {
               {/* Highlights */}
               <h3
                 className="font-black text-[18px] uppercase text-zinc-900 mt-8 mb-4"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 Características <span className="text-amber-500">destacadas</span>
               </h3>
@@ -452,7 +452,7 @@ export function RepuestoDetailPage() {
               {/* Compatibility */}
               <h3
                 className="font-black text-[18px] uppercase text-zinc-900 mt-8 mb-4"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 Compatibilidad <span className="text-amber-500">de equipos</span>
               </h3>
@@ -477,14 +477,14 @@ export function RepuestoDetailPage() {
                 </p>
                 <p
                   className="font-black text-[28px] text-white"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {part.code}
                 </p>
                 <div className="flex gap-2 mt-2 flex-wrap">
                   <span
                     className="text-[10px] font-bold tracking-[2px] uppercase px-3 py-1 bg-amber-500 text-zinc-900"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     {part.brandLabel}
                   </span>
@@ -527,7 +527,7 @@ export function RepuestoDetailPage() {
                   </p>
                   <p
                     className="text-[22px] font-black text-zinc-900"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     Consultar precio
                   </p>
@@ -542,7 +542,7 @@ export function RepuestoDetailPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_6px_20px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     <Icon icon="mdi:whatsapp" width={18} />
                     Cotizar por WhatsApp
@@ -550,7 +550,7 @@ export function RepuestoDetailPage() {
                   <a
                     href="/contacto"
                     className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_6px_20px_rgba(245,158,11,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     <Icon icon="mdi:file-document-outline" width={18} />
                     Solicitar cotización
@@ -575,7 +575,7 @@ export function RepuestoDetailPage() {
           <div className="max-w-6xl mx-auto px-6">
             <h3
               className="font-black text-[26px] uppercase text-zinc-900 mb-7"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               Más repuestos{" "}
               <span className="text-amber-500">{part.brandLabel}</span>

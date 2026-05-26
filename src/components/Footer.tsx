@@ -18,12 +18,12 @@ export default function Footer() {
             <Link to="/">
               <span
                 className="block font-black text-[22px] tracking-[2px] text-white mb-4"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 CON<span className="text-amber-500">INMAQ</span>
               </span>
             </Link>
-            <p className="text-[14px] text-zinc-400 font-light leading-relaxed mb-5">
+            <p className="text-[14px] text-zinc-400 font-normal leading-relaxed mb-5">
               Impulsamos el progreso con soluciones en maquinaria pesada en Colombia. Más de 7 años ofreciendo respaldo, calidad y un servicio que marca la diferencia.
             </p>
             <div className="flex gap-2">
@@ -47,7 +47,7 @@ export default function Footer() {
             <div key={title}>
               <h4
                 className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-amber-500 inline-block"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 {title}
               </h4>
@@ -71,7 +71,7 @@ export default function Footer() {
           <div>
             <h4
               className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-amber-500 inline-block"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               Contacto
             </h4>

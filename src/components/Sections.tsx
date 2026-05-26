@@ -37,7 +37,7 @@ export function ServicesStrip() {
               <div>
                 <h3
                   className="font-bold text-[14px] uppercase tracking-wide text-zinc-900 group-hover:text-amber-600 transition-colors"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {s.title}
                 </h3>
@@ -88,7 +88,7 @@ export function Categories() {
               {/* watermark text */}
               <div
                 className="absolute inset-0 flex items-center justify-center font-black text-[80px] text-amber-500/[0.1] select-none leading-none tracking-tighter group-hover:text-amber-500/[0.18] transition-all duration-500"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
                 aria-hidden="true"
               >
                 {cat.code}
@@ -97,14 +97,14 @@ export function Categories() {
               <div className="relative z-10 p-6 w-full">
                 <h3
                   className="font-bold text-[22px] text-white uppercase tracking-wide mb-1 group-hover:text-amber-400 transition-colors duration-300"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {cat.label}
                 </h3>
-                <p className="text-white/60 text-[13px] font-light mb-3">{cat.desc}</p>
+                <p className="text-white/60 text-[13px] font-normal mb-3">{cat.desc}</p>
                 <span
                   className="inline-flex items-center gap-2 bg-amber-500 text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3.5 py-[6px] group-hover:bg-amber-400 group-hover:gap-3 transition-all duration-300"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   Ver equipos
                   <Icon icon="mdi:arrow-right" width={14} />
@@ -143,7 +143,7 @@ export function Brands() {
             >
               <span
                 className="font-bold text-[15px] text-zinc-500 group-hover:text-amber-400 transition-colors duration-300 uppercase tracking-widest"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 {brand}
               </span>
@@ -173,7 +173,7 @@ export function About() {
               </div>
               <span
                 className="relative font-black text-[110px] text-amber-500/[0.13] select-none tracking-tighter"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
                 aria-hidden="true"
               >
                 PART
@@ -188,7 +188,7 @@ export function About() {
             <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-amber-500 flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(245,158,11,0.5)] hover:scale-105 transition-transform duration-300">
               <span
                 className="font-black text-[36px] text-zinc-900 leading-none"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 +7
               </span>
@@ -204,19 +204,19 @@ export function About() {
           >
             <SectionTitle eyebrow="Sobre Nosotros" title="" align="left" />
             <h2
-              className="font-black text-[36px] uppercase tracking-wide text-zinc-900 leading-tight mb-5 -mt-8"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              className="font-extrabold text-[36px] uppercase tracking-wide text-zinc-900 leading-tight mb-5 -mt-8"
+              
             >
               Líderes en{" "}
               <span className="text-amber-500">Maquinaria Pesada</span>{" "}
               en Colombia
             </h2>
-            <p className="text-zinc-500 font-light text-[16px] leading-relaxed mb-4">
+            <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-4">
               Con más de dos décadas de experiencia en el sector, CONINMAQ
               se destaca como líder en soluciones integrales para maquinaria
               pesada en Colombia.
             </p>
-            <p className="text-zinc-500 font-light text-[16px] leading-relaxed mb-6">
+            <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-6">
               Nuestro equipo de ingenieros y técnicos especializados garantiza
               el mejor servicio postventa, repuestos originales y mantenimiento
               preventivo para toda la vida útil de sus equipos.
@@ -238,7 +238,7 @@ export function About() {
             <Link
               to="/nosotros"
               className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               Conocer más
             </Link>
@@ -276,14 +276,14 @@ export function Products() {
                 <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/5 transition-all duration-300" />
                 <span
                   className="font-black text-[52px] text-amber-500/20 select-none group-hover:scale-110 group-hover:text-amber-500/30 transition-all duration-500"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                   aria-hidden="true"
                 >
                   {p.code}
                 </span>
                 <span
                   className="absolute top-3 left-3 bg-amber-500 text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1 shadow-lg"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {p.badge}
                 </span>
@@ -295,18 +295,18 @@ export function Products() {
                 </p>
                 <h3
                   className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-amber-600 transition-colors duration-200"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {p.model}
                 </h3>
-                <p className="text-[13px] text-zinc-500 font-light leading-relaxed mb-4">
+                <p className="text-[13px] text-zinc-500 font-normal leading-relaxed mb-4">
                   {p.desc}
                 </p>
                 <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
                   <Link
                     to={p.href}
                     className="text-amber-500 font-bold text-[13px] uppercase tracking-wide hover:text-amber-600 hover:gap-2 transition-all duration-200 flex items-center gap-1"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     Ver specs →
                   </Link>
@@ -315,7 +315,7 @@ export function Products() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     <Icon icon="mdi:whatsapp" width={15} />
                     WhatsApp
@@ -330,7 +330,7 @@ export function Products() {
           <Link
             to="/maquinaria-pesada"
             className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             Ver todo el catálogo
           </Link>
@@ -361,12 +361,12 @@ export function CTABanner() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2
-              className="font-black text-[34px] uppercase tracking-wide text-zinc-900 leading-tight mb-2"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              className="font-extrabold text-[34px] uppercase tracking-wide text-zinc-900 leading-tight mb-2"
+              
             >
               ¿Necesita una cotización?
             </h2>
-            <p className="text-black/60 font-light text-[16px]">
+            <p className="text-black/60 font-normal text-[16px]">
               Nuestros asesores comerciales están listos. Respuesta en menos de 2 horas.
             </p>
           </div>
@@ -374,7 +374,7 @@ export function CTABanner() {
             <a
               href="tel:3176707071"
               className="inline-flex items-center gap-2 bg-gradient-to-b from-zinc-800 to-zinc-900 text-white font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-zinc-700 hover:to-zinc-800 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)] transition-all duration-200"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               <Icon icon="mdi:phone" width={18} />
               316 381 5694
@@ -384,7 +384,7 @@ export function CTABanner() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-2 border-zinc-900/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-zinc-900 transition-all duration-200"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               <Icon icon="mdi:whatsapp" width={20} />
               WhatsApp
@@ -415,7 +415,7 @@ export function Testimonials() {
               {/* Quote mark */}
               <span
                 className="absolute top-3 right-5 font-black text-[64px] text-amber-500/20 leading-none select-none group-hover:text-amber-500/30 transition-colors duration-300"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
                 aria-hidden="true"
               >
                 "
@@ -423,20 +423,20 @@ export function Testimonials() {
               <div className="flex gap-0.5 text-amber-500 mb-4">
                 {[...Array(5)].map((_, i) => <Icon key={i} icon="mdi:star" width={14} />)}
               </div>
-              <p className="text-[14px] text-zinc-500 font-light leading-relaxed mb-5">
+              <p className="text-[14px] text-zinc-500 font-normal leading-relaxed mb-5">
                 {t.text}
               </p>
               <div className="flex items-center gap-3 border-t border-zinc-100 pt-4">
                 <div
                   className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-amber-500 flex-shrink-0 group-hover:bg-amber-500 group-hover:text-zinc-900 transition-all duration-300"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {t.initials}
                 </div>
                 <div>
                   <div
                     className="font-bold text-[14px] uppercase text-zinc-900"
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     {t.name}
                   </div>

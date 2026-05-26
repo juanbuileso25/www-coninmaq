@@ -14,10 +14,10 @@ export default function NosotrosPage() {
           }}
         />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" >
             La empresa
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <h1 className="font-black text-[48px] uppercase text-white leading-tight" >
             Sobre <span className="text-amber-500">Nosotros</span>
           </h1>
         </div>
@@ -29,13 +29,13 @@ export default function NosotrosPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <SectionTitle eyebrow="Nuestra historia" title="Más de 20 años de trayectoria" align="left" />
-              <p className="text-zinc-500 font-light text-[16px] leading-relaxed mb-4">
+              <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-4">
                 CONINMAQ S.A.S nació con el propósito de brindar soluciones
                 integrales al sector de la construcción y la minería en Colombia.
                 Desde nuestros inicios hemos construido relaciones de largo plazo
                 con los principales fabricantes de maquinaria pesada del mundo.
               </p>
-              <p className="text-zinc-500 font-light text-[16px] leading-relaxed mb-6">
+              <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-6">
                 Hoy somos reconocidos como uno de los distribuidores más confiables
                 del país, con presencia en todas las regiones y un equipo humano
                 comprometido con la excelencia técnica y comercial.
@@ -58,7 +58,7 @@ export default function NosotrosPage() {
                 { num: "100%", label: "Compromiso con el cliente", color: "bg-zinc-900 text-white" },
               ].map((stat, i) => (
                 <div key={i} className={`${stat.color} p-8 flex flex-col justify-center`}>
-                  <span className="font-black text-[42px] leading-none block mb-1" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  <span className="font-black text-[42px] leading-none block mb-1" >
                     {stat.num}
                   </span>
                   <span className="text-[13px] font-semibold uppercase tracking-wide opacity-70">

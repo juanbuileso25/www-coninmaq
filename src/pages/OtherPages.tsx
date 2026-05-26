@@ -26,10 +26,10 @@ export function MaquinariaPage() {
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" >
             {pageTitle.eyebrow}
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <h1 className="font-black text-[48px] uppercase text-white leading-tight" >
             {pageTitle.title} <span className="text-amber-500">{pageTitle.highlight}</span>
           </h1>
         </div>
@@ -42,7 +42,7 @@ export function MaquinariaPage() {
             {products.map((p, i) => (
               <div key={i} className="bg-white border border-zinc-200 hover:border-amber-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 group">
                 <div className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} relative overflow-hidden flex items-center justify-center`}>
-                  <span className="font-black text-[48px] text-amber-500/20 select-none group-hover:scale-110 transition-transform duration-500" style={{ fontFamily: "'Oswald', sans-serif" }} aria-hidden="true">
+                  <span className="font-black text-[48px] text-amber-500/20 select-none group-hover:scale-110 transition-transform duration-500"  aria-hidden="true">
                     {p.code}
                   </span>
                   {/* Badge: ámbar para nueva, zinc para usada */}
@@ -50,7 +50,7 @@ export function MaquinariaPage() {
                     className={`absolute top-3 left-3 font-bold text-[11px] tracking-wider uppercase px-3 py-1 ${
                       isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
                     }`}
-                    style={{ fontFamily: "'Oswald', sans-serif" }}
+                    
                   >
                     {p.badge}
                   </span>
@@ -64,10 +64,10 @@ export function MaquinariaPage() {
 
                 <div className="p-5">
                   <p className="text-amber-500 text-[11px] font-bold tracking-[2px] uppercase mb-1">{p.brand}</p>
-                  <h3 className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-amber-600 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  <h3 className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-amber-600 transition-colors" >
                     {p.model}
                   </h3>
-                  <p className="text-[13px] text-zinc-500 font-light leading-relaxed mb-3">{p.desc}</p>
+                  <p className="text-[13px] text-zinc-500 font-normal leading-relaxed mb-3">{p.desc}</p>
 
                   {/* Info extra solo en /usada */}
                   {isUsada && (
@@ -88,10 +88,10 @@ export function MaquinariaPage() {
                   )}
 
                   <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
-                    <Link to={p.href} className="text-amber-500 font-bold text-[13px] uppercase tracking-wide hover:text-amber-700 transition-colors" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                    <Link to={p.href} className="text-amber-500 font-bold text-[13px] uppercase tracking-wide hover:text-amber-700 transition-colors" >
                       Ver specs →
                     </Link>
-                    <a href="https://wa.link/bax4s3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                    <a href="https://wa.link/bax4s3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200" >
                       <Icon icon="mdi:whatsapp" width={15} />
                       WhatsApp
                     </a>
@@ -121,10 +121,10 @@ export function ContactoPage() {
           }}
         />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <span className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-2" >
             Estamos para servirle
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <h1 className="font-black text-[48px] uppercase text-white leading-tight" >
             Contáctenos
           </h1>
         </div>
@@ -148,7 +148,7 @@ export function ContactoPage() {
                       {item.icon}
                     </div>
                     <div>
-                      <p className="font-bold text-[13px] uppercase tracking-wide text-zinc-400 mb-0.5" style={{ fontFamily: "'Oswald', sans-serif" }}>{item.title}</p>
+                      <p className="font-bold text-[13px] uppercase tracking-wide text-zinc-400 mb-0.5" >{item.title}</p>
                       <p className="text-zinc-800 font-medium">{item.text}</p>
                     </div>
                   </div>
@@ -158,7 +158,7 @@ export function ContactoPage() {
 
             {/* Contact form */}
             <div className="bg-zinc-50 border border-zinc-200 p-8">
-              <h3 className="font-black text-[22px] uppercase text-zinc-900 mb-6" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              <h3 className="font-black text-[22px] uppercase text-zinc-900 mb-6" >
                 Solicitar Cotización
               </h3>
               <div className="space-y-4">
@@ -169,7 +169,7 @@ export function ContactoPage() {
                   { id: "telefono", label: "Teléfono", type: "tel", placeholder: "300 123 4567" },
                 ].map((field) => (
                   <div key={field.id}>
-                    <label className="block text-[12px] font-bold uppercase tracking-wide text-zinc-500 mb-1.5" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                    <label className="block text-[12px] font-bold uppercase tracking-wide text-zinc-500 mb-1.5" >
                       {field.label}
                     </label>
                     <input
@@ -180,7 +180,7 @@ export function ContactoPage() {
                   </div>
                 ))}
                 <div>
-                  <label className="block text-[12px] font-bold uppercase tracking-wide text-zinc-500 mb-1.5" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  <label className="block text-[12px] font-bold uppercase tracking-wide text-zinc-500 mb-1.5" >
                     Mensaje
                   </label>
                   <textarea
@@ -192,7 +192,7 @@ export function ContactoPage() {
                 <button
                   type="button"
                   className="w-full bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase py-4 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_6px_20px_rgba(245,158,11,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   Enviar Solicitud →
                 </button>
@@ -210,17 +210,17 @@ export function NotFoundPage() {
   return (
     <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
       <div className="text-center px-6">
-        <span className="font-black text-[120px] text-amber-500/20 select-none block leading-none" style={{ fontFamily: "'Oswald', sans-serif" }}>
+        <span className="font-black text-[120px] text-amber-500/20 select-none block leading-none" >
           404
         </span>
-        <h1 className="font-black text-[36px] uppercase text-white mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+        <h1 className="font-black text-[36px] uppercase text-white mb-4" >
           Página no encontrada
         </h1>
-        <p className="text-zinc-400 font-light mb-8">La página que buscas no existe o fue movida.</p>
+        <p className="text-zinc-400 font-normal mb-8">La página que buscas no existe o fue movida.</p>
         <Link
           to="/"
           className="inline-block bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-amber-300 hover:to-amber-400 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(245,158,11,0.5)] transition-all duration-200"
-          style={{ fontFamily: "'Oswald', sans-serif" }}
+          
         >
           ← Volver al inicio
         </Link>

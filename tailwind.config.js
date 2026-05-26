@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["'Poppins'", "sans-serif"],
+      },
       animation: {
         "fade-in-up": "fadeInUp 0.65s ease forwards",
         "fade-in": "fadeIn 0.5s ease forwards",

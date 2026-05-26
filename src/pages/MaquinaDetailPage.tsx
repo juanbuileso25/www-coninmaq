@@ -46,7 +46,7 @@ function MachineCarousel({
         />
         <span
           className="font-black text-[90px] md:text-[130px] text-amber-500/15 select-none group-hover:scale-105 transition-transform duration-700"
-          style={{ fontFamily: "'Oswald', sans-serif" }}
+          
           aria-hidden="true"
         >
           {code}
@@ -123,7 +123,7 @@ function MachineCarousel({
             />
             <span
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-amber-500/30 select-none"
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               {code}
             </span>
@@ -154,7 +154,7 @@ function DetailTabs({ product, detail }: { product: Product; detail: MachineDeta
                 ? "border-amber-500 text-amber-600"
                 : "border-transparent text-zinc-400 hover:text-zinc-700"
             }`}
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             {t === "desc" ? "Descripción" : "Especificaciones técnicas"}
           </button>
@@ -226,7 +226,7 @@ function SidebarCard({
         </p>
         <h2
           className="font-black text-[22px] uppercase text-white leading-tight"
-          style={{ fontFamily: "'Oswald', sans-serif" }}
+          
         >
           {product.model}
         </h2>
@@ -235,7 +235,7 @@ function SidebarCard({
             className={`inline-block text-[10px] font-bold tracking-[2px] uppercase px-3 py-1 ${
               isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
             }`}
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             {product.badge}
           </span>
@@ -257,7 +257,7 @@ function SidebarCard({
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
                 <Icon icon="mdi:calendar-outline" width={20} className="text-amber-500 mx-auto mb-1" />
                 <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Año</p>
-                <p className="text-[18px] font-black text-zinc-900" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                <p className="text-[18px] font-black text-zinc-900" >
                   {product.anio}
                 </p>
               </div>
@@ -266,7 +266,7 @@ function SidebarCard({
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
                 <Icon icon="mdi:clock-outline" width={20} className="text-amber-500 mx-auto mb-1" />
                 <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Horas</p>
-                <p className="text-[18px] font-black text-zinc-900" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                <p className="text-[18px] font-black text-zinc-900" >
                   {product.horasUso}
                 </p>
               </div>
@@ -340,7 +340,7 @@ function SidebarCard({
           </p>
           <p
             className="text-[22px] font-black text-zinc-900"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             Consultar precio
           </p>
@@ -356,7 +356,7 @@ function SidebarCard({
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_6px_20px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             <Icon icon="mdi:whatsapp" width={18} />
             Consultar por WhatsApp
@@ -364,7 +364,7 @@ function SidebarCard({
           <a
             href="/contacto"
             className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-amber-400 to-amber-500 text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-amber-300 hover:to-amber-400 hover:shadow-[0_6px_20px_rgba(245,158,11,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             <Icon icon="mdi:file-document-outline" width={18} />
             Solicitar cotización
@@ -393,7 +393,7 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
       <div className="max-w-6xl mx-auto px-6">
         <h3
           className="font-black text-[28px] uppercase text-zinc-900 mb-8"
-          style={{ fontFamily: "'Oswald', sans-serif" }}
+          
         >
           También te puede{" "}
           <span className="text-amber-500">interesar</span>
@@ -410,7 +410,7 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
               >
                 <span
                   className="font-black text-[44px] text-amber-500/15 select-none group-hover:scale-110 transition-transform duration-500"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {p.code}
                 </span>
@@ -428,7 +428,7 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
                 </p>
                 <h4
                   className="font-bold text-[15px] uppercase text-zinc-900 group-hover:text-amber-600 transition-colors"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {p.model}
                 </h4>
@@ -462,7 +462,7 @@ function WhyUsStrip() {
               <div>
                 <p
                   className="font-bold text-[13px] uppercase tracking-wide text-zinc-800"
-                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                  
                 >
                   {item.label}
                 </p>
@@ -492,13 +492,13 @@ export default function MaquinaDetailPage() {
         <div className="text-center px-6">
           <span
             className="font-black text-[80px] text-amber-500/20 block"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             ?
           </span>
           <h1
             className="font-black text-[28px] uppercase text-white mb-4"
-            style={{ fontFamily: "'Oswald', sans-serif" }}
+            
           >
             Equipo no encontrado
           </h1>
@@ -569,13 +569,13 @@ export default function MaquinaDetailPage() {
             <div>
               <span
                 className="text-amber-500 text-[11px] font-bold tracking-[3px] uppercase block mb-1"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 {product.brand}
               </span>
               <h1
                 className="font-black text-[36px] md:text-[48px] uppercase text-white leading-tight"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                
               >
                 {product.model}
               </h1>
@@ -584,7 +584,7 @@ export default function MaquinaDetailPage() {
               className={`inline-block text-[12px] font-bold tracking-[2px] uppercase px-4 py-2 self-end ${
                 isUsada ? "bg-zinc-600 text-white" : "bg-amber-500 text-zinc-900"
               }`}
-              style={{ fontFamily: "'Oswald', sans-serif" }}
+              
             >
               {product.badge}
             </span>

@@ -24,23 +24,23 @@ export default function SectionTitle({
         className={`block text-amber-500 text-[11px] font-bold tracking-[3px] uppercase mb-3 transition-all duration-500 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
-        style={{ fontFamily: "'Oswald', sans-serif" }}
+        
       >
         {eyebrow}
       </span>
       {title && (
         <h2
-          className={`text-[36px] font-bold uppercase tracking-wide leading-tight transition-all duration-500 delay-100 ${
+          className={`text-[36px] font-extrabold uppercase tracking-wide leading-tight transition-all duration-500 delay-100 ${
             light ? "text-white" : "text-zinc-900"
           } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          style={{ fontFamily: "'Oswald', sans-serif" }}
+          
         >
           {title}
         </h2>
       )}
       {subtitle && (
         <p
-          className={`mt-3 text-[15px] font-light max-w-xl leading-relaxed transition-all duration-500 delay-200 ${
+          className={`mt-3 text-[15px] font-normal max-w-xl leading-relaxed transition-all duration-500 delay-200 ${
             isCenter ? "mx-auto" : ""
           } ${light ? "text-zinc-400" : "text-zinc-500"} ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
