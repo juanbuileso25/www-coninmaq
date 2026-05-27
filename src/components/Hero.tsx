@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { STATS } from "../data";
+import { useTranslation } from "react-i18next";
 
 export default function Hero() {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
+
+  const stats = t("stats", { returnObjects: true }) as Array<{ num: string; label: string }>;
 
   return (
     <section className="relative bg-zinc-900 overflow-hidden">
@@ -21,7 +24,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Main content — flujo normal, sin absolute */}
+      {/* Main content */}
       <div className="max-w-6xl mx-auto px-6 relative z-10 pt-16 sm:pt-24 pb-14 sm:pb-20 w-full min-h-[420px] flex items-center">
         <div className="max-w-[640px] w-full">
           {/* Pill badge */}
@@ -32,11 +35,8 @@ export default function Hero() {
             style={{ transitionDelay: "50ms" }}
           >
             <span className="w-1.5 h-1.5 bg-brand-accent-light rounded-full animate-pulse" />
-            <span
-              className="text-brand-accent-light font-bold text-[11px] tracking-[2.5px] uppercase"
-              
-            >
-              Líderes en Colombia
+            <span className="text-brand-accent-light font-bold text-[11px] tracking-[2.5px] uppercase">
+              {t("hero.badge")}
             </span>
           </div>
 
@@ -49,9 +49,9 @@ export default function Hero() {
               transitionDelay: "180ms",
             }}
           >
-            Soluciones en<br />
+            {t("hero.title1")}<br />
             <span className="text-brand-accent drop-shadow-[0_0_30px_rgba(255,200,55,0.35)]">
-              Maquinaria Pesada
+              {t("hero.title2")}
             </span>
           </h1>
 
@@ -61,9 +61,7 @@ export default function Hero() {
             }`}
             style={{ transitionDelay: "320ms" }}
           >
-            Más de dos décadas de experiencia en venta, importación y
-            mantenimiento de maquinaria pesada nueva y usada. Marcas líderes
-            como CASE, CATERPILLAR, HITACHI y DYNAPAC.
+            {t("hero.desc")}
           </p>
 
           <div
@@ -75,36 +73,31 @@ export default function Hero() {
             <Link
               to="/maquinaria-pesada"
               className="bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:from-[#FFE07A] hover:to-brand-accent-light hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)]"
-              
             >
-              Ver Maquinaria
+              {t("hero.cta1")}
             </Link>
             <Link
               to="/contacto"
               className="border border-white/25 text-white font-semibold text-[14px] tracking-wider uppercase px-8 py-4 text-center hover:bg-white/10 hover:border-white/50 hover:-translate-y-0.5 backdrop-blur-sm transition-all duration-200"
-              
             >
-              Solicitar Cotización
+              {t("hero.cta2")}
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Stats bar — en flujo normal, no absolute */}
+      {/* Stats bar */}
       <div className="relative z-10 bg-brand-accent/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4">
-            {STATS.map((s, i) => (
+            {stats.map((s, i) => (
               <div
                 key={i}
                 className={`text-center py-5 px-3 group hover:bg-zinc-900/10 transition-colors cursor-default ${
-                  i % 2 === 0 && i < STATS.length - 1 ? "border-r border-zinc-900/10" : ""
+                  i % 2 === 0 && i < stats.length - 1 ? "border-r border-zinc-900/10" : ""
                 } ${i < 2 ? "border-b border-zinc-900/10 md:border-b-0" : ""} md:border-r md:last:border-r-0`}
               >
-                <span
-                  className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom"
-                  
-                >
+                <span className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom">
                   {s.num}
                 </span>
                 <span className="text-[10px] sm:text-[11px] font-semibold text-black/60 uppercase tracking-wider">

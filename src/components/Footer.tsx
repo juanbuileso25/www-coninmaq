@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
-import { FOOTER_LINKS, CONTACT_ITEMS, SOCIAL_LINKS } from "../data";
+import { useTranslation } from "react-i18next";
+import { SOCIAL_LINKS, CONTACT_ITEMS } from "../data";
 
 const SOCIAL_ICON: Record<string, string> = {
   Facebook: "mdi:facebook",
@@ -9,6 +10,15 @@ const SOCIAL_ICON: Record<string, string> = {
 };
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const machineryLinks = t("footer.machineryLinks", { returnObjects: true }) as string[];
+  const partsLinks = t("footer.partsLinks", { returnObjects: true }) as string[];
+
+  const linkColumns = [
+    { title: t("footer.machineryCol"), links: machineryLinks },
+    { title: t("footer.partsCol"), links: partsLinks },
+  ];
+
   return (
     <footer className="bg-[#111] text-zinc-500 pt-16">
       <div className="max-w-6xl mx-auto px-6">
@@ -23,7 +33,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[14px] text-zinc-400 font-normal leading-relaxed mb-5">
-              Impulsamos el progreso con soluciones en maquinaria pesada en Colombia. Más de 7 años ofreciendo respaldo, calidad y un servicio que marca la diferencia.
+              {t("footer.tagline")}
             </p>
             <div className="flex gap-2">
               {SOCIAL_LINKS.map((s) => (
@@ -42,16 +52,13 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          {Object.entries(FOOTER_LINKS).map(([title, links]) => (
-            <div key={title}>
-              <h4
-                className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-brand-accent inline-block"
-                
-              >
-                {title}
+          {linkColumns.map((col) => (
+            <div key={col.title}>
+              <h4 className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-brand-accent inline-block">
+                {col.title}
               </h4>
               <ul className="space-y-2">
-                {links.map((label) => (
+                {col.links.map((label) => (
                   <li key={label}>
                     <Link
                       to="#"
@@ -68,11 +75,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4
-              className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-brand-accent inline-block"
-              
-            >
-              Contacto
+            <h4 className="font-bold text-[15px] uppercase text-white tracking-wider mb-5 pb-2.5 border-b-2 border-brand-accent inline-block">
+              {t("footer.contactCol")}
             </h4>
             <ul className="space-y-3">
               {CONTACT_ITEMS.map((item, i) => (
@@ -86,10 +90,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/[0.08] py-5 flex flex-col md:flex-row justify-between items-center text-[13px] text-zinc-400 gap-2">
-          <span>© {new Date().getFullYear()} Coninmaq S.A.S — Todos los derechos reservados</span>
+          <span>© {new Date().getFullYear()} Coninmaq S.A.S — {t("footer.rights")}</span>
           <div className="flex gap-4">
-            <Link to="/politica-privacidad" className="hover:text-brand-accent transition-colors">Política de privacidad</Link>
-            <Link to="/terminos" className="hover:text-brand-accent transition-colors">Términos de uso</Link>
+            <Link to="/politica-privacidad" className="hover:text-brand-accent transition-colors">{t("footer.privacy")}</Link>
+            <Link to="/terminos" className="hover:text-brand-accent transition-colors">{t("footer.terms")}</Link>
           </div>
         </div>
       </div>

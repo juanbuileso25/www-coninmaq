@@ -1,8 +1,51 @@
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import type { NavItem } from "../types";
-import { NAV_ITEMS } from "../data";
+import LanguageSwitcher from "./LanguageSwitcher";
+
+function useNavItems(): NavItem[] {
+  const { t } = useTranslation();
+  return [
+    { label: t("nav.home"), href: "/" },
+    {
+      label: t("nav.about"),
+      href: "/nosotros",
+      sub: [
+        { label: t("nav.aboutWhoWeAre"), href: "/nosotros" },
+        { label: t("nav.aboutWork"), href: "/trabaja-con-nosotros" },
+      ],
+    },
+    {
+      label: t("nav.machinery"),
+      href: "/maquinaria-pesada",
+      sub: [
+        { label: t("nav.machineryNew"), href: "/maquinaria-pesada/nueva" },
+        { label: t("nav.machineryUsed"), href: "/maquinaria-pesada/usada" },
+        { label: t("nav.machineryExcavators"), href: "/maquinaria-pesada/excavadoras" },
+        { label: t("nav.machineryBulldozers"), href: "/maquinaria-pesada/bulldozers" },
+        { label: t("nav.machineryMiniloaders"), href: "/maquinaria-pesada/minicargadores" },
+        { label: t("nav.machineryCompactors"), href: "/maquinaria-pesada/compactadores" },
+        { label: t("nav.machineryGraders"), href: "/maquinaria-pesada/motoniveladoras" },
+        { label: t("nav.machineryAttachments"), href: "/maquinaria-pesada/aditamentos" },
+      ],
+    },
+    {
+      label: t("nav.parts"),
+      href: "/repuestos",
+      sub: [
+        { label: t("nav.partsCaterpillar"), href: "/repuestos/caterpillar" },
+        { label: t("nav.partsCase"), href: "/repuestos/case" },
+        { label: t("nav.partsBobcat"), href: "/repuestos/bobcat" },
+        { label: t("nav.partsKomatsu"), href: "/repuestos/komatsu" },
+        { label: t("nav.partsViewAll"), href: "/repuestos" },
+      ],
+    },
+    { label: t("nav.virtualStore"), href: "/tienda" },
+    { label: t("nav.contact"), href: "/contacto" },
+  ];
+}
 
 interface DesktopNavItemProps {
   item: NavItem;
@@ -24,7 +67,6 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
             isActive ? "text-brand-accent" : "text-zinc-700 hover:text-brand-accent"
           }`
         }
-        
       >
         {item.label}
         {item.sub && (
@@ -65,7 +107,6 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
       <Link
         to={item.href}
         className="block text-zinc-300 py-3 text-sm border-b border-zinc-800 hover:text-brand-accent transition-colors font-semibold uppercase tracking-wide"
-        
         onClick={onClose}
       >
         {item.label}
@@ -78,7 +119,6 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
       <button
         type="button"
         className="w-full flex items-center justify-between text-zinc-300 py-3 text-sm font-semibold uppercase tracking-wide hover:text-brand-accent transition-colors"
-        
         onClick={() => setOpen((v) => !v)}
       >
         {item.label}
@@ -113,17 +153,17 @@ interface HeaderProps {
 }
 
 export default function Header({ scrolled }: HeaderProps) {
+  const { t } = useTranslation();
+  const navItems = useNavItems();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuTop, setMenuTop] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
-  // Bloquear scroll del body cuando el menú mobile está abierto
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  // Medir la posición inferior del header para anclar el menú
   useEffect(() => {
     if (!mobileOpen) return;
     const update = () => {
@@ -162,21 +202,21 @@ export default function Header({ scrolled }: HeaderProps) {
             {/* Desktop nav */}
             <nav className="hidden lg:block">
               <ul className="flex items-center gap-1">
-                {NAV_ITEMS.map((item) => (
-                  <DesktopNavItem key={item.label} item={item} />
+                {navItems.map((item) => (
+                  <DesktopNavItem key={item.href} item={item} />
                 ))}
               </ul>
             </nav>
 
-            {/* CTA */}
-            <div className="hidden lg:flex flex-col gap-1 flex-shrink-0">
+            {/* CTA + Language switcher */}
+            <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+              <LanguageSwitcher />
               <a
                 href="tel:3163815694"
                 className="inline-flex items-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[12px] tracking-wider uppercase px-4 py-2 hover:from-[#FFE07A] hover:to-brand-accent-light hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(255,200,55,0.45)] transition-all duration-200"
-                
               >
                 <Icon icon="mdi:phone" width={14} />
-                Llámanos
+                {t("header.callUs")}
               </a>
             </div>
 
@@ -184,7 +224,7 @@ export default function Header({ scrolled }: HeaderProps) {
             <button
               className="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] text-zinc-700 hover:text-brand-accent transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Abrir menú"
+              aria-label={t("header.openMenu")}
             >
               <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
               <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
@@ -194,39 +234,36 @@ export default function Header({ scrolled }: HeaderProps) {
         </div>
       </header>
 
-      {/* Mobile menu — fuera del header para evitar overflow-hidden y sticky */}
+      {/* Mobile menu */}
       <div
         className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
           mobileOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         style={{ top: menuTop }}
       >
-        {/* Overlay oscuro detrás */}
         <div
           className="absolute inset-0 bg-zinc-900/50"
           onClick={closeMenu}
         />
 
-        {/* Panel del menú con scroll interno */}
         <div
           className="relative bg-zinc-900 overflow-y-auto"
           style={{ maxHeight: `calc(100dvh - ${menuTop}px)` }}
         >
           <div className="px-6 py-4">
-            {NAV_ITEMS.map((item) => (
-              <MobileNavItem key={item.label} item={item} onClose={closeMenu} />
+            {navItems.map((item) => (
+              <MobileNavItem key={item.href} item={item} onClose={closeMenu} />
             ))}
 
-            <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-800">
+            <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-800 items-center">
               <a
                 href="tel:3176707071"
                 className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wide uppercase py-3 hover:from-[#FFE07A] hover:to-brand-accent-light transition-all duration-200"
-                
               >
                 <Icon icon="mdi:phone" width={15} />
-                Llamar
+                {t("header.call")}
               </a>
-              
+              <LanguageSwitcher />
             </div>
           </div>
         </div>

@@ -1,8 +1,19 @@
+import { useTranslation } from "react-i18next";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
-import { ABOUT_FEATURES } from "../data";
 
 export default function NosotrosPage() {
+  const { t } = useTranslation();
+  const features = t("about.features", { returnObjects: true }) as string[];
+  const stats = t("pages.nosotros.stats", { returnObjects: true }) as Array<{ num: string; label: string }>;
+
+  const statColors = [
+    "bg-zinc-900 text-white",
+    "bg-brand-accent text-zinc-900",
+    "bg-brand-accent text-zinc-900",
+    "bg-zinc-900 text-white",
+  ];
+
   return (
     <>
       {/* Page header */}
@@ -14,11 +25,12 @@ export default function NosotrosPage() {
           }}
         />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2" >
-            La empresa
+          <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2">
+            {t("pages.nosotros.eyebrow")}
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight" >
-            Sobre <span className="text-brand-accent">Nosotros</span>
+          <h1 className="font-black text-[48px] uppercase text-white leading-tight">
+            {t("pages.nosotros.title")}{" "}
+            <span className="text-brand-accent">{t("pages.nosotros.titleHighlight")}</span>
           </h1>
         </div>
       </div>
@@ -28,20 +40,19 @@ export default function NosotrosPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-              <SectionTitle eyebrow="Nuestra historia" title="Más de 20 años de trayectoria" align="left" />
+              <SectionTitle
+                eyebrow={t("pages.nosotros.historyEyebrow")}
+                title={t("pages.nosotros.historyTitle")}
+                align="left"
+              />
               <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-4">
-                CONINMAQ S.A.S nació con el propósito de brindar soluciones
-                integrales al sector de la construcción y la minería en Colombia.
-                Desde nuestros inicios hemos construido relaciones de largo plazo
-                con los principales fabricantes de maquinaria pesada del mundo.
+                {t("pages.nosotros.p1")}
               </p>
               <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-6">
-                Hoy somos reconocidos como uno de los distribuidores más confiables
-                del país, con presencia en todas las regiones y un equipo humano
-                comprometido con la excelencia técnica y comercial.
+                {t("pages.nosotros.p2")}
               </p>
               <div className="grid grid-cols-2 gap-3">
-                {ABOUT_FEATURES.map((f) => (
+                {features.map((f) => (
                   <div key={f} className="flex items-start gap-2 text-[14px] text-zinc-700">
                     <span className="text-brand-accent mt-1 text-[10px]">▶</span>
                     {f}
@@ -51,14 +62,9 @@ export default function NosotrosPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-5">
-              {[
-                { num: "+7", label: "Años de experiencia", color: "bg-zinc-900 text-white" },
-                { num: "+500", label: "Máquinas vendidas", color: "bg-brand-accent text-zinc-900" },
-                { num: "+8", label: "Marcas distribuidas", color: "bg-brand-accent text-zinc-900" },
-                { num: "100%", label: "Compromiso con el cliente", color: "bg-zinc-900 text-white" },
-              ].map((stat, i) => (
-                <div key={i} className={`${stat.color} p-8 flex flex-col justify-center`}>
-                  <span className="font-black text-[42px] leading-none block mb-1" >
+              {stats.map((stat, i) => (
+                <div key={i} className={`${statColors[i]} p-8 flex flex-col justify-center`}>
+                  <span className="font-black text-[42px] leading-none block mb-1">
                     {stat.num}
                   </span>
                   <span className="text-[13px] font-semibold uppercase tracking-wide opacity-70">

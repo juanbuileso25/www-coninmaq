@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 import SectionTitle from "./SectionTitle";
 import { useInView } from "../hooks/useInView";
 import {
@@ -15,7 +16,10 @@ import {
 
 /* ── Services Strip ──────────────────────────────────────────────────────── */
 export function ServicesStrip() {
+  const { t } = useTranslation();
   const { ref, inView } = useInView(0.1);
+  const serviceLabels = t("services", { returnObjects: true }) as Array<{ title: string; desc: string }>;
+
   return (
     <div ref={ref} className="bg-white border-b border-zinc-100 shadow-sm">
       <div className="max-w-6xl mx-auto">
@@ -35,13 +39,10 @@ export function ServicesStrip() {
                 <Icon icon={s.icon} width={24} />
               </div>
               <div>
-                <h3
-                  className="font-bold text-[14px] uppercase tracking-wide text-zinc-900 group-hover:text-brand-accent-dark transition-colors"
-                  
-                >
-                  {s.title}
+                <h3 className="font-bold text-[14px] uppercase tracking-wide text-zinc-900 group-hover:text-brand-accent-dark transition-colors">
+                  {serviceLabels[i]?.title ?? s.title}
                 </h3>
-                <p className="text-[12px] text-zinc-500 mt-0.5">{s.desc}</p>
+                <p className="text-[12px] text-zinc-500 mt-0.5">{serviceLabels[i]?.desc ?? s.desc}</p>
               </div>
             </div>
           ))}
@@ -53,14 +54,17 @@ export function ServicesStrip() {
 
 /* ── Categories ──────────────────────────────────────────────────────────── */
 export function Categories() {
+  const { t } = useTranslation();
   const { ref, inView } = useInView();
+  const catItems = t("categories.items", { returnObjects: true }) as Array<{ label: string; desc: string }>;
+
   return (
     <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
-          eyebrow="Nuestro Portafolio"
-          title="Categorías de Maquinaria"
-          subtitle="Amplio inventario de maquinaria pesada para construcción, minería y obras civiles"
+          eyebrow={t("categories.eyebrow")}
+          title={t("categories.title")}
+          subtitle={t("categories.subtitle")}
         />
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {CATEGORIES.map((cat, i) => (
@@ -77,36 +81,23 @@ export function Categories() {
                 transitionDelay: `${i * 70}ms`,
               }}
             >
-              {/* gradient bg */}
               <div className={`absolute inset-0 bg-gradient-to-br ${CAT_GRADIENTS[i]}`} />
-              {/* overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent group-hover:from-black/75 transition-all duration-400" />
-              {/* zoom layer */}
               <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out" />
-              {/* amber border glow on hover */}
               <div className="absolute inset-0 border-2 border-transparent group-hover:border-brand-accent/40 transition-all duration-300" />
-              {/* watermark text */}
               <div
                 className="absolute inset-0 flex items-center justify-center font-black text-[80px] text-brand-accent/[0.1] select-none leading-none tracking-tighter group-hover:text-brand-accent/[0.18] transition-all duration-500"
-                
                 aria-hidden="true"
               >
                 {cat.code}
               </div>
-              {/* content */}
               <div className="relative z-10 p-6 w-full">
-                <h3
-                  className="font-bold text-[22px] text-white uppercase tracking-wide mb-1 group-hover:text-brand-accent-light transition-colors duration-300"
-                  
-                >
-                  {cat.label}
+                <h3 className="font-bold text-[22px] text-white uppercase tracking-wide mb-1 group-hover:text-brand-accent-light transition-colors duration-300">
+                  {catItems[i]?.label ?? cat.label}
                 </h3>
-                <p className="text-white/60 text-[13px] font-normal mb-3">{cat.desc}</p>
-                <span
-                  className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3.5 py-[6px] group-hover:bg-brand-accent-light group-hover:gap-3 transition-all duration-300"
-                  
-                >
-                  Ver equipos
+                <p className="text-white/60 text-[13px] font-normal mb-3">{catItems[i]?.desc ?? cat.desc}</p>
+                <span className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3.5 py-[6px] group-hover:bg-brand-accent-light group-hover:gap-3 transition-all duration-300">
+                  {t("categories.viewEquipment")}
                   <Icon icon="mdi:arrow-right" width={14} />
                 </span>
               </div>
@@ -120,18 +111,19 @@ export function Categories() {
 
 /* ── Brands ──────────────────────────────────────────────────────────────── */
 export function Brands() {
+  const { t } = useTranslation();
   const doubled = [...BRANDS, ...BRANDS];
+
   return (
     <section className="bg-zinc-900 py-16 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
-          eyebrow="Marcas Representadas"
-          title="Trabajamos con los Mejores"
-          subtitle="Distribuidores autorizados de las marcas líderes en maquinaria pesada a nivel mundial"
+          eyebrow={t("brands.eyebrow")}
+          title={t("brands.title")}
+          subtitle={t("brands.subtitle")}
           light
         />
       </div>
-      {/* Marquee */}
       <div className="relative mt-4">
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-zinc-900 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-zinc-900 to-transparent z-10 pointer-events-none" />
@@ -141,10 +133,7 @@ export function Brands() {
               key={i}
               className="inline-flex items-center gap-4 px-8 py-5 border-r border-white/[0.06] group cursor-default hover:bg-brand-accent/10 transition-colors duration-300"
             >
-              <span
-                className="font-bold text-[15px] text-zinc-500 group-hover:text-brand-accent-light transition-colors duration-300 uppercase tracking-widest"
-                
-              >
+              <span className="font-bold text-[15px] text-zinc-500 group-hover:text-brand-accent-light transition-colors duration-300 uppercase tracking-widest">
                 {brand}
               </span>
             </div>
@@ -157,7 +146,10 @@ export function Brands() {
 
 /* ── About ───────────────────────────────────────────────────────────────── */
 export function About() {
+  const { t } = useTranslation();
   const { ref, inView } = useInView(0.1);
+  const features = t("about.features", { returnObjects: true }) as string[];
+
   return (
     <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -167,33 +159,24 @@ export function About() {
             className={`relative pb-8 lg:pb-0 transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
           >
             <div className="w-full h-[400px] bg-zinc-900 flex items-center justify-center overflow-hidden relative">
-              {/* Pulsing amber center glow */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-48 h-48 bg-brand-accent/10 rounded-full blur-3xl animate-pulse" />
               </div>
               <span
                 className="relative font-black text-[110px] text-brand-accent/[0.13] select-none tracking-tighter"
-                
                 aria-hidden="true"
               >
                 PART
               </span>
               <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-brand-accent" />
               <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-brand-accent" />
-              {/* Animated corner accents */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-brand-accent/30" />
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-accent/30" />
             </div>
-            {/* Experience badge */}
             <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-brand-accent flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(255,200,55,0.5)] hover:scale-105 transition-transform duration-300">
-              <span
-                className="font-black text-[36px] text-zinc-900 leading-none"
-                
-              >
-                +7
-              </span>
-              <span className="text-[10px] font-bold text-black/60 uppercase text-center tracking-wide leading-tight px-2">
-                años de<br />experiencia
+              <span className="font-black text-[36px] text-zinc-900 leading-none">+7</span>
+              <span className="text-[10px] font-bold text-black/60 uppercase text-center tracking-wide leading-tight px-2 whitespace-pre-line">
+                {t("about.yearsLabel")}
               </span>
             </div>
           </div>
@@ -202,27 +185,20 @@ export function About() {
           <div
             className={`transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
           >
-            <SectionTitle eyebrow="Sobre Nosotros" title="" align="left" />
-            <h2
-              className="font-extrabold text-[36px] uppercase tracking-wide text-zinc-900 leading-tight mb-5 -mt-8"
-              
-            >
-              Líderes en{" "}
-              <span className="text-brand-accent">Maquinaria Pesada</span>{" "}
-              en Colombia
+            <SectionTitle eyebrow={t("about.eyebrow")} title="" align="left" />
+            <h2 className="font-extrabold text-[36px] uppercase tracking-wide text-zinc-900 leading-tight mb-5 -mt-8">
+              {t("about.title")}{" "}
+              <span className="text-brand-accent">{t("about.titleHighlight")}</span>{" "}
+              {t("about.title2")}
             </h2>
             <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-4">
-              Con más de dos décadas de experiencia en el sector, CONINMAQ
-              se destaca como líder en soluciones integrales para maquinaria
-              pesada en Colombia.
+              {t("about.p1")}
             </p>
             <p className="text-zinc-500 font-normal text-[16px] leading-relaxed mb-6">
-              Nuestro equipo de ingenieros y técnicos especializados garantiza
-              el mejor servicio postventa, repuestos originales y mantenimiento
-              preventivo para toda la vida útil de sus equipos.
+              {t("about.p2")}
             </p>
             <div className="grid grid-cols-2 gap-3 mb-8">
-              {ABOUT_FEATURES.map((f, i) => (
+              {(features.length ? features : ABOUT_FEATURES).map((f, i) => (
                 <div
                   key={f}
                   className={`flex items-center gap-2 text-[14px] text-zinc-700 transition-all duration-500 ${
@@ -238,9 +214,8 @@ export function About() {
             <Link
               to="/nosotros"
               className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-[#FFE07A] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)] transition-all duration-200"
-              
             >
-              Conocer más
+              {t("about.cta")}
             </Link>
           </div>
         </div>
@@ -251,88 +226,83 @@ export function About() {
 
 /* ── Products ────────────────────────────────────────────────────────────── */
 export function Products() {
+  const { t } = useTranslation();
   const { ref, inView } = useInView(0.1);
+
   return (
     <section className="py-20 bg-zinc-100">
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
-          eyebrow="Equipos Destacados"
-          title="Maquinaria Disponible"
-          subtitle="Selección de equipos en stock listos para entrega inmediata"
+          eyebrow={t("products.eyebrow")}
+          title={t("products.title")}
+          subtitle={t("products.subtitle")}
         />
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {PRODUCTS.map((p, i) => (
-            <div
-              key={i}
-              className={`bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
+          {PRODUCTS.map((p, i) => {
+            const desc = t(`productDesc.${p.code}`, { defaultValue: p.desc });
+            const badge = p.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
+            return (
               <div
-                className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i]} relative overflow-hidden flex items-center justify-center`}
+                key={i}
+                className={`bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group ${
+                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+                style={{ transitionDelay: `${i * 100}ms` }}
               >
-                {/* Glow on hover */}
-                <div className="absolute inset-0 bg-brand-accent/0 group-hover:bg-brand-accent/5 transition-all duration-300" />
-                <span
-                  className="font-black text-[52px] text-brand-accent/20 select-none group-hover:scale-110 group-hover:text-brand-accent/30 transition-all duration-500"
-                  
-                  aria-hidden="true"
+                <div
+                  className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i]} relative overflow-hidden flex items-center justify-center`}
                 >
-                  {p.code}
-                </span>
-                <span
-                  className="absolute top-3 left-3 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1 shadow-lg"
-                  
-                >
-                  {p.badge}
-                </span>
-              </div>
+                  <div className="absolute inset-0 bg-brand-accent/0 group-hover:bg-brand-accent/5 transition-all duration-300" />
+                  <span
+                    className="font-black text-[52px] text-brand-accent/20 select-none group-hover:scale-110 group-hover:text-brand-accent/30 transition-all duration-500"
+                    aria-hidden="true"
+                  >
+                    {p.code}
+                  </span>
+                  <span className="absolute top-3 left-3 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1 shadow-lg">
+                    {badge}
+                  </span>
+                </div>
 
-              <div className="p-5">
-                <p className="text-brand-accent text-[11px] font-bold tracking-[2px] uppercase mb-1">
-                  {p.brand}
-                </p>
-                <h3
-                  className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-brand-accent-dark transition-colors duration-200"
-                  
-                >
-                  {p.model}
-                </h3>
-                <p className="text-[13px] text-zinc-500 font-normal leading-relaxed mb-4">
-                  {p.desc}
-                </p>
-                <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
-                  <Link
-                    to={p.href}
-                    className="text-brand-accent font-bold text-[13px] uppercase tracking-wide hover:text-brand-accent-dark hover:gap-2 transition-all duration-200 flex items-center gap-1"
-                    
-                  >
-                    Ver specs →
-                  </Link>
-                  <a
-                    href="https://wa.link/bax4s3"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200"
-                    
-                  >
-                    <Icon icon="mdi:whatsapp" width={15} />
-                    WhatsApp
-                  </a>
+                <div className="p-5">
+                  <p className="text-brand-accent text-[11px] font-bold tracking-[2px] uppercase mb-1">
+                    {p.brand}
+                  </p>
+                  <h3 className="font-bold text-[18px] uppercase tracking-wide text-zinc-900 mb-2 group-hover:text-brand-accent-dark transition-colors duration-200">
+                    {p.model}
+                  </h3>
+                  <p className="text-[13px] text-zinc-500 font-normal leading-relaxed mb-4">
+                    {desc}
+                  </p>
+                  <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
+                    <Link
+                      to={p.href}
+                      className="text-brand-accent font-bold text-[13px] uppercase tracking-wide hover:text-brand-accent-dark hover:gap-2 transition-all duration-200 flex items-center gap-1"
+                    >
+                      {t("products.viewSpecs")}
+                    </Link>
+                    <a
+                      href="https://wa.link/bax4s3"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200"
+                    >
+                      <Icon icon="mdi:whatsapp" width={15} />
+                      WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-12">
           <Link
             to="/maquinaria-pesada"
             className="inline-block bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-10 py-4 hover:from-[#FFE07A] hover:to-brand-accent-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(255,200,55,0.5)] transition-all duration-200"
-            
           >
-            Ver todo el catálogo
+            {t("products.viewAll")}
           </Link>
         </div>
       </div>
@@ -342,9 +312,10 @@ export function Products() {
 
 /* ── CTA Banner ──────────────────────────────────────────────────────────── */
 export function CTABanner() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative bg-gradient-to-r from-brand-accent via-brand-accent-light to-brand-accent py-16 overflow-hidden">
-      {/* Diagonal animated stripe */}
       <div
         className="absolute inset-0 opacity-[0.06]"
         style={{
@@ -360,21 +331,17 @@ export function CTABanner() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h2
-              className="font-extrabold text-[34px] uppercase tracking-wide text-zinc-900 leading-tight mb-2"
-              
-            >
-              ¿Necesita una cotización?
+            <h2 className="font-extrabold text-[34px] uppercase tracking-wide text-zinc-900 leading-tight mb-2">
+              {t("cta.title")}
             </h2>
             <p className="text-black/60 font-normal text-[16px]">
-              Nuestros asesores comerciales están listos. Respuesta en menos de 2 horas.
+              {t("cta.desc")}
             </p>
           </div>
           <div className="flex gap-4 flex-shrink-0 flex-wrap">
             <a
               href="tel:3176707071"
               className="inline-flex items-center gap-2 bg-gradient-to-b from-zinc-800 to-zinc-900 text-white font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-zinc-700 hover:to-zinc-800 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)] transition-all duration-200"
-              
             >
               <Icon icon="mdi:phone" width={18} />
               316 381 5694
@@ -384,7 +351,6 @@ export function CTABanner() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-2 border-zinc-900/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-zinc-900 transition-all duration-200"
-              
             >
               <Icon icon="mdi:whatsapp" width={20} />
               WhatsApp
@@ -398,13 +364,16 @@ export function CTABanner() {
 
 /* ── Testimonials ────────────────────────────────────────────────────────── */
 export function Testimonials() {
+  const { t } = useTranslation();
   const { ref, inView } = useInView(0.1);
+  const items = t("testimonials.items", { returnObjects: true }) as typeof TESTIMONIALS;
+
   return (
     <section className="py-20 bg-zinc-50">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionTitle eyebrow="Lo que dicen nuestros clientes" title="Clientes Satisfechos" />
+        <SectionTitle eyebrow={t("testimonials.eyebrow")} title={t("testimonials.title")} />
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
+          {(items.length ? items : TESTIMONIALS).map((t2, i) => (
             <div
               key={i}
               className={`bg-white border-l-4 border-brand-accent shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-300 p-7 relative group ${
@@ -412,35 +381,25 @@ export function Testimonials() {
               }`}
               style={{ transitionDelay: `${i * 120}ms` }}
             >
-              {/* Quote mark */}
               <span
                 className="absolute top-3 right-5 font-black text-[64px] text-brand-accent/20 leading-none select-none group-hover:text-brand-accent/30 transition-colors duration-300"
-                
                 aria-hidden="true"
               >
                 "
               </span>
               <div className="flex gap-0.5 text-brand-accent mb-4">
-                {[...Array(5)].map((_, i) => <Icon key={i} icon="mdi:star" width={14} />)}
+                {[...Array(5)].map((_, j) => <Icon key={j} icon="mdi:star" width={14} />)}
               </div>
               <p className="text-[14px] text-zinc-500 font-normal leading-relaxed mb-5">
-                {t.text}
+                {t2.text}
               </p>
               <div className="flex items-center gap-3 border-t border-zinc-100 pt-4">
-                <div
-                  className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300"
-                  
-                >
-                  {t.initials}
+                <div className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300">
+                  {t2.initials}
                 </div>
                 <div>
-                  <div
-                    className="font-bold text-[14px] uppercase text-zinc-900"
-                    
-                  >
-                    {t.name}
-                  </div>
-                  <div className="text-[12px] text-zinc-400">{t.role}</div>
+                  <div className="font-bold text-[14px] uppercase text-zinc-900">{t2.name}</div>
+                  <div className="text-[12px] text-zinc-400">{t2.role}</div>
                 </div>
               </div>
             </div>

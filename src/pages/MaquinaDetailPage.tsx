@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 import { CTABanner } from "../components/Sections";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 import { MACHINE_DETAIL_MAP } from "../data/detailData";
@@ -32,6 +33,7 @@ function MachineCarousel({
   slideLabels: string[];
   isUsada: boolean;
 }) {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
 
   return (
@@ -40,13 +42,9 @@ function MachineCarousel({
       <div
         className={`h-72 md:h-[400px] bg-gradient-to-br ${gradient} relative overflow-hidden flex items-center justify-center group`}
       >
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: DOT_PATTERN }}
-        />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
         <span
           className="font-black text-[90px] md:text-[130px] text-brand-accent/15 select-none group-hover:scale-105 transition-transform duration-700"
-          
           aria-hidden="true"
         >
           {code}
@@ -71,7 +69,7 @@ function MachineCarousel({
           <div className="absolute top-4 left-4 bg-zinc-800/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5">
             <span className="text-brand-accent-light text-[10px] font-bold tracking-[2px] uppercase flex items-center gap-1.5">
               <Icon icon="mdi:shield-check-outline" width={13} />
-              Certificada
+              {t("pages.machineDetail.certified")}
             </span>
           </div>
         )}
@@ -80,14 +78,14 @@ function MachineCarousel({
         <button
           onClick={() => setActive((active - 1 + slideLabels.length) % slideLabels.length)}
           className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
-          aria-label="Anterior"
+          aria-label={t("pages.machineDetail.prev")}
         >
           <Icon icon="mdi:chevron-left" width={22} className="text-white" />
         </button>
         <button
           onClick={() => setActive((active + 1) % slideLabels.length)}
           className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
-          aria-label="Siguiente"
+          aria-label={t("pages.machineDetail.next")}
         >
           <Icon icon="mdi:chevron-right" width={22} className="text-white" />
         </button>
@@ -101,7 +99,7 @@ function MachineCarousel({
               className={`w-2 h-2 transition-all duration-200 ${
                 i === active ? "bg-brand-accent w-5" : "bg-white/30 hover:bg-white/60"
               }`}
-              aria-label={`Imagen ${i + 1}`}
+              aria-label={`${t("pages.machineDetail.imgLabel")} ${i + 1}`}
             />
           ))}
         </div>
@@ -117,14 +115,8 @@ function MachineCarousel({
               i === active ? "border-brand-accent" : "border-transparent opacity-60 hover:opacity-80"
             }`}
           >
-            <div
-              className="absolute inset-0 opacity-[0.06]"
-              style={{ backgroundImage: DOT_PATTERN }}
-            />
-            <span
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-brand-accent/30 select-none"
-              
-            >
+            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: DOT_PATTERN }} />
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-brand-accent/30 select-none">
               {code}
             </span>
             <span className="absolute bottom-1.5 left-2 text-white/70 text-[9px] font-bold uppercase tracking-wide leading-tight">
@@ -139,31 +131,32 @@ function MachineCarousel({
 
 /* ── Tabs: Descripción / Especificaciones ────────────────────────────────── */
 function DetailTabs({ product, detail }: { product: Product; detail: MachineDetailData | undefined }) {
+  const { t } = useTranslation();
   const [tab, setTab] = useState<"desc" | "specs">("desc");
+  const desc = t(`productDesc.${product.code}`, { defaultValue: product.desc });
 
   return (
     <div className="mt-6">
       {/* Tab switcher */}
       <div className="flex border-b border-zinc-200">
-        {(["desc", "specs"] as const).map((t) => (
+        {(["desc", "specs"] as const).map((tb) => (
           <button
-            key={t}
-            onClick={() => setTab(t)}
+            key={tb}
+            onClick={() => setTab(tb)}
             className={`px-5 py-3 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 border-b-2 -mb-[2px] ${
-              tab === t
+              tab === tb
                 ? "border-brand-accent text-brand-accent-dark"
                 : "border-transparent text-zinc-400 hover:text-zinc-700"
             }`}
-            
           >
-            {t === "desc" ? "Descripción" : "Especificaciones técnicas"}
+            {tb === "desc" ? t("pages.machineDetail.tabDesc") : t("pages.machineDetail.tabSpecs")}
           </button>
         ))}
       </div>
 
       {tab === "desc" ? (
         <div className="pt-5 space-y-4">
-          <p className="text-[14px] text-zinc-600 leading-relaxed">{product.desc}</p>
+          <p className="text-[14px] text-zinc-600 leading-relaxed">{desc}</p>
           <div className="space-y-2.5">
             {detail?.highlights.map((h: string, i: number) => (
               <div key={i} className="flex items-start gap-3">
@@ -181,19 +174,13 @@ function DetailTabs({ product, detail }: { product: Product; detail: MachineDeta
             {detail?.specs.map((spec: { label: string; value: string; icon?: string }, i: number) => (
               <div
                 key={i}
-                className={`flex items-center justify-between py-3 px-2 ${
-                  i % 2 === 0 ? "bg-zinc-50/50" : ""
-                }`}
+                className={`flex items-center justify-between py-3 px-2 ${i % 2 === 0 ? "bg-zinc-50/50" : ""}`}
               >
                 <span className="flex items-center gap-2 text-[12px] font-semibold text-zinc-500 uppercase tracking-wide">
-                  {spec.icon && (
-                    <Icon icon={spec.icon} width={14} className="text-brand-accent" />
-                  )}
+                  {spec.icon && <Icon icon={spec.icon} width={14} className="text-brand-accent" />}
                   {spec.label}
                 </span>
-                <span className="text-[13px] font-bold text-zinc-800 text-right">
-                  {spec.value}
-                </span>
+                <span className="text-[13px] font-bold text-zinc-800 text-right">{spec.value}</span>
               </div>
             ))}
           </div>
@@ -213,9 +200,11 @@ function SidebarCard({
   detail: MachineDetailData | undefined;
   isUsada: boolean;
 }) {
+  const { t } = useTranslation();
   const waLink = "https://wa.link/bax4s3";
   const condicion = detail?.condicion;
   const barWidth = condicion ? CONDITION_BAR[condicion] ?? 70 : 0;
+  const badge = product.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
 
   return (
     <div className="bg-white border border-zinc-200 shadow-sm">
@@ -224,10 +213,7 @@ function SidebarCard({
         <p className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase mb-1">
           {product.brand}
         </p>
-        <h2
-          className="font-black text-[22px] uppercase text-white leading-tight"
-          
-        >
+        <h2 className="font-black text-[22px] uppercase text-white leading-tight">
           {product.model}
         </h2>
         <div className="mt-2 flex gap-2 flex-wrap">
@@ -235,9 +221,8 @@ function SidebarCard({
             className={`inline-block text-[10px] font-bold tracking-[2px] uppercase px-3 py-1 ${
               isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
             }`}
-            
           >
-            {product.badge}
+            {badge}
           </span>
           {isUsada && product.anio && (
             <span className="inline-flex items-center gap-1 bg-zinc-700 text-zinc-300 text-[10px] font-bold tracking-wide uppercase px-3 py-1">
@@ -256,19 +241,19 @@ function SidebarCard({
             {product.anio && (
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
                 <Icon icon="mdi:calendar-outline" width={20} className="text-brand-accent mx-auto mb-1" />
-                <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Año</p>
-                <p className="text-[18px] font-black text-zinc-900" >
-                  {product.anio}
+                <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
+                  {t("pages.machineDetail.year")}
                 </p>
+                <p className="text-[18px] font-black text-zinc-900">{product.anio}</p>
               </div>
             )}
             {product.horasUso && (
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
                 <Icon icon="mdi:clock-outline" width={20} className="text-brand-accent mx-auto mb-1" />
-                <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Horas</p>
-                <p className="text-[18px] font-black text-zinc-900" >
-                  {product.horasUso}
+                <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
+                  {t("pages.machineDetail.hours")}
                 </p>
+                <p className="text-[18px] font-black text-zinc-900">{product.horasUso}</p>
               </div>
             )}
           </div>
@@ -279,19 +264,14 @@ function SidebarCard({
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-[11px] text-zinc-500 font-semibold uppercase tracking-wide">
-                Condición general
+                {t("pages.machineDetail.condition")}
               </span>
-              <span
-                className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 border ${CONDITION_COLOR[condicion]}`}
-              >
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 border ${CONDITION_COLOR[condicion]}`}>
                 {condicion}
               </span>
             </div>
             <div className="h-2 bg-zinc-100 w-full">
-              <div
-                className="h-2 bg-brand-accent transition-all duration-700"
-                style={{ width: `${barWidth}%` }}
-              />
+              <div className="h-2 bg-brand-accent transition-all duration-700" style={{ width: `${barWidth}%` }} />
             </div>
             {detail?.inspeccion && (
               <p className="text-[11px] text-zinc-400 mt-2 flex items-center gap-1.5">
@@ -309,7 +289,9 @@ function SidebarCard({
               <div className="flex items-center gap-3 p-3 bg-emerald-50 border border-emerald-100">
                 <Icon icon="mdi:shield-check-outline" width={18} className="text-emerald-600 flex-shrink-0" />
                 <div>
-                  <p className="text-[10px] text-emerald-700 font-bold uppercase tracking-wide">Garantía de fábrica</p>
+                  <p className="text-[10px] text-emerald-700 font-bold uppercase tracking-wide">
+                    {t("pages.machineDetail.warranty")}
+                  </p>
                   <p className="text-[13px] font-bold text-emerald-800">{detail.garantia}</p>
                 </div>
               </div>
@@ -318,7 +300,9 @@ function SidebarCard({
               <div className="flex items-center gap-3 p-3 bg-blue-50 border border-blue-100">
                 <Icon icon="mdi:truck-delivery-outline" width={18} className="text-blue-600 flex-shrink-0" />
                 <div>
-                  <p className="text-[10px] text-blue-700 font-bold uppercase tracking-wide">Tiempo de entrega</p>
+                  <p className="text-[10px] text-blue-700 font-bold uppercase tracking-wide">
+                    {t("pages.machineDetail.delivery")}
+                  </p>
                   <p className="text-[13px] font-bold text-blue-800">{detail.entrega}</p>
                 </div>
               </div>
@@ -326,8 +310,10 @@ function SidebarCard({
             <div className="flex items-center gap-3 p-3 bg-amber-50 border border-amber-100">
               <Icon icon="mdi:airplane" width={18} className="text-brand-accent-dark flex-shrink-0" />
               <div>
-                <p className="text-[10px] text-amber-700 font-bold uppercase tracking-wide">Importación directa</p>
-                <p className="text-[13px] font-bold text-amber-800">Sin intermediarios</p>
+                <p className="text-[10px] text-amber-700 font-bold uppercase tracking-wide">
+                  {t("pages.machineDetail.directImport")}
+                </p>
+                <p className="text-[13px] font-bold text-amber-800">{t("pages.machineDetail.noMiddlemen")}</p>
               </div>
             </div>
           </div>
@@ -336,17 +322,10 @@ function SidebarCard({
         {/* Price */}
         <div className="border-t border-zinc-100 pt-4">
           <p className="text-[11px] text-zinc-400 uppercase tracking-wide font-semibold mb-0.5">
-            Precio
+            {t("pages.machineDetail.price")}
           </p>
-          <p
-            className="text-[22px] font-black text-zinc-900"
-            
-          >
-            Consultar precio
-          </p>
-          <p className="text-[11px] text-zinc-400 mt-0.5">
-            Financiación disponible — cuotas personalizadas
-          </p>
+          <p className="text-[22px] font-black text-zinc-900">{t("pages.machineDetail.priceVal")}</p>
+          <p className="text-[11px] text-zinc-400 mt-0.5">{t("pages.machineDetail.financing")}</p>
         </div>
 
         {/* CTA buttons */}
@@ -356,18 +335,16 @@ function SidebarCard({
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_6px_20px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-            
           >
             <Icon icon="mdi:whatsapp" width={18} />
-            Consultar por WhatsApp
+            {t("pages.machineDetail.askWhatsApp")}
           </a>
           <a
             href="/contacto"
             className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-brand-accent-light to-brand-accent text-zinc-900 font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#FFE07A] hover:to-brand-accent-light hover:shadow-[0_6px_20px_rgba(255,200,55,0.45)] hover:-translate-y-0.5 transition-all duration-200"
-            
           >
             <Icon icon="mdi:file-document-outline" width={18} />
-            Solicitar cotización
+            {t("pages.machineDetail.requestQuote")}
           </a>
           <a
             href="tel:3163815694"
@@ -384,6 +361,7 @@ function SidebarCard({
 
 /* ── Related machines ────────────────────────────────────────────────────── */
 function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsada: boolean }) {
+  const { t } = useTranslation();
   const pool = isUsada ? USED_PRODUCTS : NEW_PRODUCTS;
   const related = pool.filter((p) => p.href !== currentHref).slice(0, 3);
   if (!related.length) return null;
@@ -391,50 +369,44 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
   return (
     <section className="py-16 bg-zinc-50 border-t border-zinc-100">
       <div className="max-w-6xl mx-auto px-6">
-        <h3
-          className="font-black text-[28px] uppercase text-zinc-900 mb-8"
-          
-        >
-          También te puede{" "}
-          <span className="text-brand-accent">interesar</span>
+        <h3 className="font-black text-[28px] uppercase text-zinc-900 mb-8">
+          {t("pages.machineDetail.related")}{" "}
+          <span className="text-brand-accent">{t("pages.machineDetail.relatedHighlight")}</span>
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {related.map((p, i) => (
-            <Link
-              key={i}
-              to={p.href}
-              className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
-            >
-              <div
-                className={`h-36 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} flex items-center justify-center relative overflow-hidden`}
+          {related.map((p, i) => {
+            const badge = p.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
+            return (
+              <Link
+                key={i}
+                to={p.href}
+                className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
               >
-                <span
-                  className="font-black text-[44px] text-brand-accent/15 select-none group-hover:scale-110 transition-transform duration-500"
-                  
+                <div
+                  className={`h-36 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} flex items-center justify-center relative overflow-hidden`}
                 >
-                  {p.code}
-                </span>
-                <span
-                  className={`absolute top-2 left-2 text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 ${
-                    isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
-                  }`}
-                >
-                  {p.badge}
-                </span>
-              </div>
-              <div className="p-4">
-                <p className="text-brand-accent text-[10px] font-bold tracking-[2px] uppercase mb-0.5">
-                  {p.brand}
-                </p>
-                <h4
-                  className="font-bold text-[15px] uppercase text-zinc-900 group-hover:text-brand-accent-dark transition-colors"
-                  
-                >
-                  {p.model}
-                </h4>
-              </div>
-            </Link>
-          ))}
+                  <span className="font-black text-[44px] text-brand-accent/15 select-none group-hover:scale-110 transition-transform duration-500">
+                    {p.code}
+                  </span>
+                  <span
+                    className={`absolute top-2 left-2 text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 ${
+                      isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
+                    }`}
+                  >
+                    {badge}
+                  </span>
+                </div>
+                <div className="p-4">
+                  <p className="text-brand-accent text-[10px] font-bold tracking-[2px] uppercase mb-0.5">
+                    {p.brand}
+                  </p>
+                  <h4 className="font-bold text-[15px] uppercase text-zinc-900 group-hover:text-brand-accent-dark transition-colors">
+                    {p.model}
+                  </h4>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -442,30 +414,26 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
 }
 
 /* ── Why-us strip ────────────────────────────────────────────────────────── */
-const WHY_ITEMS = [
-  { icon: "mdi:shield-check-outline", label: "Garantía respaldada", desc: "Soporte postventa en todo Colombia" },
-  { icon: "mdi:truck-delivery-outline", label: "Entrega a domicilio", desc: "Coordinamos el transporte hasta la obra" },
-  { icon: "mdi:finance", label: "Financiación disponible", desc: "Cuotas adaptadas a su proyecto" },
-  { icon: "mdi:headset", label: "Asesoría técnica", desc: "Ingenieros especializados disponibles" },
-];
-
 function WhyUsStrip() {
+  const { t } = useTranslation();
+  const items = [
+    { icon: "mdi:shield-check-outline", label: t("pages.machineDetail.whyWarranty"), desc: t("pages.machineDetail.whyWarrantyDesc") },
+    { icon: "mdi:truck-delivery-outline", label: t("pages.machineDetail.whyDelivery"), desc: t("pages.machineDetail.whyDeliveryDesc") },
+    { icon: "mdi:finance", label: t("pages.machineDetail.whyFinancing"), desc: t("pages.machineDetail.whyFinancingDesc") },
+    { icon: "mdi:headset", label: t("pages.machineDetail.whySupport"), desc: t("pages.machineDetail.whySupportDesc") },
+  ];
+
   return (
     <div className="bg-white border-y border-zinc-100 py-10">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {WHY_ITEMS.map((item, i) => (
+          {items.map((item, i) => (
             <div key={i} className="flex items-start gap-3">
               <div className="w-10 h-10 bg-brand-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon icon={item.icon} width={20} className="text-brand-accent" />
               </div>
               <div>
-                <p
-                  className="font-bold text-[13px] uppercase tracking-wide text-zinc-800"
-                  
-                >
-                  {item.label}
-                </p>
+                <p className="font-bold text-[13px] uppercase tracking-wide text-zinc-800">{item.label}</p>
                 <p className="text-[12px] text-zinc-400 mt-0.5">{item.desc}</p>
               </div>
             </div>
@@ -478,6 +446,7 @@ function WhyUsStrip() {
 
 /* ── Main page ───────────────────────────────────────────────────────────── */
 export default function MaquinaDetailPage() {
+  const { t } = useTranslation();
   const { categoria, modelo } = useParams<{ categoria: string; modelo: string }>();
   const isUsada = modelo?.endsWith("-usada") ?? false;
 
@@ -485,29 +454,20 @@ export default function MaquinaDetailPage() {
   const product = allProducts.find((p) => p.href.endsWith(`/${modelo}`));
   const detail = modelo ? MACHINE_DETAIL_MAP[modelo] : undefined;
 
-  // Fallback if not found
   if (!product) {
     return (
       <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
         <div className="text-center px-6">
-          <span
-            className="font-black text-[80px] text-brand-accent/20 block"
-            
-          >
-            ?
-          </span>
-          <h1
-            className="font-black text-[28px] uppercase text-white mb-4"
-            
-          >
-            Equipo no encontrado
+          <span className="font-black text-[80px] text-brand-accent/20 block">?</span>
+          <h1 className="font-black text-[28px] uppercase text-white mb-4">
+            {t("pages.machineDetail.notFound")}
           </h1>
           <Link
             to="/maquinaria-pesada"
             className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[13px] uppercase px-6 py-3"
           >
             <Icon icon="mdi:arrow-left" width={16} />
-            Ver inventario
+            {t("pages.machineDetail.viewInventory")}
           </Link>
         </div>
       </div>
@@ -516,43 +476,37 @@ export default function MaquinaDetailPage() {
 
   const gradientIndex = NEW_PRODUCTS.findIndex((p) => p.href.endsWith(`/${modelo}`));
   const gradient = PRODUCT_GRADIENTS[Math.abs(gradientIndex) % 3];
-  const slideLabels = detail?.slideLabels ?? ["Vista General", "Vista Lateral", "Detalle Técnico"];
+  const slideLabels = detail?.slideLabels ?? [
+    t("pages.machineDetail.tabDesc"),
+    t("pages.machineDetail.tabDesc"),
+    t("pages.machineDetail.tabSpecs"),
+  ];
 
-  // Breadcrumb label for category
-  const catLabel =
-    categoria === "excavadoras"
-      ? "Excavadoras"
-      : categoria === "bulldozers"
-      ? "Bulldozers"
-      : categoria === "compactadores"
-      ? "Compactadores"
-      : categoria === "minicargadores"
-      ? "Minicargadores"
-      : categoria === "motoniveladoras"
-      ? "Motoniveladoras"
-      : categoria === "miniexcavadoras"
-      ? "Miniexcavadoras"
-      : categoria === "retrocargadoras"
-      ? "Retrocargadoras"
-      : "Maquinaria";
+  const catLabelMap: Record<string, string> = {
+    excavadoras: t("pages.machineDetail.catExcavators"),
+    bulldozers: t("pages.machineDetail.catBulldozers"),
+    compactadores: t("pages.machineDetail.catCompactors"),
+    minicargadores: t("pages.machineDetail.catMiniloaders"),
+    motoniveladoras: t("pages.machineDetail.catGraders"),
+    miniexcavadoras: t("pages.machineDetail.catMiniExcavators"),
+    retrocargadoras: t("pages.machineDetail.catBackhoe"),
+  };
+  const catLabel = (categoria && catLabelMap[categoria]) ?? t("pages.machineDetail.catDefault");
 
   return (
     <>
       {/* Dark header */}
       <div className="bg-zinc-900 py-6 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: DOT_PATTERN }}
-        />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-[11px] text-zinc-500 mb-4 flex-wrap">
             <Link to="/" className="hover:text-brand-accent transition-colors">
-              Inicio
+              {t("pages.machineDetail.breadHome")}
             </Link>
             <Icon icon="mdi:chevron-right" width={12} />
             <Link to="/maquinaria-pesada" className="hover:text-brand-accent transition-colors">
-              Maquinaria Pesada
+              {t("pages.machineDetail.breadMachinery")}
             </Link>
             <Icon icon="mdi:chevron-right" width={12} />
             <Link
@@ -567,16 +521,10 @@ export default function MaquinaDetailPage() {
 
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
-              <span
-                className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-1"
-                
-              >
+              <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-1">
                 {product.brand}
               </span>
-              <h1
-                className="font-black text-[36px] md:text-[48px] uppercase text-white leading-tight"
-                
-              >
+              <h1 className="font-black text-[36px] md:text-[48px] uppercase text-white leading-tight">
                 {product.model}
               </h1>
             </div>
@@ -584,9 +532,8 @@ export default function MaquinaDetailPage() {
               className={`inline-block text-[12px] font-bold tracking-[2px] uppercase px-4 py-2 self-end ${
                 isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
               }`}
-              
             >
-              {product.badge}
+              {product.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed")}
             </span>
           </div>
         </div>
@@ -604,9 +551,7 @@ export default function MaquinaDetailPage() {
                 slideLabels={slideLabels}
                 isUsada={isUsada}
               />
-              {detail && (
-                <DetailTabs product={product} detail={detail} />
-              )}
+              {detail && <DetailTabs product={product} detail={detail} />}
             </div>
 
             {/* Right: sticky info card */}
