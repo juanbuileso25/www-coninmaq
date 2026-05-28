@@ -3,9 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>Coninmaq</title>
-    <meta name="description" content="Más de dos décadas de experiencia en maquinaria pesada. CASE, Caterpillar, Hitachi, DYNAPAC y más." />
+    <link rel="apple-touch-icon" href="/logo-icon.png" />
+
+    <!-- Default SEO (overridden per page by react-helmet-async) -->
+    <title>Coninmaq S.A.S — Maquinaria Pesada en Colombia</title>
+    <meta name="description" content="Coninmaq S.A.S — Líderes en maquinaria pesada en Colombia. Venta e importación de excavadoras, bulldozers, compactadores y motoniveladoras nuevas y usadas. Repuestos CASE, Caterpillar, Komatsu, Bobcat." />
+    <meta name="keywords" content="maquinaria pesada Colombia, excavadoras Colombia, bulldozers Colombia, compactadores Colombia, motoniveladoras Colombia, Coninmaq, CASE Colombia, Caterpillar Colombia, Komatsu Colombia, Bobcat Colombia, DYNAPAC Colombia, Hitachi Colombia, repuestos maquinaria pesada, maquinaria Antioquia, maquinaria nueva usada Colombia" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Coninmaq S.A.S" />
+    <meta name="geo.region" content="CO-ANT" />
+    <meta name="geo.placename" content="Copacabana, Antioquia, Colombia" />
+
+    <!-- Open Graph (default) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Coninmaq S.A.S" />
+    <meta property="og:title" content="Coninmaq S.A.S — Maquinaria Pesada en Colombia" />
+    <meta property="og:description" content="Líderes en maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores, motoniveladoras nuevas y usadas. Repuestos CASE, Caterpillar, Komatsu, Bobcat y más." />
+    <meta property="og:url" content="https://coninmaqsas.com" />
+    <meta property="og:image" content="https://coninmaqsas.com/og-image.jpg" />
+    <meta property="og:locale" content="es_CO" />
+
+    <!-- Twitter Card (default) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Coninmaq S.A.S — Maquinaria Pesada en Colombia" />
+    <meta name="twitter:description" content="Líderes en maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras nuevas y usadas." />
+    <meta name="twitter:image" content="https://coninmaqsas.com/og-image.jpg" />
+
+    <!-- JSON-LD: Organization + LocalBusiness (global) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://coninmaqsas.com/#organization",
+          "name": "Coninmaq S.A.S",
+          "url": "https://coninmaqsas.com",
+          "logo": "https://coninmaqsas.com/logo.png",
+          "telephone": "+573163815694",
+          "email": "comercioexterior@coninmaqsas.com",
+          "sameAs": [
+            "https://www.instagram.com/coninmaq/",
+            "https://www.linkedin.com/company/coninmaq/",
+            "https://www.facebook.com/Coninmaq"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://coninmaqsas.com/#localbusiness",
+          "name": "Coninmaq S.A.S",
+          "url": "https://coninmaqsas.com",
+          "image": "https://coninmaqsas.com/og-image.jpg",
+          "telephone": "+573163815694",
+          "email": "comercioexterior@coninmaqsas.com",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "KM 20 Autopista norte Copacabana a Girardota",
+            "addressLocality": "Copacabana",
+            "addressRegion": "Antioquia",
+            "postalCode": "050010",
+            "addressCountry": "CO"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 6.3468,
+            "longitude": -75.5081
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+              "opens": "07:00",
+              "closes": "17:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Saturday"],
+              "opens": "08:00",
+              "closes": "12:00"
+            }
+          ],
+          "areaServed": { "@type": "Country", "name": "Colombia" },
+          "description": "Coninmaq S.A.S — Líderes en maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras nuevas y usadas. Repuestos CASE, Caterpillar, Komatsu, Bobcat y más.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Maquinaria Pesada y Repuestos",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Excavadoras nuevas y usadas" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Bulldozers CASE Construction" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Compactadores DYNAPAC" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Motoniveladoras CASE" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Repuestos Originales Caterpillar, CASE, Komatsu, Bobcat" } }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- SPA redirect fix for GitHub Pages -->
     <script>
       (function(l){

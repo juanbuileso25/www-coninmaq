@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
+import SEO from "../components/SEO";
+import { ORGANIZATION_LD } from "../seo/config";
 
 export default function NosotrosPage() {
   const { t } = useTranslation();
@@ -14,8 +16,28 @@ export default function NosotrosPage() {
     "bg-zinc-900 text-white",
   ];
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "Sobre Nosotros — Coninmaq S.A.S",
+    url: "https://coninmaqsas.com/nosotros",
+    description:
+      "CONINMAQ S.A.S nació con el propósito de brindar soluciones integrales al sector de la construcción y la minería en Colombia. Más de 7 años de experiencia en maquinaria pesada.",
+    mainEntity: {
+      "@id": "https://coninmaqsas.com/#organization",
+    },
+  };
+
   return (
     <>
+      <SEO
+        title="Nosotros — Empresa de Maquinaria Pesada en Colombia"
+        description="Conoce a Coninmaq S.A.S: más de 7 años de experiencia en venta, importación y mantenimiento de maquinaria pesada en Colombia. Distribuidores CASE, Caterpillar, Hitachi, DYNAPAC en Antioquia."
+        keywords="Coninmaq empresa, sobre Coninmaq, empresa maquinaria pesada Colombia, distribuidor CASE Colombia, distribuidor Caterpillar Colombia, maquinaria Antioquia, Copacabana maquinaria"
+        path="/nosotros"
+        jsonLd={[ORGANIZATION_LD, aboutSchema]}
+      />
+
       {/* Page header */}
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div

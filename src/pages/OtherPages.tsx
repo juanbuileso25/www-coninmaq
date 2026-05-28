@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
+import SEO from "../components/SEO";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
@@ -40,8 +41,85 @@ export function MaquinariaPage() {
         sectionSub: t("pages.machinery.allSectionSub"),
       };
 
+  const machineryMeta = isUsada
+    ? {
+        title: "Maquinaria Pesada Usada en Colombia — Excavadoras, Bulldozers Certificados",
+        description: "Compra maquinaria pesada usada certificada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras revisadas con garantía. Entrega inmediata en todo Colombia. Coninmaq S.A.S.",
+        keywords: "maquinaria usada Colombia, excavadoras usadas Colombia, bulldozers usados Colombia, maquinaria pesada segunda mano Colombia, maquinaria certificada Colombia",
+        path: "/maquinaria-pesada/usada",
+      }
+    : isNueva
+    ? {
+        title: "Maquinaria Pesada Nueva en Colombia — Importación Directa CASE, Caterpillar",
+        description: "Maquinaria pesada nueva con garantía de fábrica en Colombia. Importación directa de excavadoras, bulldozers, compactadores y motoniveladoras. CASE, Caterpillar, Hitachi, DYNAPAC. Coninmaq S.A.S.",
+        keywords: "maquinaria nueva Colombia, excavadoras nuevas Colombia, bulldozers nuevos Colombia, importacion maquinaria pesada Colombia, maquinaria garantia fabrica Colombia",
+        path: "/maquinaria-pesada/nueva",
+      }
+    : categoria === "excavadoras"
+    ? {
+        title: "Excavadoras en Venta Colombia — Nuevas y Usadas CASE, Caterpillar, Hitachi",
+        description: "Venta de excavadoras en Colombia. Modelos nuevos y usados CASE, Caterpillar, Hitachi. Equipos certificados con garantía y servicio técnico. Coninmaq S.A.S — Antioquia.",
+        keywords: "excavadoras Colombia, excavadoras venta Colombia, excavadoras CASE Colombia, excavadoras Caterpillar Colombia, excavadoras Hitachi Colombia, excavadoras nuevas usadas Colombia, precio excavadoras Colombia",
+        path: "/maquinaria-pesada/excavadoras",
+      }
+    : categoria === "bulldozers"
+    ? {
+        title: "Bulldozers en Venta Colombia — CASE Construction Serie 1150M, 1650M",
+        description: "Bulldozers CASE Construction en Colombia. Modelos 1150M, 1650M, 2050M. Nuevos y usados con garantía de fábrica. Expertos en movimiento de tierra. Coninmaq S.A.S.",
+        keywords: "bulldozers Colombia, bulldozers CASE Colombia, bulldozers venta Colombia, topadora Colombia, tractor oruga Colombia, maquinaria movimiento tierra Colombia",
+        path: "/maquinaria-pesada/bulldozers",
+      }
+    : categoria === "compactadores"
+    ? {
+        title: "Compactadores DYNAPAC en Colombia — Rodillos Vibratorios Venta",
+        description: "Compactadores y rodillos vibratorios DYNAPAC en Colombia. Suelo, doble rodillo y neumáticos. Nuevos y usados con soporte técnico. Coninmaq S.A.S — Antioquia.",
+        keywords: "compactadores Colombia, rodillos vibratorios Colombia, compactadores DYNAPAC Colombia, rodillo compactador Colombia, maquinaria vial Colombia",
+        path: "/maquinaria-pesada/compactadores",
+      }
+    : categoria === "motoniveladoras"
+    ? {
+        title: "Motoniveladoras CASE en Colombia — 845C, 865C Tier 4 Venta",
+        description: "Motoniveladoras CASE Construction en Colombia. Modelos 845C y 865C Tier 4. Nuevas y usadas, ideales para proyectos viales y minería. Coninmaq S.A.S.",
+        keywords: "motoniveladoras Colombia, motoniveladora CASE Colombia, motoniveladoras venta Colombia, maquinaria vial Colombia, niveladora Colombia",
+        path: "/maquinaria-pesada/motoniveladoras",
+      }
+    : categoria === "minicargadores"
+    ? {
+        title: "Minicargadores Bobcat y CASE en Colombia — Skid Steer Venta",
+        description: "Minicargadores Bobcat y CASE en Colombia. Alta maniobrabilidad para obra civil y minería. Nuevos y usados con garantía. Coninmaq S.A.S — Antioquia.",
+        keywords: "minicargadores Colombia, Bobcat Colombia, minicargador CASE Colombia, skid steer Colombia, minicargador venta Colombia",
+        path: "/maquinaria-pesada/minicargadores",
+      }
+    : {
+        title: "Maquinaria Pesada en Colombia — Excavadoras, Bulldozers, Compactadores",
+        description: "Coninmaq S.A.S — Venta e importación de maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras nuevas y usadas. CASE, Caterpillar, Hitachi, DYNAPAC.",
+        keywords: "maquinaria pesada Colombia, excavadoras Colombia, bulldozers Colombia, compactadores Colombia, motoniveladoras Colombia, Coninmaq, maquinaria construccion Colombia",
+        path: "/maquinaria-pesada",
+      };
+
+  const machineryListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: machineryMeta.title,
+    url: `https://coninmaqsas.com${machineryMeta.path}`,
+    description: machineryMeta.description,
+    itemListElement: products.slice(0, 6).map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: `${p.brand} ${p.model}`,
+      url: `https://coninmaqsas.com${p.href}`,
+    })),
+  };
+
   return (
     <>
+      <SEO
+        title={machineryMeta.title}
+        description={machineryMeta.description}
+        keywords={machineryMeta.keywords}
+        path={machineryMeta.path}
+        jsonLd={machineryListSchema}
+      />
       {/* Page header */}
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
@@ -136,6 +214,14 @@ export function MaquinariaPage() {
 export function ContactoPage() {
   const { t } = useTranslation();
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contacto — Coninmaq S.A.S",
+    url: "https://coninmaqsas.com/contacto",
+    mainEntity: { "@id": "https://coninmaqsas.com/#localbusiness" },
+  };
+
   const contactItems = [
     { icon: "📍", title: t("pages.contact.addr"), text: "KM 20 Autopista norte Copacabana a Girardota" },
     { icon: "📞", title: t("pages.contact.phone"), text: "316 381 5694" },
@@ -152,6 +238,13 @@ export function ContactoPage() {
 
   return (
     <>
+      <SEO
+        title="Contacto — Cotice Maquinaria Pesada y Repuestos"
+        description="Contáctenos para cotizar maquinaria pesada nueva o usada, o repuestos en Colombia. Respondemos en menos de 2 horas. KM 20 Autopista norte Copacabana a Girardota, Antioquia. Tel: 316 381 5694."
+        keywords="contacto Coninmaq, cotizar maquinaria pesada Colombia, cotizar excavadoras Colombia, telefono Coninmaq, Copacabana Antioquia maquinaria, solicitar cotizacion maquinaria"
+        path="/contacto"
+        jsonLd={contactSchema}
+      />
       {/* Page header */}
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div

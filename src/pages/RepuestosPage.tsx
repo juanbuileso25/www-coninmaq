@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { CTABanner } from "../components/Sections";
 import { PARTS_DATA, BRAND_LABELS, PART_CATEGORIES } from "../data/detailData";
 import type { Part } from "../types";
+import SEO from "../components/SEO";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
@@ -115,10 +116,26 @@ export function RepuestosListPage() {
   const brandLabel = activeBrand !== "Todos" ? BRAND_LABELS[activeBrand] : t("pages.parts.allBrands");
   const allLabel = t("pages.parts.allBrands");
 
+  const partsMeta = activeBrand === "caterpillar"
+    ? { title: "Repuestos Caterpillar en Colombia — Originales y Aftermarket", description: "Repuestos Caterpillar originales y aftermarket en Colombia. +10.000 referencias disponibles. Entrega en 24-48h a todo el país. Coninmaq S.A.S — Antioquia.", keywords: "repuestos Caterpillar Colombia, partes Caterpillar Colombia, repuestos CAT Colombia, filtros Caterpillar Colombia", path: "/repuestos/caterpillar" }
+    : activeBrand === "case"
+    ? { title: "Repuestos CASE Construction en Colombia — Originales y Aftermarket", description: "Repuestos CASE Construction originales y aftermarket en Colombia. +10.000 referencias disponibles. Entrega en 24-48h a todo el país. Coninmaq S.A.S.", keywords: "repuestos CASE Colombia, partes CASE Colombia, repuestos CASE Construction Colombia, filtros CASE Colombia", path: "/repuestos/case" }
+    : activeBrand === "komatsu"
+    ? { title: "Repuestos Komatsu en Colombia — Originales y Aftermarket", description: "Repuestos Komatsu originales y aftermarket en Colombia. +10.000 referencias disponibles. Entrega en 24-48h a todo el país. Coninmaq S.A.S.", keywords: "repuestos Komatsu Colombia, partes Komatsu Colombia, filtros Komatsu Colombia, repuestos maquinaria Komatsu", path: "/repuestos/komatsu" }
+    : activeBrand === "bobcat"
+    ? { title: "Repuestos Bobcat en Colombia — Originales y Aftermarket", description: "Repuestos Bobcat originales y aftermarket en Colombia. +10.000 referencias disponibles. Entrega en 24-48h a todo el país. Coninmaq S.A.S.", keywords: "repuestos Bobcat Colombia, partes Bobcat Colombia, filtros Bobcat Colombia, repuestos minicargador Colombia", path: "/repuestos/bobcat" }
+    : { title: "Repuestos Maquinaria Pesada en Colombia — Caterpillar, CASE, Komatsu, Bobcat", description: "Repuestos de maquinaria pesada en Colombia. +10.000 referencias Caterpillar, CASE, Komatsu, Bobcat. Originales y aftermarket. Entrega 24-48h todo el país. Coninmaq S.A.S.", keywords: "repuestos maquinaria pesada Colombia, repuestos Caterpillar Colombia, repuestos CASE Colombia, repuestos Komatsu Colombia, repuestos Bobcat Colombia, repuestos excavadoras Colombia, partes maquinaria Colombia", path: "/repuestos" };
+
   const resultsText = `${filtered.length} ${filtered.length === 1 ? t("pages.parts.resultsOne") : t("pages.parts.resultsMany")}`;
 
   return (
     <>
+      <SEO
+        title={partsMeta.title}
+        description={partsMeta.description}
+        keywords={partsMeta.keywords}
+        path={partsMeta.path}
+      />
       {/* Page header */}
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
@@ -276,8 +293,31 @@ export function RepuestoDetailPage() {
 
   const related = PARTS_DATA.filter((p) => p.brand === marca && p.slug !== codigo).slice(0, 4);
 
+  const partSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: part.name,
+    description: part.desc,
+    brand: { "@type": "Brand", name: part.brandLabel },
+    sku: part.code,
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "COP",
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Coninmaq S.A.S" },
+    },
+  };
+
   return (
     <>
+      <SEO
+        title={`${part.name} (${part.code}) — Repuesto ${part.brandLabel} en Colombia`}
+        description={`${part.name} — Repuesto ${part.type} ${part.brandLabel}. ${part.desc} En stock, entrega 24-48h en todo Colombia. Coninmaq S.A.S.`}
+        keywords={`${part.name} Colombia, ${part.code} repuesto Colombia, repuesto ${part.brandLabel} Colombia, ${part.category} ${part.brandLabel} Colombia`}
+        path={`/repuestos/${marca}/${part.slug}`}
+        ogType="product"
+        jsonLd={partSchema}
+      />
       {/* Dark header */}
       <div className="bg-zinc-900 py-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />

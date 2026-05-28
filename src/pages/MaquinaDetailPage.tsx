@@ -6,6 +6,8 @@ import { CTABanner } from "../components/Sections";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 import { MACHINE_DETAIL_MAP } from "../data/detailData";
 import type { Product, MachineDetailData } from "../types";
+import SEO from "../components/SEO";
+import { SITE_URL } from "../seo/config";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
@@ -493,8 +495,37 @@ export default function MaquinaDetailPage() {
   };
   const catLabel = (categoria && catLabelMap[categoria]) ?? t("pages.machineDetail.catDefault");
 
+  const productDesc = t(`productDesc.${product.code}`, { defaultValue: product.desc });
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${product.brand} ${product.model}`,
+    description: productDesc,
+    brand: { "@type": "Brand", name: product.brand },
+    offers: {
+      "@type": "Offer",
+      url: `${SITE_URL}${product.href}`,
+      priceCurrency: "COP",
+      price: "0",
+      priceSpecification: { "@type": "UnitPriceSpecification", description: "Consultar precio" },
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Coninmaq S.A.S" },
+    },
+    itemCondition: isUsada
+      ? "https://schema.org/UsedCondition"
+      : "https://schema.org/NewCondition",
+  };
+
   return (
     <>
+      <SEO
+        title={`${product.brand} ${product.model} — ${isUsada ? "Usada" : "Nueva"} en Colombia`}
+        description={`${product.brand} ${product.model} en venta en Colombia. ${productDesc} Coninmaq S.A.S — Cotice ahora.`}
+        keywords={`${product.brand} ${product.model} Colombia, ${product.brand} ${product.model} venta Colombia, ${product.model} precio Colombia, maquinaria pesada Colombia`}
+        path={product.href}
+        ogType="product"
+        jsonLd={productSchema}
+      />
       {/* Dark header */}
       <div className="bg-zinc-900 py-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
