@@ -11,12 +11,21 @@ const SOCIAL_ICON: Record<string, string> = {
 
 export default function Footer() {
   const { t } = useTranslation();
-  const machineryLinks = t("footer.machineryLinks", { returnObjects: true }) as string[];
-  const partsLinks = t("footer.partsLinks", { returnObjects: true }) as string[];
-
   const linkColumns = [
-    { title: t("footer.machineryCol"), links: machineryLinks },
-    { title: t("footer.partsCol"), links: partsLinks },
+    {
+      title: t("footer.machineryCol"),
+      links: [
+        { label: t("nav.machineryNew"), href: "/maquinaria-pesada/nueva" },
+        { label: t("nav.machineryUsed"), href: "/maquinaria-pesada/usada" },
+        { label: t("nav.rental"), href: "/renta" },
+      ],
+    },
+    {
+      title: t("footer.partsCol"),
+      links: [
+        { label: "Lonking", href: "/repuestos" },
+      ],
+    },
   ];
 
   return (
@@ -58,14 +67,14 @@ export default function Footer() {
                 {col.title}
               </h4>
               <ul className="space-y-2">
-                {col.links.map((label) => (
-                  <li key={label}>
+                {col.links.map((link) => (
+                  <li key={link.href}>
                     <Link
-                      to="#"
+                      to={link.href}
                       className="flex items-center gap-2 text-[14px] text-zinc-400 hover:text-brand-accent transition-colors group"
                     >
                       <Icon icon="mdi:chevron-right" width={16} className="text-brand-accent group-hover:translate-x-0.5 transition-transform" />
-                      {label}
+                      {link.label}
                     </Link>
                   </li>
                 ))}

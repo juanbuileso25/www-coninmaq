@@ -151,7 +151,7 @@ export const NEW_PRODUCTS: Product[] = [
     {
         brand: "LONKING",
         model: "Excavadora CDM6225",
-        desc: "Motor Cummins B6.7 de 129 kW (173 HP), peso operativo 21.8 ton. Excavadora de 22T con cabina ROPS y pantalla LCD 8\".",
+        desc: 'Motor Cummins B6.7 de 129 kW (173 HP), peso operativo 21.8 ton. Excavadora de 22T con cabina ROPS y pantalla LCD 8".',
         code: "CDM6225",
         badge: "Nueva",
         href: "/maquinaria-pesada/excavadoras/cdm6225",
@@ -226,7 +226,7 @@ export const PRODUCTS: Product[] = [
     {
         brand: "LONKING",
         model: "Excavadora CDM6225",
-        desc: "Motor Cummins B6.7 de 129 kW (173 HP), peso operativo 21.8 ton. Excavadora de 22T con cabina ROPS y pantalla LCD 8\".",
+        desc: 'Motor Cummins B6.7 de 129 kW (173 HP), peso operativo 21.8 ton. Excavadora de 22T con cabina ROPS y pantalla LCD 8".',
         code: "CDM6225",
         badge: "Nueva",
         href: "/maquinaria-pesada/excavadoras/cdm6225",
@@ -354,10 +354,16 @@ export const FOOTER_LINKS: FooterLinks = {
 };
 
 export const CONTACT_ITEMS: ContactItem[] = [
-    { icon: "mdi:map-marker-outline", text: "KM 20 Autopista norte Copacabana a Girardota" },
+    {
+        icon: "mdi:map-marker-outline",
+        text: "KM 20 Autopista norte Copacabana a Girardota",
+    },
     { icon: "mdi:phone", text: "316 381 5694" },
     { icon: "mdi:email-outline", text: "comercioexterior@coninmaqsas.com" },
-    { icon: "mdi:clock-outline", text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm" },
+    {
+        icon: "mdi:clock-outline",
+        text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm",
+    },
 ];
 
 export const CAT_GRADIENTS: string[] = [
@@ -377,11 +383,11 @@ export const PRODUCT_GRADIENTS: string[] = [
 
 export const ABOUT_FEATURES: string[] = [
     "Venta de maquinaria nueva",
-    "Importación de usados",
+    "Venta de maquinaria usada",
+    "Renta de maquinaria",
     "Repuestos originales",
     "Mantenimiento preventivo",
     "Servicio técnico certificado",
-    "Financiación disponible",
 ];
 
 export const SOCIAL_LINKS = [

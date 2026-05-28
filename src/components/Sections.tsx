@@ -172,7 +172,7 @@ export function About() {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-accent/30" />
             </div>
             <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-brand-accent flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(255,200,55,0.5)] hover:scale-105 transition-transform duration-300">
-              <span className="font-black text-[36px] text-zinc-900 leading-none">+7</span>
+              <span className="font-black text-[36px] text-zinc-900 leading-none">+10</span>
               <span className="text-[10px] font-bold text-black/60 uppercase text-center tracking-wide leading-tight px-2 whitespace-pre-line">
                 {t("about.yearsLabel")}
               </span>

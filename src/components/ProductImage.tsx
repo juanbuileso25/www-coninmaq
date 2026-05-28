@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ProductImageProps {
   slug: string;      // e.g. "cdm6225"
@@ -24,6 +24,10 @@ export default function ProductImage({
   className = "h-52",
 }: ProductImageProps) {
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [slug]);
 
   return (
     <div

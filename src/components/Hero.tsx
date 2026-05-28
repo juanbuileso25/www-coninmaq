@@ -24,6 +24,22 @@ export default function Hero() {
         }}
       />
 
+      {/* Hero machine image */}
+      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[55%] pointer-events-none overflow-hidden">
+        <img
+          src={`${import.meta.env.BASE_URL}hero-machine.webp`}
+          alt="Excavadora Lonking"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        {/* Mobile: full dark overlay so text is readable */}
+        <div className="absolute inset-0 bg-zinc-900/70 lg:hidden" />
+        {/* Desktop: left fade only */}
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-64 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-zinc-900/60 to-transparent" />
+      </div>
+
       {/* Main content */}
       <div className="max-w-6xl mx-auto px-6 relative z-10 pt-16 sm:pt-24 pb-14 sm:pb-20 w-full min-h-[420px] flex items-center">
         <div className="max-w-[640px] w-full">
