@@ -21,8 +21,8 @@ export default function TopBar() {
           <span className="hidden md:inline text-zinc-700">|</span>
           <span className="hidden md:flex items-center gap-1.5">
             <Icon icon="mdi:email-outline" width={14} className="text-brand-accent" />
-            <a href="mailto:comercioexterior@coninmaqsas.com" className="text-white font-semibold hover:text-brand-accent transition-colors">
-              comercioexterior@coninmaqsas.com
+            <a href="mailto:comercial@coninmaq.com" className="text-white font-semibold hover:text-brand-accent transition-colors">
+              comercial@coninmaq.com
             </a>
           </span>
         </div>

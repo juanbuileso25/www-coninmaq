@@ -38,7 +38,7 @@ export const ORGANIZATION_LD = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   telephone: "+573163815694",
-  email: "comercioexterior@coninmaqsas.com",
+  email: "comercial@coninmaq.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "KM 20 Autopista norte Copacabana a Girardota",
@@ -78,7 +78,7 @@ export const LOCAL_BUSINESS_LD = {
   logo: `${SITE_URL}/logo.png`,
   image: `${SITE_URL}/og-image.jpg`,
   telephone: "+573163815694",
-  email: "comercioexterior@coninmaqsas.com",
+  email: "comercial@coninmaq.com",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",

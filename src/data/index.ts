@@ -359,7 +359,7 @@ export const CONTACT_ITEMS: ContactItem[] = [
         text: "KM 20 Autopista norte Copacabana a Girardota",
     },
     { icon: "mdi:phone", text: "316 381 5694" },
-    { icon: "mdi:email-outline", text: "comercioexterior@coninmaqsas.com" },
+    { icon: "mdi:email-outline", text: "comercial@coninmaq.com" },
     {
         icon: "mdi:clock-outline",
         text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm",
