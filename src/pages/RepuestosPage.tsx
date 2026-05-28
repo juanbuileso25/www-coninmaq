@@ -9,13 +9,6 @@ import SEO from "../components/SEO";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
-const BRAND_ICONS: Record<string, string> = {
-  caterpillar: "mdi:bulldozer",
-  case: "mdi:excavator",
-  bobcat: "mdi:forklift",
-  komatsu: "mdi:crane",
-};
-
 const TYPE_STYLE: Record<string, string> = {
   OEM: "bg-emerald-50 text-emerald-700 border-emerald-200",
   Aftermarket: "bg-blue-50 text-blue-700 border-blue-200",
@@ -111,7 +104,6 @@ export function RepuestosListPage() {
   });
 
   const brandLabel = activeBrand !== "Todos" ? BRAND_LABELS[activeBrand] : t("pages.parts.allBrands");
-  const allLabel = t("pages.parts.allBrands");
 
   const partsMeta = activeBrand === "caterpillar"
     ? { title: "Repuestos Caterpillar en Colombia — Originales y Aftermarket", description: "Repuestos Caterpillar originales y aftermarket en Colombia. +10.000 referencias disponibles. Entrega en 24-48h a todo el país. Coninmaq S.A.S — Antioquia.", keywords: "repuestos Caterpillar Colombia, partes Caterpillar Colombia, repuestos CAT Colombia, filtros Caterpillar Colombia", path: "/repuestos/caterpillar" }
