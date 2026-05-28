@@ -50,7 +50,7 @@ export default function NosotrosPage() {
           <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2">
             {t("pages.nosotros.eyebrow")}
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight">
+          <h1 className="font-black text-[30px] md:text-[48px] uppercase text-white leading-tight">
             {t("pages.nosotros.title")}{" "}
             <span className="text-brand-accent">{t("pages.nosotros.titleHighlight")}</span>
           </h1>

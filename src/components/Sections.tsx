@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 import SectionTitle from "./SectionTitle";
+import ProductImage from "./ProductImage";
 import { useInView } from "../hooks/useInView";
 import {
   SERVICES,
@@ -23,14 +24,11 @@ export function ServicesStrip() {
   return (
     <div ref={ref} className="bg-white border-b border-zinc-100 shadow-sm">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {SERVICES.map((s, i) => (
             <div
               key={i}
-              className={`flex items-center gap-4 px-5 sm:px-6 py-6 sm:py-7 cursor-pointer group hover:bg-zinc-50 transition-all duration-300
-                ${i % 2 === 0 ? "border-r border-zinc-100" : ""}
-                ${i < 2 ? "border-b border-zinc-100 md:border-b-0" : ""}
-                ${i < SERVICES.length - 1 ? "md:border-r md:border-zinc-100" : "md:border-r-0"}
+              className={`flex items-center gap-4 px-5 sm:px-6 py-6 sm:py-7 cursor-pointer group hover:bg-zinc-50 transition-all duration-300 border-b border-zinc-100 lg:border-b-0 lg:border-r last:border-r-0
                 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
               `}
               style={{ transitionDelay: `${i * 80}ms` }}
@@ -249,20 +247,13 @@ export function Products() {
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div
-                  className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i]} relative overflow-hidden flex items-center justify-center`}
-                >
-                  <div className="absolute inset-0 bg-brand-accent/0 group-hover:bg-brand-accent/5 transition-all duration-300" />
-                  <span
-                    className="font-black text-[52px] text-brand-accent/20 select-none group-hover:scale-110 group-hover:text-brand-accent/30 transition-all duration-500"
-                    aria-hidden="true"
-                  >
-                    {p.code}
-                  </span>
-                  <span className="absolute top-3 left-3 bg-brand-accent text-zinc-900 font-bold text-[11px] tracking-wider uppercase px-3 py-1 shadow-lg">
-                    {badge}
-                  </span>
-                </div>
+                <ProductImage
+                  slug={p.href.split("/").pop() ?? p.code.toLowerCase()}
+                  code={p.code}
+                  gradient={PRODUCT_GRADIENTS[i]}
+                  badge={badge}
+                  className="h-52"
+                />
 
                 <div className="p-5">
                   <p className="text-brand-accent text-[11px] font-bold tracking-[2px] uppercase mb-1">

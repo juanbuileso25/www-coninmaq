@@ -1,8 +1,9 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
+import ProductImage from "../components/ProductImage";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 import SEO from "../components/SEO";
 
@@ -12,12 +13,22 @@ const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewB
 export function MaquinariaPage() {
   const { t } = useTranslation();
   const { categoria } = useParams<{ categoria?: string }>();
+  const location = useLocation();
+  const isRenta = location.pathname.startsWith("/renta");
   const isUsada = categoria === "usada";
   const isNueva = categoria === "nueva";
 
-  const products = isUsada ? USED_PRODUCTS : NEW_PRODUCTS;
+  const products = isUsada || isRenta ? USED_PRODUCTS : NEW_PRODUCTS;
 
-  const pageTitle = isUsada
+  const pageTitle = isRenta
+    ? {
+        eyebrow: t("pages.machinery.rentalEyebrow"),
+        title: t("pages.machinery.titleBase"),
+        highlight: t("pages.machinery.rentalHighlight"),
+        sectionTitle: t("pages.machinery.rentalSectionTitle"),
+        sectionSub: t("pages.machinery.rentalSectionSub"),
+      }
+    : isUsada
     ? {
         eyebrow: t("pages.machinery.usedEyebrow"),
         title: t("pages.machinery.titleBase"),
@@ -41,7 +52,14 @@ export function MaquinariaPage() {
         sectionSub: t("pages.machinery.allSectionSub"),
       };
 
-  const machineryMeta = isUsada
+  const machineryMeta = isRenta
+    ? {
+        title: "Renta de Maquinaria Pesada en Colombia — Alquiler de Excavadoras y Bulldozers",
+        description: "Alquiler y renta de maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores y más equipos certificados disponibles. Coninmaq S.A.S.",
+        keywords: "renta maquinaria pesada Colombia, alquiler excavadoras Colombia, renta bulldozers Colombia, arriendo maquinaria construccion Colombia, Coninmaq renta",
+        path: "/renta",
+      }
+    : isUsada
     ? {
         title: "Maquinaria Pesada Usada en Colombia — Excavadoras, Bulldozers Certificados",
         description: "Compra maquinaria pesada usada certificada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras revisadas con garantía. Entrega inmediata en todo Colombia. Coninmaq S.A.S.",
@@ -127,7 +145,7 @@ export function MaquinariaPage() {
           <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2">
             {pageTitle.eyebrow}
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight">
+          <h1 className="font-black text-[30px] md:text-[48px] uppercase text-white leading-tight">
             {pageTitle.title} <span className="text-brand-accent">{pageTitle.highlight}</span>
           </h1>
         </div>
@@ -143,26 +161,18 @@ export function MaquinariaPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((p, i) => {
               const desc = t(`productDesc.${p.code}`, { defaultValue: p.desc });
-              const badge = p.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
+              const badge = isRenta ? t("products.badgeRental") : p.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
               return (
                 <div key={i} className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 group">
-                  <div className={`h-52 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} relative overflow-hidden flex items-center justify-center`}>
-                    <span className="font-black text-[48px] text-brand-accent/20 select-none group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
-                      {p.code}
-                    </span>
-                    <span
-                      className={`absolute top-3 left-3 font-bold text-[11px] tracking-wider uppercase px-3 py-1 ${
-                        isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
-                      }`}
-                    >
-                      {badge}
-                    </span>
-                    {isUsada && p.anio && (
-                      <span className="absolute top-3 right-3 bg-zinc-900/50 text-white text-[11px] font-bold px-2 py-1 backdrop-blur-sm">
-                        {p.anio}
-                      </span>
-                    )}
-                  </div>
+                  <ProductImage
+                    slug={p.href.split("/").pop() ?? p.code.toLowerCase()}
+                    code={p.code}
+                    gradient={PRODUCT_GRADIENTS[i % 3]}
+                    badge={badge}
+                    badgeUsed={isUsada || isRenta}
+                    anio={p.anio}
+                    className="h-52"
+                  />
 
                   <div className="p-5">
                     <p className="text-brand-accent text-[11px] font-bold tracking-[2px] uppercase mb-1">{p.brand}</p>
@@ -171,7 +181,7 @@ export function MaquinariaPage() {
                     </h3>
                     <p className="text-[13px] text-zinc-500 font-normal leading-relaxed mb-3">{desc}</p>
 
-                    {isUsada && (
+                    {(isUsada || isRenta) && (
                       <div className="flex items-center gap-4 py-3 mb-1 border-y border-zinc-100">
                         {p.anio && (
                           <span className="flex items-center gap-1.5 text-[12px] font-semibold text-zinc-600">
@@ -223,10 +233,10 @@ export function ContactoPage() {
   };
 
   const contactItems = [
-    { icon: "📍", title: t("pages.contact.addr"), text: "KM 20 Autopista norte Copacabana a Girardota" },
-    { icon: "📞", title: t("pages.contact.phone"), text: "316 381 5694" },
-    { icon: "✉", title: t("pages.contact.email"), text: "comercioexterior@coninmaqsas.com" },
-    { icon: "🕐", title: t("pages.contact.hours"), text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm" },
+    { icon: "mdi:map-marker", title: t("pages.contact.addr"), text: "KM 20 Autopista norte Copacabana a Girardota" },
+    { icon: "mdi:phone", title: t("pages.contact.phone"), text: "316 381 5694" },
+    { icon: "mdi:email-outline", title: t("pages.contact.email"), text: "comercioexterior@coninmaqsas.com" },
+    { icon: "mdi:clock-outline", title: t("pages.contact.hours"), text: "Lun – Vie: 7am – 5pm | Sáb: 8am – 12pm" },
   ];
 
   const formFields = [
@@ -257,7 +267,7 @@ export function ContactoPage() {
           <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2">
             {t("pages.contact.eyebrow")}
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight">
+          <h1 className="font-black text-[30px] md:text-[48px] uppercase text-white leading-tight">
             {t("pages.contact.title")}
           </h1>
         </div>
@@ -276,8 +286,8 @@ export function ContactoPage() {
               <div className="space-y-5 mt-2">
                 {contactItems.map((item) => (
                   <div key={item.title} className="flex items-start gap-4 p-4 border border-zinc-100 hover:border-brand-accent/30 transition-colors">
-                    <div className="w-10 h-10 bg-brand-accent flex items-center justify-center text-lg flex-shrink-0">
-                      {item.icon}
+                    <div className="w-10 h-10 bg-brand-accent flex items-center justify-center flex-shrink-0">
+                      <Icon icon={item.icon} width={22} className="text-zinc-900" />
                     </div>
                     <div>
                       <p className="font-bold text-[13px] uppercase tracking-wide text-zinc-400 mb-0.5">{item.title}</p>
@@ -289,7 +299,7 @@ export function ContactoPage() {
             </div>
 
             {/* Contact form */}
-            <div className="bg-zinc-50 border border-zinc-200 p-8">
+            <div className="bg-zinc-50 border border-zinc-200 p-5 md:p-8">
               <h3 className="font-black text-[22px] uppercase text-zinc-900 mb-6">
                 {t("pages.contact.formTitle")}
               </h3>
@@ -338,7 +348,7 @@ export function NotFoundPage() {
   return (
     <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
       <div className="text-center px-6">
-        <span className="font-black text-[120px] text-brand-accent/20 select-none block leading-none">
+        <span className="font-black text-[72px] md:text-[120px] text-brand-accent/20 select-none block leading-none">
           404
         </span>
         <h1 className="font-black text-[36px] uppercase text-white mb-4">

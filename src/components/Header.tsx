@@ -23,25 +23,10 @@ function useNavItems(): NavItem[] {
       sub: [
         { label: t("nav.machineryNew"), href: "/maquinaria-pesada/nueva" },
         { label: t("nav.machineryUsed"), href: "/maquinaria-pesada/usada" },
-        { label: t("nav.machineryExcavators"), href: "/maquinaria-pesada/excavadoras" },
-        { label: t("nav.machineryBulldozers"), href: "/maquinaria-pesada/bulldozers" },
-        { label: t("nav.machineryMiniloaders"), href: "/maquinaria-pesada/minicargadores" },
-        { label: t("nav.machineryCompactors"), href: "/maquinaria-pesada/compactadores" },
-        { label: t("nav.machineryGraders"), href: "/maquinaria-pesada/motoniveladoras" },
-        { label: t("nav.machineryAttachments"), href: "/maquinaria-pesada/aditamentos" },
       ],
     },
-    {
-      label: t("nav.parts"),
-      href: "/repuestos",
-      sub: [
-        { label: t("nav.partsCaterpillar"), href: "/repuestos/caterpillar" },
-        { label: t("nav.partsCase"), href: "/repuestos/case" },
-        { label: t("nav.partsBobcat"), href: "/repuestos/bobcat" },
-        { label: t("nav.partsKomatsu"), href: "/repuestos/komatsu" },
-        { label: t("nav.partsViewAll"), href: "/repuestos" },
-      ],
-    },
+    { label: t("nav.parts"), href: "/repuestos" },
+    { label: t("nav.rental"), href: "/renta" },
     { label: t("nav.virtualStore"), href: "/tienda" },
     { label: t("nav.contact"), href: "/contacto" },
   ];
@@ -63,7 +48,7 @@ function DesktopNavItem({ item }: DesktopNavItemProps) {
       <NavLink
         to={item.href}
         className={({ isActive }) =>
-          `relative inline-flex items-center gap-1 font-semibold text-[14px] tracking-wider uppercase px-3 py-2 transition-colors group ${
+          `relative inline-flex items-center gap-1 font-semibold text-[14px] tracking-wider uppercase px-4 py-2 transition-colors group ${
             isActive ? "text-brand-accent" : "text-zinc-700 hover:text-brand-accent"
           }`
         }
@@ -201,7 +186,7 @@ export default function Header({ scrolled }: HeaderProps) {
 
             {/* Desktop nav */}
             <nav className="hidden lg:block">
-              <ul className="flex items-center gap-1">
+              <ul className="flex items-center gap-2">
                 {navItems.map((item) => (
                   <DesktopNavItem key={item.href} item={item} />
                 ))}

@@ -69,36 +69,51 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Productos individuales -->
+  <!-- Productos individuales LONKING nuevos -->
   <url>
-    <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/cx210d</loc>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/cdm6225</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/cdm6150f</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/cdm6306</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/cdm6060n</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://coninmaqsas.com/maquinaria-pesada/bulldozers/1150m</loc>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/miniexcavadoras/cdm6035</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://coninmaqsas.com/maquinaria-pesada/miniexcavadoras/vio50</loc>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/cargadores/cdm835h</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://coninmaqsas.com/maquinaria-pesada/retrocargadoras/580n</loc>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/cargadores/cdm856h</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://coninmaqsas.com/maquinaria-pesada/compactadores/ca1500d</loc>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/minicargadores/cdm312</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/zx210lc</loc>
+    <loc>https://coninmaqsas.com/maquinaria-pesada/retrocargadoras/83d</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://coninmaqsas.com/maquinaria-pesada/excavadoras/cx130d-usada</loc>

@@ -26,6 +26,9 @@ const router = createBrowserRouter(
       { path: "repuestos/:marca", element: <RepuestosListPage /> },
       { path: "repuestos/:marca/:codigo", element: <RepuestoDetailPage /> },
 
+      /* Renta */
+      { path: "renta", element: <MaquinariaPage /> },
+
       /* Other */
       { path: "contacto", element: <ContactoPage /> },
       { path: "tienda", element: <HomePage /> },

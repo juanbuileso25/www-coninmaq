@@ -1,8 +1,6 @@
 import Hero from "../components/Hero";
 import {
   ServicesStrip,
-  Categories,
-  Brands,
   About,
   Products,
   CTABanner,
@@ -35,8 +33,6 @@ export default function HomePage() {
       />
       <Hero />
       <ServicesStrip />
-      <Categories />
-      <Brands />
       <About />
       <Products />
       <CTABanner />

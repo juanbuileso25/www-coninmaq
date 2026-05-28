@@ -39,9 +39,6 @@ function PartCard({ part }: { part: Part }) {
           className="text-brand-accent/20 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500"
         />
         <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
-          <span className="text-[9px] font-bold tracking-[2px] uppercase px-2 py-1 bg-brand-accent text-zinc-900">
-            {part.brandLabel}
-          </span>
           <span className={`text-[9px] font-bold tracking-wide uppercase px-2 py-1 border ${TYPE_STYLE[part.type]}`}>
             {part.type}
           </span>
@@ -151,7 +148,7 @@ export function RepuestosListPage() {
           <span className="text-brand-accent text-[11px] font-bold tracking-[3px] uppercase block mb-2">
             {t("pages.parts.refs")}
           </span>
-          <h1 className="font-black text-[48px] uppercase text-white leading-tight">
+          <h1 className="font-black text-[30px] md:text-[48px] uppercase text-white leading-tight">
             {t("pages.parts.breadParts")}{" "}
             <span className="text-brand-accent">{brandLabel}</span>
           </h1>
@@ -160,24 +157,6 @@ export function RepuestosListPage() {
 
       <section className="py-16 bg-zinc-50">
         <div className="max-w-6xl mx-auto px-6">
-          {/* Brand filter tabs */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {brands.map((b) => (
-              <Link
-                key={b}
-                to={b === "Todos" ? "/repuestos" : `/repuestos/${b}`}
-                className={`inline-flex items-center gap-2 px-4 py-2 font-bold text-[12px] uppercase tracking-wider transition-all duration-200 border ${
-                  activeBrand === b
-                    ? "bg-brand-accent text-zinc-900 border-brand-accent"
-                    : "bg-white text-zinc-600 border-zinc-200 hover:border-brand-accent-light hover:text-brand-accent-dark"
-                }`}
-              >
-                {b !== "Todos" && <Icon icon={BRAND_ICONS[b]} width={15} />}
-                {b === "Todos" ? allLabel : BRAND_LABELS[b]}
-              </Link>
-            ))}
-          </div>
-
           {/* Category filter */}
           <div className="flex flex-wrap gap-2 mb-8">
             {["Todos", ...PART_CATEGORIES].map((cat) => (

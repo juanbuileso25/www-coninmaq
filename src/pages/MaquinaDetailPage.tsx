@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 import { CTABanner } from "../components/Sections";
+import ProductImage from "../components/ProductImage";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 import { MACHINE_DETAIL_MAP } from "../data/detailData";
 import type { Product, MachineDetailData } from "../types";
@@ -25,11 +26,13 @@ const CONDITION_BAR: Record<string, number> = {
 
 /* ── Carousel ────────────────────────────────────────────────────────────── */
 function MachineCarousel({
+  slug,
   code,
   gradient,
   slideLabels,
   isUsada,
 }: {
+  slug: string;
   code: string;
   gradient: string;
   slideLabels: string[];
@@ -37,6 +40,7 @@ function MachineCarousel({
 }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
+  const [imgFailed, setImgFailed] = useState(false);
 
   return (
     <div className="space-y-3">
@@ -45,30 +49,43 @@ function MachineCarousel({
         className={`h-72 md:h-[400px] bg-gradient-to-br ${gradient} relative overflow-hidden flex items-center justify-center group`}
       >
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
-        <span
-          className="font-black text-[90px] md:text-[130px] text-brand-accent/15 select-none group-hover:scale-105 transition-transform duration-700"
-          aria-hidden="true"
-        >
-          {code}
-        </span>
+
+        {/* Machine photo */}
+        {!imgFailed ? (
+          <img
+            src={`${import.meta.env.BASE_URL}machines/${slug}.webp`}
+            alt={code}
+            onError={() => setImgFailed(true)}
+            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <span
+            className="font-black text-[90px] md:text-[130px] text-brand-accent/15 select-none group-hover:scale-105 transition-transform duration-700"
+            aria-hidden="true"
+          >
+            {code}
+          </span>
+        )}
 
         {/* View label */}
-        <div className="absolute bottom-4 left-4 bg-zinc-900/60 backdrop-blur-sm px-3 py-1.5">
+        <div className="absolute bottom-4 left-4 bg-zinc-900/60 backdrop-blur-sm px-3 py-1.5 z-10">
           <span className="text-white text-[11px] font-bold tracking-[2px] uppercase">
             {slideLabels[active]}
           </span>
         </div>
 
-        {/* Slide counter */}
-        <div className="absolute top-4 right-4 bg-zinc-900/50 backdrop-blur-sm px-2.5 py-1">
-          <span className="text-white text-[11px] font-semibold">
-            {active + 1} / {slideLabels.length}
-          </span>
-        </div>
+        {/* Slide counter — only for used machines */}
+        {isUsada && (
+          <div className="absolute top-4 right-4 bg-zinc-900/50 backdrop-blur-sm px-2.5 py-1 z-10">
+            <span className="text-white text-[11px] font-semibold">
+              {active + 1} / {slideLabels.length}
+            </span>
+          </div>
+        )}
 
         {/* Condition overlay for used */}
         {isUsada && (
-          <div className="absolute top-4 left-4 bg-zinc-800/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5">
+          <div className="absolute top-4 left-4 bg-zinc-800/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5 z-10">
             <span className="text-brand-accent-light text-[10px] font-bold tracking-[2px] uppercase flex items-center gap-1.5">
               <Icon icon="mdi:shield-check-outline" width={13} />
               {t("pages.machineDetail.certified")}
@@ -76,57 +93,63 @@ function MachineCarousel({
           </div>
         )}
 
-        {/* Arrows */}
-        <button
-          onClick={() => setActive((active - 1 + slideLabels.length) % slideLabels.length)}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
-          aria-label={t("pages.machineDetail.prev")}
-        >
-          <Icon icon="mdi:chevron-left" width={22} className="text-white" />
-        </button>
-        <button
-          onClick={() => setActive((active + 1) % slideLabels.length)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
-          aria-label={t("pages.machineDetail.next")}
-        >
-          <Icon icon="mdi:chevron-right" width={22} className="text-white" />
-        </button>
+        {/* Arrows — only for used machines */}
+        {isUsada && (
+          <>
+            <button
+              onClick={() => setActive((active - 1 + slideLabels.length) % slideLabels.length)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200 z-10"
+              aria-label={t("pages.machineDetail.prev")}
+            >
+              <Icon icon="mdi:chevron-left" width={22} className="text-white" />
+            </button>
+            <button
+              onClick={() => setActive((active + 1) % slideLabels.length)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
+              aria-label={t("pages.machineDetail.next")}
+            >
+              <Icon icon="mdi:chevron-right" width={22} className="text-white" />
+            </button>
 
-        {/* Dots */}
-        <div className="absolute bottom-4 right-4 flex gap-2">
-          {slideLabels.map((_, i) => (
+            {/* Dots */}
+            <div className="absolute bottom-4 right-4 flex gap-2">
+              {slideLabels.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`w-2 h-2 transition-all duration-200 ${
+                    i === active ? "bg-brand-accent w-5" : "bg-white/30 hover:bg-white/60"
+                  }`}
+                  aria-label={`${t("pages.machineDetail.imgLabel")} ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Thumbnails — only for used machines */}
+      {isUsada && (
+        <div className="flex gap-2">
+          {slideLabels.map((label, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`w-2 h-2 transition-all duration-200 ${
-                i === active ? "bg-brand-accent w-5" : "bg-white/30 hover:bg-white/60"
+              className={`flex-1 h-[72px] bg-gradient-to-br ${gradient} relative overflow-hidden border-2 transition-all duration-200 ${
+                i === active ? "border-brand-accent" : "border-transparent opacity-60 hover:opacity-80"
               }`}
-              aria-label={`${t("pages.machineDetail.imgLabel")} ${i + 1}`}
-            />
+            >
+              <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: DOT_PATTERN }} />
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-brand-accent/30 select-none">
+                {code}
+              </span>
+              <span className="absolute bottom-1.5 left-2 text-white/70 text-[9px] font-bold uppercase tracking-wide leading-tight">
+                {label}
+              </span>
+            </button>
           ))}
         </div>
-      </div>
-
-      {/* Thumbnails */}
-      <div className="flex gap-2">
-        {slideLabels.map((label, i) => (
-          <button
-            key={i}
-            onClick={() => setActive(i)}
-            className={`flex-1 h-[72px] bg-gradient-to-br ${gradient} relative overflow-hidden border-2 transition-all duration-200 ${
-              i === active ? "border-brand-accent" : "border-transparent opacity-60 hover:opacity-80"
-            }`}
-          >
-            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: DOT_PATTERN }} />
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-brand-accent/30 select-none">
-              {code}
-            </span>
-            <span className="absolute bottom-1.5 left-2 text-white/70 text-[9px] font-bold uppercase tracking-wide leading-tight">
-              {label}
-            </span>
-          </button>
-        ))}
-      </div>
+      )}
     </div>
   );
 }
@@ -197,16 +220,19 @@ function SidebarCard({
   product,
   detail,
   isUsada,
+  slug,
 }: {
   product: Product;
   detail: MachineDetailData | undefined;
   isUsada: boolean;
+  slug: string;
 }) {
   const { t } = useTranslation();
   const waLink = "https://wa.link/bax4s3";
   const condicion = detail?.condicion;
   const barWidth = condicion ? CONDITION_BAR[condicion] ?? 70 : 0;
   const badge = product.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
+  const pdfHref = `${import.meta.env.BASE_URL}pdfs/${slug}.pdf`;
 
   return (
     <div className="bg-white border border-zinc-200 shadow-sm">
@@ -355,6 +381,18 @@ function SidebarCard({
             <Icon icon="mdi:phone" width={15} />
             316 381 5694
           </a>
+          {/* PDF Download — only for new machines */}
+          {!isUsada && (
+            <a
+              href={pdfHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full border border-zinc-300 bg-zinc-50 text-zinc-700 font-semibold text-[12px] tracking-wide uppercase py-2.5 hover:border-zinc-400 hover:bg-zinc-100 transition-all duration-200"
+            >
+              <Icon icon="mdi:file-pdf-box" width={16} className="text-red-500" />
+              {t("pages.machineDetail.downloadPdf")}
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -384,20 +422,15 @@ function RelatedMachines({ currentHref, isUsada }: { currentHref: string; isUsad
                 to={p.href}
                 className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_12px_36px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 group"
               >
-                <div
-                  className={`h-36 bg-gradient-to-br ${PRODUCT_GRADIENTS[i % 3]} flex items-center justify-center relative overflow-hidden`}
-                >
-                  <span className="font-black text-[44px] text-brand-accent/15 select-none group-hover:scale-110 transition-transform duration-500">
-                    {p.code}
-                  </span>
-                  <span
-                    className={`absolute top-2 left-2 text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 ${
-                      isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
-                    }`}
-                  >
-                    {badge}
-                  </span>
-                </div>
+                <ProductImage
+                  slug={p.href.split("/").pop() ?? p.code.toLowerCase()}
+                  code={p.code}
+                  gradient={PRODUCT_GRADIENTS[i % 3]}
+                  badge={badge}
+                  badgeUsed={isUsada}
+                  anio={p.anio}
+                  className="h-36"
+                />
                 <div className="p-4">
                   <p className="text-brand-accent text-[10px] font-bold tracking-[2px] uppercase mb-0.5">
                     {p.brand}
@@ -492,6 +525,7 @@ export default function MaquinaDetailPage() {
     motoniveladoras: t("pages.machineDetail.catGraders"),
     miniexcavadoras: t("pages.machineDetail.catMiniExcavators"),
     retrocargadoras: t("pages.machineDetail.catBackhoe"),
+    cargadores: t("pages.machineDetail.catLoaders"),
   };
   const catLabel = (categoria && catLabelMap[categoria]) ?? t("pages.machineDetail.catDefault");
 
@@ -577,6 +611,7 @@ export default function MaquinaDetailPage() {
             {/* Left: carousel + tabs */}
             <div>
               <MachineCarousel
+                slug={modelo ?? ""}
                 code={product.code}
                 gradient={gradient}
                 slideLabels={slideLabels}
@@ -587,7 +622,7 @@ export default function MaquinaDetailPage() {
 
             {/* Right: sticky info card */}
             <div className="lg:sticky lg:top-24 lg:self-start">
-              <SidebarCard product={product} detail={detail} isUsada={isUsada} />
+              <SidebarCard product={product} detail={detail} isUsada={isUsada} slug={modelo ?? ""} />
             </div>
           </div>
         </div>

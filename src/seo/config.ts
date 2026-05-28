@@ -1,3 +1,32 @@
+// ═══════════════════════════════════════════════════════════════════
+// PENDIENTES SEO — Acciones manuales para aparecer en Google
+// ═══════════════════════════════════════════════════════════════════
+//
+// 1. SITEMAP en Google Search Console
+//    → Ir a https://search.google.com/search-console
+//    → Agregar la propiedad: https://coninmaqsas.com
+//    → Sección "Sitemaps" → enviar: https://coninmaqsas.com/sitemap.xml
+//
+// 2. OG IMAGE (imagen para redes sociales)
+//    → Crear un archivo og-image.jpg de 1200×630 px con el logo
+//      y el slogan "Maquinaria Pesada en Colombia"
+//    → Colocarlo en: public/og-image.jpg
+//
+// 3. Verificar URL real del sitio
+//    → Si el dominio final NO es coninmaqsas.com, actualizar
+//      la constante SITE_URL en este mismo archivo.
+//
+// 4. BACKLINKS (enlaces entrantes)
+//    → Registrar la empresa en directorios:
+//       • Google Business Profile: https://business.google.com
+//       • Páginas Amarillas Colombia: https://www.paginasamarillas.com.co
+//       • Cámara de Comercio de Medellín
+//       • LinkedIn Company Page ya existe → publicar con link al sitio
+//       • Instagram bio → agregar https://coninmaqsas.com
+//       • Facebook "Sitio web" → agregar la URL
+//
+// ═══════════════════════════════════════════════════════════════════
+
 export const SITE_URL = "https://coninmaqsas.com";
 export const SITE_NAME = "Coninmaq S.A.S";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
