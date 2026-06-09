@@ -247,7 +247,7 @@ export function MaquinariaPage() {
                       <Link to={p.href} className="text-brand-accent font-bold text-[13px] uppercase tracking-wide hover:text-amber-700 transition-colors">
                         {t("pages.machinery.viewSpecs")}
                       </Link>
-                      <a href="https://wa.link/bax4s3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200">
+                      <a href="https://wa.me/573163815694" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200">
                         <Icon icon="mdi:whatsapp" width={15} />
                         WhatsApp
                       </a>

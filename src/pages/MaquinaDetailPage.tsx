@@ -228,7 +228,7 @@ function SidebarCard({
   slug: string;
 }) {
   const { t } = useTranslation();
-  const waLink = "https://wa.link/bax4s3";
+  const waLink = "https://wa.me/573163815694";
   const condicion = detail?.condicion;
   const barWidth = condicion ? CONDITION_BAR[condicion] ?? 70 : 0;
   const badge = product.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");

@@ -273,7 +273,7 @@ export function Products() {
                       {t("products.viewSpecs")}
                     </Link>
                     <a
-                      href="https://wa.link/bax4s3"
+                      href="https://wa.me/573163815694"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[12px] tracking-wide uppercase px-3 py-[6px] hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_4px_12px_rgba(37,211,102,0.45)] hover:-translate-y-px transition-all duration-200"
@@ -338,7 +338,7 @@ export function CTABanner() {
               316 381 5694
             </a>
             <a
-              href="https://wa.link/bax4s3"
+              href="https://wa.me/573163815694"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-2 border-zinc-900/80 text-zinc-900 font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:bg-zinc-900 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:border-zinc-900 transition-all duration-200"

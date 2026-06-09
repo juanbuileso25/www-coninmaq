@@ -73,7 +73,7 @@ function PartCard({ part }: { part: Part }) {
             {t("pages.parts.viewDetail")}
           </span>
           <a
-            href="https://wa.link/bax4s3"
+            href="https://wa.me/573163815694"
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -174,7 +174,7 @@ export function RepuestosListPage() {
             <p className="text-[12px] text-zinc-400">
               {t("pages.parts.cantFind")}{" "}
               <a
-                href="https://wa.link/bax4s3"
+                href="https://wa.me/573163815694"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-accent font-semibold hover:underline"
@@ -218,7 +218,7 @@ export function RepuestosListPage() {
                 <p className="text-zinc-400 text-[13px] mt-1">{t("pages.parts.calloutDesc")}</p>
               </div>
               <a
-                href="https://wa.link/bax4s3"
+                href="https://wa.me/573163815694"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-shrink-0 inline-flex items-center gap-2.5 bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[13px] tracking-wider uppercase px-6 py-3.5 hover:shadow-[0_6px_20px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200"
@@ -440,7 +440,7 @@ export function RepuestoDetailPage() {
 
                 <div className="space-y-2.5 pt-2">
                   <a
-                    href="https://wa.link/bax4s3"
+                    href="https://wa.me/573163815694"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2.5 w-full bg-gradient-to-b from-[#2edb71] to-[#25D366] text-white font-bold text-[13px] tracking-wider uppercase py-3.5 hover:from-[#25D366] hover:to-[#1aaa50] hover:shadow-[0_6px_20px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200"
