@@ -16,6 +16,7 @@
   body {
     font-family: 'Poppins', sans-serif;
     color: #323335;
+    overflow-x: clip;
     @apply bg-white;
   }
 }

@@ -14,7 +14,7 @@ export default function TopBar() {
         <div className="flex gap-4 items-center">
           <span className="flex items-center gap-1.5">
             <Icon icon="mdi:phone" width={14} className="text-brand-accent" />
-            <a href="tel:3176707071" className="text-white font-semibold hover:text-brand-accent transition-colors">
+            <a href="tel:3163815694" className="text-white font-semibold hover:text-brand-accent transition-colors">
               316 381 5694
             </a>
           </span>
@@ -22,7 +22,7 @@ export default function TopBar() {
           <span className="hidden md:flex items-center gap-1.5">
             <Icon icon="mdi:email-outline" width={14} className="text-brand-accent" />
             <a href="mailto:comercial@coninmaq.com" className="text-white font-semibold hover:text-brand-accent transition-colors">
-              comercial@coninmaq.com
+              comercial@coninmaqsas.com
             </a>
           </span>
         </div>

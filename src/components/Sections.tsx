@@ -149,7 +149,7 @@ export function About() {
   const features = t("about.features", { returnObjects: true }) as string[];
 
   return (
-    <section className="py-20">
+    <section className="py-20 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Visual side */}
@@ -331,7 +331,7 @@ export function CTABanner() {
           </div>
           <div className="flex gap-4 flex-shrink-0 flex-wrap">
             <a
-              href="tel:3176707071"
+              href="tel:3163815694"
               className="inline-flex items-center gap-2 bg-gradient-to-b from-zinc-800 to-zinc-900 text-white font-bold text-[14px] tracking-wider uppercase px-8 py-4 hover:from-zinc-700 hover:to-zinc-800 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)] transition-all duration-200"
             >
               <Icon icon="mdi:phone" width={18} />
