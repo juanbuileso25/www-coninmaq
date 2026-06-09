@@ -4,6 +4,7 @@ interface ProductImageProps {
   slug: string;      // e.g. "cdm6225"
   code: string;      // e.g. "CDM6225"  — shown on fallback
   gradient: string;  // tailwind gradient classes
+  imageUrl?: string; // external URL (R2) — takes priority over local webp
   badge?: string;
   badgeUsed?: boolean;
   anio?: number;
@@ -18,6 +19,7 @@ export default function ProductImage({
   slug,
   code,
   gradient,
+  imageUrl,
   badge,
   badgeUsed = false,
   anio,
@@ -27,7 +29,9 @@ export default function ProductImage({
 
   useEffect(() => {
     setFailed(false);
-  }, [slug]);
+  }, [slug, imageUrl]);
+
+  const src = imageUrl ?? `${import.meta.env.BASE_URL}machines/${slug}.webp`;
 
   return (
     <div
@@ -35,7 +39,7 @@ export default function ProductImage({
     >
       {!failed ? (
         <img
-          src={`${import.meta.env.BASE_URL}machines/${slug}.webp`}
+          src={src}
           alt={code}
           onError={() => setFailed(true)}
           className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"

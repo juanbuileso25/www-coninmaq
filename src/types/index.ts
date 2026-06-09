@@ -84,3 +84,38 @@ export interface ContactItem {
   icon: string;
   text: string;
 }
+
+export interface ApiMachineSpec {
+  id: string;
+  label: string;
+  value: string;
+  icon: string;
+  order: number;
+}
+
+export interface ApiMachineHighlight {
+  id: string;
+  text: string;
+  order: number;
+}
+
+export interface ApiMachine {
+  id: string;
+  code: string;
+  brand: string;
+  category: string;
+  model: string;
+  slug: string;
+  description: string;
+  price: number;
+  show_price: boolean;
+  warranty: string;
+  delivery_time: string;
+  image_url: string;
+  pdf_url: string;
+  visible_web: boolean;
+  featured: boolean;
+  is_new: boolean;
+  specs: ApiMachineSpec[];
+  highlights: ApiMachineHighlight[];
+}

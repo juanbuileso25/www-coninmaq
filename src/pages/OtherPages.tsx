@@ -5,9 +5,32 @@ import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
 import ProductImage from "../components/ProductImage";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
+import { useMachines } from "../hooks/useMachines";
+import type { ApiMachine, Product } from "../types";
 import SEO from "../components/SEO";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
+
+const CATEGORY_PATH: Record<string, string> = {
+  "Excavadora": "excavadoras",
+  "Miniexcavadora": "miniexcavadoras",
+  "Cargador de Ruedas": "cargadores",
+  "Minicargador": "minicargadores",
+  "Retrocargadora": "retrocargadoras",
+};
+
+function apiMachineToProduct(m: ApiMachine): Product & { imageUrl?: string } {
+  const catPath = CATEGORY_PATH[m.category] ?? "maquinaria-pesada";
+  return {
+    brand: m.brand,
+    model: m.model,
+    desc: m.description,
+    code: m.code,
+    badge: m.is_new ? "Nueva" : "Usada",
+    href: `/maquinaria-pesada/${catPath}/${m.slug}`,
+    imageUrl: m.image_url || undefined,
+  };
+}
 
 /* ── Maquinaria Page ─────────────────────────────────────────────────────── */
 export function MaquinariaPage() {
@@ -17,8 +40,20 @@ export function MaquinariaPage() {
   const isRenta = location.pathname.startsWith("/renta");
   const isUsada = categoria === "usada";
   const isNueva = categoria === "nueva";
+  const useApi = !isUsada && !isRenta;
 
-  const products = isUsada || isRenta ? USED_PRODUCTS : NEW_PRODUCTS;
+  const { machines: apiMachines, loading: apiLoading } = useMachines({
+    is_new: true,
+    visible_web: true,
+    enabled: useApi,
+  });
+
+  const products: (Product & { imageUrl?: string })[] =
+    isUsada || isRenta
+      ? USED_PRODUCTS
+      : apiMachines.length > 0
+      ? apiMachines.map(apiMachineToProduct)
+      : NEW_PRODUCTS;
 
   const pageTitle = isRenta
     ? {
@@ -158,6 +193,15 @@ export function MaquinariaPage() {
             title={pageTitle.sectionTitle}
             subtitle={pageTitle.sectionSub}
           />
+          {apiLoading && useApi && (
+            <div className="flex items-center justify-center py-16 text-zinc-500 gap-3">
+              <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              <span className="text-sm font-medium">Cargando inventario...</span>
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((p, i) => {
               const desc = t(`productDesc.${p.code}`, { defaultValue: p.desc });
@@ -168,6 +212,7 @@ export function MaquinariaPage() {
                     slug={p.href.split("/").pop() ?? p.code.toLowerCase()}
                     code={p.code}
                     gradient={PRODUCT_GRADIENTS[i % 3]}
+                    imageUrl={(p as Product & { imageUrl?: string }).imageUrl}
                     badge={badge}
                     badgeUsed={isUsada || isRenta}
                     anio={p.anio}
