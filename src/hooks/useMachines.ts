@@ -4,7 +4,7 @@ import type { ApiMachine } from "../types";
 const BASE_URL = import.meta.env.VITE_API_URL ?? "https://api.coninmaqsas.com";
 
 export function useMachines(opts: {
-  is_new?: boolean;
+  machine_type?: string;
   visible_web?: boolean;
   featured?: boolean;
   category?: string;
@@ -14,7 +14,7 @@ export function useMachines(opts: {
   const [loading, setLoading] = useState(opts.enabled !== false);
   const [error, setError] = useState<string | null>(null);
 
-  const { is_new, visible_web, featured, category, enabled = true } = opts;
+  const { machine_type, visible_web, featured, category, enabled = true } = opts;
 
   useEffect(() => {
     if (!enabled) {
@@ -24,7 +24,7 @@ export function useMachines(opts: {
     }
 
     const params = new URLSearchParams();
-    if (is_new !== undefined) params.set("is_new", String(is_new));
+    if (machine_type !== undefined) params.set("machine_type", machine_type);
     if (visible_web !== undefined) params.set("visible_web", String(visible_web));
     if (featured !== undefined) params.set("featured", String(featured));
     if (category !== undefined) params.set("category", category);
@@ -43,7 +43,7 @@ export function useMachines(opts: {
       .then((data: ApiMachine[]) => setMachines(data))
       .catch(() => setError("No se pudo cargar el inventario"))
       .finally(() => setLoading(false));
-  }, [is_new, visible_web, featured, category, enabled]);
+  }, [machine_type, visible_web, featured, category, enabled]);
 
   return { machines, loading, error };
 }

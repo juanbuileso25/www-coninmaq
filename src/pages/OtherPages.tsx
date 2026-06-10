@@ -26,7 +26,7 @@ function apiMachineToProduct(m: ApiMachine): Product & { imageUrl?: string } {
     model: m.model,
     desc: m.description,
     code: m.code,
-    badge: m.is_new ? "Nueva" : "Usada",
+    badge: m.machine_type === "new" ? "Nueva" : m.machine_type === "rental" ? "Renta" : "Usada",
     href: `/maquinaria-pesada/${catPath}/${m.slug}`,
     imageUrl: m.image_url || undefined,
   };
@@ -40,19 +40,18 @@ export function MaquinariaPage() {
   const isRenta = location.pathname.startsWith("/renta");
   const isUsada = categoria === "usada";
   const isNueva = categoria === "nueva";
-  const useApi = !isUsada && !isRenta;
+  const apiMachineType = isRenta ? "rental" : isUsada ? "used" : "new";
 
   const { machines: apiMachines, loading: apiLoading } = useMachines({
-    is_new: true,
+    machine_type: apiMachineType,
     visible_web: true,
-    enabled: useApi,
   });
 
   const products: (Product & { imageUrl?: string })[] =
-    isUsada || isRenta
-      ? USED_PRODUCTS
-      : apiMachines.length > 0
+    apiMachines.length > 0
       ? apiMachines.map(apiMachineToProduct)
+      : isUsada || isRenta
+      ? USED_PRODUCTS
       : NEW_PRODUCTS;
 
   const pageTitle = isRenta
@@ -193,7 +192,7 @@ export function MaquinariaPage() {
             title={pageTitle.sectionTitle}
             subtitle={pageTitle.sectionSub}
           />
-          {apiLoading && useApi && (
+          {apiLoading && (
             <div className="flex items-center justify-center py-16 text-zinc-500 gap-3">
               <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />

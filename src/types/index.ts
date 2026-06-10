@@ -115,7 +115,7 @@ export interface ApiMachine {
   pdf_url: string;
   visible_web: boolean;
   featured: boolean;
-  is_new: boolean;
+  machine_type: string;
   specs: ApiMachineSpec[];
   highlights: ApiMachineHighlight[];
 }
