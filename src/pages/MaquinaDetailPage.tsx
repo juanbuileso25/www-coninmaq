@@ -565,21 +565,28 @@ export default function MaquinaDetailPage() {
 
   if (!product) {
     return (
-      <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
-        <div className="text-center px-6">
-          <span className="font-black text-[80px] text-brand-accent/20 block">?</span>
-          <h1 className="font-black text-[28px] uppercase text-white mb-4">
-            {t("pages.machineDetail.notFound")}
-          </h1>
-          <Link
-            to="/maquinaria-pesada"
-            className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[13px] uppercase px-6 py-3"
-          >
-            <Icon icon="mdi:arrow-left" width={16} />
-            {t("pages.machineDetail.viewInventory")}
-          </Link>
+      <>
+        <SEO
+          title="Equipo no encontrado"
+          description="Este equipo no está disponible."
+          noIndex
+        />
+        <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
+          <div className="text-center px-6">
+            <span className="font-black text-[80px] text-brand-accent/20 block">?</span>
+            <h1 className="font-black text-[28px] uppercase text-white mb-4">
+              {t("pages.machineDetail.notFound")}
+            </h1>
+            <Link
+              to="/maquinaria-pesada"
+              className="inline-flex items-center gap-2 bg-brand-accent text-zinc-900 font-bold text-[13px] uppercase px-6 py-3"
+            >
+              <Icon icon="mdi:arrow-left" width={16} />
+              {t("pages.machineDetail.viewInventory")}
+            </Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
