@@ -411,7 +411,7 @@ function SidebarCard({
             316 381 5694
           </a>
           {/* PDF Download — only when pdf_url exists */}
-          {!isUsada && !!(product as any).pdf_url && (
+          {!!(product as any).pdf_url && (
             <a
               href={pdfHref}
               target="_blank"

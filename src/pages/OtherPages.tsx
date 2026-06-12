@@ -32,9 +32,10 @@ function apiMachineToProduct(m: ApiMachine): Product & { imageUrl?: string } {
     badge,
     href: `/${basePath}/${catPath}/${m.slug}`,
     imageUrl: m.image_url || undefined,
+    pdf_url: m.pdf_url || undefined,
     anio: m.year ?? undefined,
     horasUso: m.hours_used ?? undefined,
-  };
+  } as Product & { imageUrl?: string; pdf_url?: string };
 }
 
 /* ── Maquinaria Page ─────────────────────────────────────────────────────── */
