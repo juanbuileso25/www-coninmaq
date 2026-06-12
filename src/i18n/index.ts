@@ -117,7 +117,7 @@ const es = {
         eyebrow: "Equipos Destacados",
         title: "Maquinaria Disponible",
         subtitle: "Selección de equipos en stock listos para entrega inmediata",
-        viewSpecs: "Ver specs →",
+        viewSpecs: "Ver especificaciones →",
         viewAll: "Ver todo el catálogo",
         badgeNew: "Nueva",
         badgeUsed: "Usada",
@@ -266,7 +266,7 @@ const es = {
             allSectionTitle: "Equipos en Stock",
             allSectionSub:
                 "Maquinaria nueva y usada lista para entrega inmediata en todo Colombia",
-            viewSpecs: "Ver specs →",
+            viewSpecs: "Ver especificaciones →",
             yearLabel: "Año",
         },
         parts: {
