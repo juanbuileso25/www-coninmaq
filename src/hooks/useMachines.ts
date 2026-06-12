@@ -47,3 +47,25 @@ export function useMachines(opts: {
 
   return { machines, loading, error };
 }
+
+export function useMachineBySlug(slug: string | undefined) {
+  const [machine, setMachine] = useState<ApiMachine | null>(null);
+  const [loading, setLoading] = useState(!!slug);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!slug) { setLoading(false); return; }
+    setLoading(true);
+    setError(null);
+    fetch(`${BASE_URL}/machines/${slug}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`${res.status}`);
+        return res.json();
+      })
+      .then((data: ApiMachine) => setMachine(data))
+      .catch(() => setError("not_found"))
+      .finally(() => setLoading(false));
+  }, [slug]);
+
+  return { machine, loading, error };
+}

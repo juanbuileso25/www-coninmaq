@@ -9,6 +9,7 @@ import { MACHINE_DETAIL_MAP } from "../data/detailData";
 import type { Product, MachineDetailData } from "../types";
 import SEO from "../components/SEO";
 import { SITE_URL } from "../seo/config";
+import { useMachineBySlug } from "../hooks/useMachines";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
@@ -232,7 +233,7 @@ function SidebarCard({
   const condicion = detail?.condicion;
   const barWidth = condicion ? CONDITION_BAR[condicion] ?? 70 : 0;
   const badge = product.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
-  const pdfHref = `${import.meta.env.BASE_URL}pdfs/${slug}.pdf`;
+  const pdfHref = (product as any).pdf_url || `${import.meta.env.BASE_URL}pdfs/${slug}.pdf`;
 
   return (
     <div className="bg-white border border-zinc-200 shadow-sm">
@@ -485,9 +486,35 @@ export default function MaquinaDetailPage() {
   const { categoria, modelo } = useParams<{ categoria: string; modelo: string }>();
   const isUsada = modelo?.endsWith("-usada") ?? false;
 
+  const { machine: apiMachine, loading: apiLoading } = useMachineBySlug(modelo);
+
   const allProducts: Product[] = [...NEW_PRODUCTS, ...USED_PRODUCTS];
-  const product = allProducts.find((p) => p.href.endsWith(`/${modelo}`));
+  const staticProduct = allProducts.find((p) => p.href.endsWith(`/${modelo}`));
+
+  // Build product from API if not in static data (e.g. rental machines)
+  const product: Product | undefined = staticProduct ?? (apiMachine ? {
+    id: apiMachine.id,
+    code: apiMachine.code,
+    brand: apiMachine.brand,
+    model: apiMachine.model,
+    category: apiMachine.category,
+    badge: apiMachine.machine_type === "new" ? "Nueva" : apiMachine.machine_type === "rental" ? "Renta" : "Usada",
+    desc: apiMachine.description,
+    href: `/${categoria}/${modelo}`,
+    image: apiMachine.image_url,
+    price: apiMachine.show_price ? apiMachine.price : null,
+    pdf_url: apiMachine.pdf_url,
+  } as unknown as Product : undefined);
+
   const detail = modelo ? MACHINE_DETAIL_MAP[modelo] : undefined;
+
+  if (apiLoading && !staticProduct) {
+    return (
+      <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
+        <Icon icon="mdi:loading" className="animate-spin text-brand-accent" width={48} />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
