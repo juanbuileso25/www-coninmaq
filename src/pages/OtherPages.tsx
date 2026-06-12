@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import SectionTitle from "../components/SectionTitle";
 import { CTABanner } from "../components/Sections";
 import ProductImage from "../components/ProductImage";
-import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
+import { PRODUCT_GRADIENTS } from "../data";
 import { useMachines } from "../hooks/useMachines";
 import type { ApiMachine, Product } from "../types";
 import SEO from "../components/SEO";
@@ -21,14 +21,19 @@ const CATEGORY_PATH: Record<string, string> = {
 
 function apiMachineToProduct(m: ApiMachine): Product & { imageUrl?: string } {
   const catPath = CATEGORY_PATH[m.category] ?? "maquinaria-pesada";
+  const typeSlug = m.machine_type.slug;
+  const badge = typeSlug === "new" ? "Nueva" : typeSlug === "rental" ? "Renta" : "Usada";
+  const basePath = typeSlug === "rental" ? "renta" : "maquinaria-pesada";
   return {
     brand: m.brand,
     model: m.model,
     desc: m.description,
     code: m.code,
-    badge: m.machine_type === "new" ? "Nueva" : m.machine_type === "rental" ? "Renta" : "Usada",
-    href: `/maquinaria-pesada/${catPath}/${m.slug}`,
+    badge,
+    href: `/${basePath}/${catPath}/${m.slug}`,
     imageUrl: m.image_url || undefined,
+    anio: m.year ?? undefined,
+    horasUso: m.hours_used ?? undefined,
   };
 }
 
@@ -47,12 +52,7 @@ export function MaquinariaPage() {
     visible_web: true,
   });
 
-  const products: (Product & { imageUrl?: string })[] =
-    apiMachines.length > 0
-      ? apiMachines.map(apiMachineToProduct)
-      : isUsada || isRenta
-      ? USED_PRODUCTS
-      : NEW_PRODUCTS;
+  const products: (Product & { imageUrl?: string })[] = apiMachines.map(apiMachineToProduct);
 
   const pageTitle = isRenta
     ? {
@@ -192,7 +192,7 @@ export function MaquinariaPage() {
             title={pageTitle.sectionTitle}
             subtitle={pageTitle.sectionSub}
           />
-          {apiLoading && (
+          {apiLoading ? (
             <div className="flex items-center justify-center py-16 text-zinc-500 gap-3">
               <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -200,10 +200,10 @@ export function MaquinariaPage() {
               </svg>
               <span className="text-sm font-medium">Cargando inventario...</span>
             </div>
-          )}
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((p, i) => {
-              const desc = t(`productDesc.${p.code}`, { defaultValue: p.desc });
+              const desc = p.desc || t(`productDesc.${p.code}`, { defaultValue: "" });
               const badge = isRenta ? t("products.badgeRental") : p.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
               return (
                 <div key={i} className="bg-white border border-zinc-200 hover:border-brand-accent hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 group">
@@ -256,6 +256,7 @@ export function MaquinariaPage() {
               );
             })}
           </div>
+          )}
         </div>
       </section>
 

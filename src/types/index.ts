@@ -99,6 +99,19 @@ export interface ApiMachineHighlight {
   order: number;
 }
 
+export interface ApiMachineType {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export interface ApiMachineImage {
+  id: string;
+  url: string;
+  is_primary: boolean;
+  order: number;
+}
+
 export interface ApiMachine {
   id: string;
   code: string;
@@ -115,7 +128,11 @@ export interface ApiMachine {
   pdf_url: string;
   visible_web: boolean;
   featured: boolean;
-  machine_type: string;
+  machine_type: ApiMachineType;
   specs: ApiMachineSpec[];
   highlights: ApiMachineHighlight[];
+  images: ApiMachineImage[];
+  year?: number;
+  hours_used?: string;
+  condition?: string;
 }

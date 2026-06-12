@@ -28,6 +28,8 @@ const router = createBrowserRouter(
 
       /* Renta */
       { path: "renta", element: <MaquinariaPage /> },
+      { path: "renta/:categoria", element: <MaquinariaPage /> },
+      { path: "renta/:categoria/:modelo", element: <MaquinaDetailPage /> },
 
       /* Other */
       { path: "contacto", element: <ContactoPage /> },

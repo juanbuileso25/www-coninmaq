@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 import { CTABanner } from "../components/Sections";
 import ProductImage from "../components/ProductImage";
 import { NEW_PRODUCTS, USED_PRODUCTS, PRODUCT_GRADIENTS } from "../data";
 import { MACHINE_DETAIL_MAP } from "../data/detailData";
-import type { Product, MachineDetailData } from "../types";
+import type { Product, MachineDetailData, ApiMachineImage } from "../types";
 import SEO from "../components/SEO";
 import { SITE_URL } from "../seo/config";
 import { useMachineBySlug } from "../hooks/useMachines";
@@ -30,18 +30,36 @@ function MachineCarousel({
   slug,
   code,
   gradient,
-  slideLabels,
   isUsada,
+  imageUrl,
+  images,
 }: {
   slug: string;
   code: string;
   gradient: string;
-  slideLabels: string[];
   isUsada: boolean;
+  imageUrl?: string;
+  images?: ApiMachineImage[];
 }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
-  const [imgFailed, setImgFailed] = useState(false);
+  const [failedIndexes, setFailedIndexes] = useState<Set<number>>(new Set());
+
+  // Construir lista de slides: galería del API ordenada, o imagen principal como fallback
+  const galleryImages = images && images.length > 0
+    ? [...images].sort((a, b) => a.order - b.order)
+    : imageUrl
+    ? [{ id: "primary", url: imageUrl, is_primary: true, order: 0 }]
+    : [];
+
+  const hasMultiple = galleryImages.length > 1;
+  const currentUrl = galleryImages[active]?.url;
+  const isFailed = failedIndexes.has(active);
+
+  const handleFail = (i: number) => setFailedIndexes((prev) => new Set(prev).add(i));
+
+  const prev = () => setActive((active - 1 + galleryImages.length) % galleryImages.length);
+  const next = () => setActive((active + 1) % galleryImages.length);
 
   return (
     <div className="space-y-3">
@@ -52,11 +70,19 @@ function MachineCarousel({
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: DOT_PATTERN }} />
 
         {/* Machine photo */}
-        {!imgFailed ? (
+        {currentUrl && !isFailed ? (
+          <img
+            src={currentUrl}
+            alt={`${code} ${active + 1}`}
+            onError={() => handleFail(active)}
+            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : !currentUrl ? (
+          // Fallback local webp
           <img
             src={`${import.meta.env.BASE_URL}machines/${slug}.webp`}
             alt={code}
-            onError={() => setImgFailed(true)}
+            onError={() => handleFail(active)}
             className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
@@ -68,23 +94,16 @@ function MachineCarousel({
           </span>
         )}
 
-        {/* View label */}
-        <div className="absolute bottom-4 left-4 bg-zinc-900/60 backdrop-blur-sm px-3 py-1.5 z-10">
-          <span className="text-white text-[11px] font-bold tracking-[2px] uppercase">
-            {slideLabels[active]}
-          </span>
-        </div>
-
-        {/* Slide counter — only for used machines */}
-        {isUsada && (
+        {/* Slide counter — when multiple images */}
+        {hasMultiple && (
           <div className="absolute top-4 right-4 bg-zinc-900/50 backdrop-blur-sm px-2.5 py-1 z-10">
             <span className="text-white text-[11px] font-semibold">
-              {active + 1} / {slideLabels.length}
+              {active + 1} / {galleryImages.length}
             </span>
           </div>
         )}
 
-        {/* Condition overlay for used */}
+        {/* Certified badge for used/rental */}
         {isUsada && (
           <div className="absolute top-4 left-4 bg-zinc-800/80 backdrop-blur-sm border border-brand-accent/30 px-3 py-1.5 z-10">
             <span className="text-brand-accent-light text-[10px] font-bold tracking-[2px] uppercase flex items-center gap-1.5">
@@ -94,18 +113,18 @@ function MachineCarousel({
           </div>
         )}
 
-        {/* Arrows — only for used machines */}
-        {isUsada && (
+        {/* Arrows — when multiple images */}
+        {hasMultiple && (
           <>
             <button
-              onClick={() => setActive((active - 1 + slideLabels.length) % slideLabels.length)}
+              onClick={prev}
               className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200 z-10"
               aria-label={t("pages.machineDetail.prev")}
             >
               <Icon icon="mdi:chevron-left" width={22} className="text-white" />
             </button>
             <button
-              onClick={() => setActive((active + 1) % slideLabels.length)}
+              onClick={next}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-zinc-900/40 hover:bg-brand-accent flex items-center justify-center transition-colors duration-200"
               aria-label={t("pages.machineDetail.next")}
             >
@@ -114,7 +133,7 @@ function MachineCarousel({
 
             {/* Dots */}
             <div className="absolute bottom-4 right-4 flex gap-2">
-              {slideLabels.map((_, i) => (
+              {galleryImages.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActive(i)}
@@ -129,24 +148,23 @@ function MachineCarousel({
         )}
       </div>
 
-      {/* Thumbnails — only for used machines */}
-      {isUsada && (
-        <div className="flex gap-2">
-          {slideLabels.map((label, i) => (
+      {/* Thumbnails — when multiple images */}
+      {hasMultiple && (
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {galleryImages.map((img, i) => (
             <button
-              key={i}
+              key={img.id}
               onClick={() => setActive(i)}
-              className={`flex-1 h-[72px] bg-gradient-to-br ${gradient} relative overflow-hidden border-2 transition-all duration-200 ${
-                i === active ? "border-brand-accent" : "border-transparent opacity-60 hover:opacity-80"
+              className={`flex-shrink-0 w-[80px] h-[60px] bg-gradient-to-br ${gradient} relative overflow-hidden border-2 transition-all duration-200 ${
+                i === active ? "border-brand-accent" : "border-transparent opacity-60 hover:opacity-90"
               }`}
             >
-              <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: DOT_PATTERN }} />
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[18px] text-brand-accent/30 select-none">
-                {code}
-              </span>
-              <span className="absolute bottom-1.5 left-2 text-white/70 text-[9px] font-bold uppercase tracking-wide leading-tight">
-                {label}
-              </span>
+              <img
+                src={img.url}
+                alt={`${code} ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
             </button>
           ))}
         </div>
@@ -156,10 +174,10 @@ function MachineCarousel({
 }
 
 /* ── Tabs: Descripción / Especificaciones ────────────────────────────────── */
-function DetailTabs({ product, detail }: { product: Product; detail: MachineDetailData | undefined }) {
+function DetailTabs({ product, detail, apiDesc }: { product: Product; detail: MachineDetailData | undefined; apiDesc?: string }) {
   const { t } = useTranslation();
   const [tab, setTab] = useState<"desc" | "specs">("desc");
-  const desc = t(`productDesc.${product.code}`, { defaultValue: product.desc });
+  const desc = apiDesc ?? t(`productDesc.${product.code}`, { defaultValue: product.desc });
 
   return (
     <div className="mt-6">
@@ -221,20 +239,30 @@ function SidebarCard({
   product,
   detail,
   isUsada,
-  slug,
+  apiYear,
+  apiHours,
+  apiCondition,
 }: {
   product: Product;
   detail: MachineDetailData | undefined;
   isUsada: boolean;
-  slug: string;
+  apiYear?: number | null;
+  apiHours?: string | null;
+  apiCondition?: string | null;
 }) {
   const { t } = useTranslation();
   const waLink = "https://wa.me/573163815694";
-  const condicion = detail?.condicion;
+  const condicion = apiCondition || detail?.condicion;
   const barWidth = condicion ? CONDITION_BAR[condicion] ?? 70 : 0;
-  const badge = product.badge === "Nueva" ? t("products.badgeNew") : t("products.badgeUsed");
-  const pdfHref = (product as any).pdf_url || `${import.meta.env.BASE_URL}pdfs/${slug}.pdf`;
-
+  const year = apiYear ?? product.anio;
+  const hours = apiHours ?? product.horasUso;
+  const isRenta = product.badge === "Renta";
+  const badge = product.badge === "Nueva"
+    ? t("products.badgeNew")
+    : isRenta
+    ? t("products.badgeRental")
+    : t("products.badgeUsed");
+  const pdfHref = (product as any).pdf_url as string | undefined;
   return (
     <div className="bg-white border border-zinc-200 shadow-sm">
       {/* Header */}
@@ -248,15 +276,15 @@ function SidebarCard({
         <div className="mt-2 flex gap-2 flex-wrap">
           <span
             className={`inline-block text-[10px] font-bold tracking-[2px] uppercase px-3 py-1 ${
-              isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
+              isRenta ? "bg-blue-600 text-white" : isUsada ? "bg-zinc-600 text-white" : "bg-brand-accent text-zinc-900"
             }`}
           >
             {badge}
           </span>
-          {isUsada && product.anio && (
+          {isUsada && year && (
             <span className="inline-flex items-center gap-1 bg-zinc-700 text-zinc-300 text-[10px] font-bold tracking-wide uppercase px-3 py-1">
               <Icon icon="mdi:calendar-outline" width={11} />
-              {product.anio}
+              {year}
             </span>
           )}
         </div>
@@ -267,22 +295,22 @@ function SidebarCard({
         {/* Year & Hours for used */}
         {isUsada && (
           <div className="grid grid-cols-2 gap-3">
-            {product.anio && (
+            {year && (
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
                 <Icon icon="mdi:calendar-outline" width={20} className="text-brand-accent mx-auto mb-1" />
                 <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
                   {t("pages.machineDetail.year")}
                 </p>
-                <p className="text-[18px] font-black text-zinc-900">{product.anio}</p>
+                <p className="text-[18px] font-black text-zinc-900">{year}</p>
               </div>
             )}
-            {product.horasUso && (
+            {hours && (
               <div className="bg-zinc-50 border border-zinc-100 p-3 text-center">
                 <Icon icon="mdi:clock-outline" width={20} className="text-brand-accent mx-auto mb-1" />
                 <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
                   {t("pages.machineDetail.hours")}
                 </p>
-                <p className="text-[18px] font-black text-zinc-900">{product.horasUso}</p>
+                <p className="text-[18px] font-black text-zinc-900">{hours}</p>
               </div>
             )}
           </div>
@@ -382,8 +410,8 @@ function SidebarCard({
             <Icon icon="mdi:phone" width={15} />
             316 381 5694
           </a>
-          {/* PDF Download — only for new machines */}
-          {!isUsada && (
+          {/* PDF Download — only when pdf_url exists */}
+          {!isUsada && !!(product as any).pdf_url && (
             <a
               href={pdfHref}
               target="_blank"
@@ -484,29 +512,48 @@ function WhyUsStrip() {
 export default function MaquinaDetailPage() {
   const { t } = useTranslation();
   const { categoria, modelo } = useParams<{ categoria: string; modelo: string }>();
-  const isUsada = modelo?.endsWith("-usada") ?? false;
+  const location = useLocation();
+  const isRenta = location.pathname.startsWith("/renta");
+  // isUsada: por ruta O por machine_type del API (se recalcula después de cargar apiMachine)
+  const isUsadaByRoute = !isRenta && (modelo?.endsWith("-usada") ?? false);
 
   const { machine: apiMachine, loading: apiLoading } = useMachineBySlug(modelo);
+
+  const isUsada = isUsadaByRoute || apiMachine?.machine_type?.slug === "used";
 
   const allProducts: Product[] = [...NEW_PRODUCTS, ...USED_PRODUCTS];
   const staticProduct = allProducts.find((p) => p.href.endsWith(`/${modelo}`));
 
-  // Build product from API if not in static data (e.g. rental machines)
-  const product: Product | undefined = staticProduct ?? (apiMachine ? {
+  // El API siempre tiene precedencia. Los datos estáticos solo se usan si el API no responde.
+  const product: Product | undefined = apiMachine ? {
     id: apiMachine.id,
     code: apiMachine.code,
     brand: apiMachine.brand,
     model: apiMachine.model,
     category: apiMachine.category,
-    badge: apiMachine.machine_type === "new" ? "Nueva" : apiMachine.machine_type === "rental" ? "Renta" : "Usada",
+    badge: apiMachine.machine_type.slug === "new" ? "Nueva" : apiMachine.machine_type.slug === "rental" ? "Renta" : "Usada",
     desc: apiMachine.description,
     href: `/${categoria}/${modelo}`,
     image: apiMachine.image_url,
     price: apiMachine.show_price ? apiMachine.price : null,
     pdf_url: apiMachine.pdf_url,
-  } as unknown as Product : undefined);
+  } as unknown as Product : staticProduct;
 
-  const detail = modelo ? MACHINE_DETAIL_MAP[modelo] : undefined;
+  const staticDetail = modelo ? MACHINE_DETAIL_MAP[modelo] : undefined;
+  // Si el API trae specs o highlights, úsalos. Solo cae al mapa estático si el API no tiene nada.
+  const detail: MachineDetailData | undefined = (apiMachine && (apiMachine.specs.length > 0 || apiMachine.highlights.length > 0)) ? {
+    slideLabels: [],
+    specs: apiMachine.specs
+      .slice()
+      .sort((a, b) => a.order - b.order)
+      .map((s) => ({ label: s.label, value: s.value, icon: s.icon })),
+    highlights: apiMachine.highlights
+      .slice()
+      .sort((a, b) => a.order - b.order)
+      .map((h) => h.text),
+    garantia: apiMachine.warranty || undefined,
+    entrega: apiMachine.delivery_time || undefined,
+  } : staticDetail;
 
   if (apiLoading && !staticProduct) {
     return (
@@ -538,11 +585,6 @@ export default function MaquinaDetailPage() {
 
   const gradientIndex = NEW_PRODUCTS.findIndex((p) => p.href.endsWith(`/${modelo}`));
   const gradient = PRODUCT_GRADIENTS[Math.abs(gradientIndex) % 3];
-  const slideLabels = detail?.slideLabels ?? [
-    t("pages.machineDetail.tabDesc"),
-    t("pages.machineDetail.tabDesc"),
-    t("pages.machineDetail.tabSpecs"),
-  ];
 
   const catLabelMap: Record<string, string> = {
     excavadoras: t("pages.machineDetail.catExcavators"),
@@ -556,7 +598,10 @@ export default function MaquinaDetailPage() {
   };
   const catLabel = (categoria && catLabelMap[categoria]) ?? t("pages.machineDetail.catDefault");
 
-  const productDesc = t(`productDesc.${product.code}`, { defaultValue: product.desc });
+  // Si el API trae descripción propia, usarla directamente. Solo caer en i18n si no hay dato del API.
+  const productDesc = apiMachine?.description
+    ? apiMachine.description
+    : t(`productDesc.${product.code}`, { defaultValue: product.desc });
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -641,15 +686,23 @@ export default function MaquinaDetailPage() {
                 slug={modelo ?? ""}
                 code={product.code}
                 gradient={gradient}
-                slideLabels={slideLabels}
                 isUsada={isUsada}
+                imageUrl={apiMachine?.image_url || undefined}
+                images={apiMachine?.images}
               />
-              {detail && <DetailTabs product={product} detail={detail} />}
+              {detail && <DetailTabs product={product} detail={detail} apiDesc={apiMachine?.description || undefined} />}
             </div>
 
             {/* Right: sticky info card */}
             <div className="lg:sticky lg:top-24 lg:self-start">
-              <SidebarCard product={product} detail={detail} isUsada={isUsada} slug={modelo ?? ""} />
+              <SidebarCard
+                product={product}
+                detail={detail}
+                isUsada={isUsada || isRenta}
+                apiYear={apiMachine?.year}
+                apiHours={apiMachine?.hours_used}
+                apiCondition={apiMachine?.condition}
+              />
             </div>
           </div>
         </div>
