@@ -105,13 +105,11 @@ export default function Hero() {
       {/* Stats bar */}
       <div className="relative z-10 bg-brand-accent/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-cols-3">
             {stats.map((s, i) => (
               <div
                 key={i}
-                className={`text-center py-5 px-3 group hover:bg-zinc-900/10 transition-colors cursor-default ${
-                  i % 2 === 0 && i < stats.length - 1 ? "border-r border-zinc-900/10" : ""
-                } ${i < 2 ? "border-b border-zinc-900/10 md:border-b-0" : ""} md:border-r md:last:border-r-0`}
+                className={`text-center py-5 px-3 group hover:bg-zinc-900/10 transition-colors cursor-default border-r border-zinc-900/10 last:border-r-0`}
               >
                 <span className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom">
                   {s.num}

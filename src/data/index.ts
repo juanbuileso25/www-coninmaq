@@ -82,7 +82,7 @@ export const SERVICES: Service[] = [
     },
     {
         icon: "mdi:hammer-wrench",
-        title: "Mantenimiento",
+        title: "Servicio Técnico",
         desc: "Servicio técnico especializado",
     },
     {

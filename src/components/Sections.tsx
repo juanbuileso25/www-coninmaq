@@ -156,20 +156,15 @@ export function About() {
           <div
             className={`relative pb-8 lg:pb-0 transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
           >
-            <div className="w-full h-[400px] bg-zinc-900 flex items-center justify-center overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 bg-brand-accent/10 rounded-full blur-3xl animate-pulse" />
-              </div>
-              <span
-                className="relative font-black text-[110px] text-brand-accent/[0.13] select-none tracking-tighter"
-                aria-hidden="true"
-              >
-                PART
-              </span>
+            <div className="w-full h-[400px] bg-zinc-900 overflow-hidden relative">
+              <img
+                src={`${import.meta.env.BASE_URL}about-machine.webp`}
+                alt="Cargador de ruedas Lonking CDM835 en obra"
+                className="w-full h-full object-cover object-bottom"
+                loading="lazy"
+              />
               <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-brand-accent" />
               <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-brand-accent" />
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-brand-accent/30" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-accent/30" />
             </div>
             <div className="absolute -bottom-5 -right-5 w-[110px] h-[110px] bg-brand-accent flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(255,200,55,0.5)] hover:scale-105 transition-transform duration-300">
               <span className="font-black text-[36px] text-zinc-900 leading-none">+10</span>

@@ -25,9 +25,9 @@ function useNavItems(): NavItem[] {
         { label: t("nav.machineryUsed"), href: "/maquinaria-pesada/usada" },
       ],
     },
-    { label: t("nav.parts"), href: "/repuestos" },
+    // { label: t("nav.parts"), href: "/repuestos" },
     { label: t("nav.rental"), href: "/renta" },
-    { label: t("nav.virtualStore"), href: "/tienda" },
+    // { label: t("nav.virtualStore"), href: "/tienda" },
     { label: t("nav.contact"), href: "/contacto" },
   ];
 }
