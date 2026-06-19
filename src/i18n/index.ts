@@ -33,9 +33,9 @@ const es = {
         openMenu: "Abrir menú",
     },
     hero: {
-        badge: "Líderes en Colombia",
+        badge: "Oficiales Lonking",
         title1: "Distribuidores",
-        title2: "Oficiales Lonking",
+        title2: "Líderes en Colombia",
         desc: "Soluciones en maquinaria pesada con respaldo, potencia y tecnología de clase mundial. Equipos nuevos, repuestos y soporte especializado para construcción, minería e industria.",
         cta1: "Ver Maquinaria",
         cta2: "Solicitar Cotización",
