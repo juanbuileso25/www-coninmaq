@@ -34,7 +34,7 @@ const es = {
     },
     hero: {
         badge: "Distribuidores oficiales Lonking",
-        title1: "#1 en postventa",
+        title1: "#1 en posventa",
         title2: "en Colombia",
         desc: "Soluciones en maquinaria pesada con respaldo, potencia y tecnología de clase mundial. Equipos nuevos, repuestos y soporte especializado para construcción, minería e industria.",
         cta1: "Ver Maquinaria",
