@@ -120,7 +120,10 @@ export interface ApiMachine {
   model: string;
   slug: string;
   description: string;
-  price: number;
+  sale_price: number;
+  cost_price: number;
+  tax_percentage: number;
+  tax_value: number;
   show_price: boolean;
   warranty: string;
   delivery_time: string;

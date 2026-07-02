@@ -235,6 +235,9 @@ function DetailTabs({ product, detail, apiDesc }: { product: Product; detail: Ma
 }
 
 /* ── Sidebar info card ───────────────────────────────────────────────────── */
+const formatCOP = (n: number) =>
+  new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n);
+
 function SidebarCard({
   product,
   detail,
@@ -242,6 +245,8 @@ function SidebarCard({
   apiYear,
   apiHours,
   apiCondition,
+  apiSalePrice,
+  apiTaxValue,
 }: {
   product: Product;
   detail: MachineDetailData | undefined;
@@ -249,6 +254,8 @@ function SidebarCard({
   apiYear?: number | null;
   apiHours?: string | null;
   apiCondition?: string | null;
+  apiSalePrice?: number | null;
+  apiTaxValue?: number | null;
 }) {
   const { t } = useTranslation();
   const waLink = "https://wa.me/573163815694";
@@ -381,7 +388,18 @@ function SidebarCard({
           <p className="text-[11px] text-zinc-400 uppercase tracking-wide font-semibold mb-0.5">
             {t("pages.machineDetail.price")}
           </p>
-          <p className="text-[22px] font-black text-zinc-900">{t("pages.machineDetail.priceVal")}</p>
+          {apiSalePrice && apiSalePrice > 0 ? (
+            <>
+              <p className="text-[22px] font-black text-zinc-900">{formatCOP(apiSalePrice)}</p>
+              {apiTaxValue && apiTaxValue > 0 && (
+                <p className="text-[12px] text-zinc-500 mt-0.5">
+                  {t("pages.machineDetail.taxLabel")}: {formatCOP(apiTaxValue)}
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="text-[22px] font-black text-zinc-900">{t("pages.machineDetail.priceVal")}</p>
+          )}
           <p className="text-[11px] text-zinc-400 mt-0.5">{t("pages.machineDetail.financing")}</p>
         </div>
 
@@ -535,7 +553,7 @@ export default function MaquinaDetailPage() {
     desc: apiMachine.description,
     href: `/${categoria}/${modelo}`,
     image: apiMachine.image_url,
-    price: apiMachine.show_price ? apiMachine.price : null,
+    price: apiMachine.show_price ? apiMachine.sale_price : null,
     pdf_url: apiMachine.pdf_url,
   } as unknown as Product : staticProduct;
 
@@ -709,6 +727,8 @@ export default function MaquinaDetailPage() {
                 apiYear={apiMachine?.year}
                 apiHours={apiMachine?.hours_used}
                 apiCondition={apiMachine?.condition}
+                apiSalePrice={apiMachine?.show_price ? apiMachine?.sale_price : null}
+                apiTaxValue={apiMachine?.tax_value}
               />
             </div>
           </div>
