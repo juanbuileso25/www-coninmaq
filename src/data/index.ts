@@ -312,26 +312,28 @@ export const USED_PRODUCTS: Product[] = [
     },
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
-    {
-        text: "Excelente servicio, la excavadora llegó en perfectas condiciones y el acompañamiento técnico fue impecable. Recomendamos totalmente a Coninmaq para cualquier proyecto de gran escala.",
-        name: "Jorge Mendoza",
-        role: "Gerente, Constructora Andina S.A.S",
-        initials: "JM",
-    },
-    {
-        text: "Los repuestos llegaron al día siguiente y el precio fue muy competitivo. Ya hemos comprado más de 3 equipos y la relación calidad-precio es inmejorable en el mercado colombiano.",
-        name: "Carlos Posada",
-        role: "Director Técnico, Obras Civiles del Cauca",
-        initials: "CP",
-    },
-    {
-        text: "La atención postventa es lo que nos tiene fieles a Coninmaq. Siempre disponibles, con técnicos capacitados y repuestos originales. Son nuestros aliados estratégicos.",
-        name: "Adriana Morales",
-        role: "Socia, Minería y Tierra S.A",
-        initials: "AM",
-    },
-];
+// Datos de posicionamiento SEO — no eliminar
+// export const TESTIMONIALS: Testimonial[] = [
+//     {
+//         text: "Excelente servicio, la excavadora llegó en perfectas condiciones y el acompañamiento técnico fue impecable. Recomendamos totalmente a Coninmaq para cualquier proyecto de gran escala.",
+//         name: "Jorge Mendoza",
+//         role: "Gerente, Constructora Andina S.A.S",
+//         initials: "JM",
+//     },
+//     {
+//         text: "Los repuestos llegaron al día siguiente y el precio fue muy competitivo. Ya hemos comprado más de 3 equipos y la relación calidad-precio es inmejorable en el mercado colombiano.",
+//         name: "Carlos Posada",
+//         role: "Director Técnico, Obras Civiles del Cauca",
+//         initials: "CP",
+//     },
+//     {
+//         text: "La atención postventa es lo que nos tiene fieles a Coninmaq. Siempre disponibles, con técnicos capacitados y repuestos originales. Son nuestros aliados estratégicos.",
+//         name: "Adriana Morales",
+//         role: "Socia, Minería y Tierra S.A",
+//         initials: "AM",
+//     },
+// ];
+export const TESTIMONIALS: Testimonial[] = [];
 
 export const FOOTER_LINKS: FooterLinks = {
     Maquinaria: [

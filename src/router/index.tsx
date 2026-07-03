@@ -5,6 +5,7 @@ import NosotrosPage from "../pages/NosotrosPage";
 import { MaquinariaPage, ContactoPage, NotFoundPage } from "../pages/OtherPages";
 import MaquinaDetailPage from "../pages/MaquinaDetailPage";
 import { RepuestosListPage, RepuestoDetailPage } from "../pages/RepuestosPage";
+import CalificarPage from "../pages/CalificarPage";
 
 const router = createBrowserRouter(
   [
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
       { path: "renta/:categoria/:modelo", element: <MaquinaDetailPage /> },
 
       /* Other */
+      { path: "calificar", element: <CalificarPage /> },
       { path: "contacto", element: <ContactoPage /> },
       { path: "tienda", element: <HomePage /> },
       { path: "*", element: <NotFoundPage /> },

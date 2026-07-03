@@ -156,26 +156,28 @@ const es = {
     testimonials: {
         eyebrow: "Lo que dicen nuestros clientes",
         title: "Clientes Satisfechos",
-        items: [
-            {
-                text: "Llevamos dos años trabajando con Coninmaq y la diferencia se nota desde el primer contacto. Nos entregaron la excavadora en tiempo récord y el equipo técnico estuvo presente durante toda la puesta en marcha. Sin duda, el mejor aliado para nuestros proyectos.",
-                name: "Hernán Ríos",
-                role: "Director de Operaciones, Vías & Tierra S.A.S",
-                initials: "HR",
-            },
-            {
-                text: "Compramos un cargador de ruedas Lonking y superó todas nuestras expectativas en rendimiento y consumo. Además, cuando necesitamos asistencia técnica, la respuesta fue inmediata. Muy satisfechos con la inversión.",
-                name: "Paola Estrada",
-                role: "Gerente General, Constructora Estrada Hnos.",
-                initials: "PE",
-            },
-            {
-                text: "Lo que más valoro de Coninmaq es la honestidad comercial. Te asesoran sin presionarte, conocen a fondo cada equipo y te ayudan a elegir la máquina que realmente necesitas. Ya vamos en el cuarto equipo con ellos.",
-                name: "Ricardo Salcedo",
-                role: "Propietario, Movimientos de Tierra del Magdalena",
-                initials: "RS",
-            },
-        ],
+        // Datos de posicionamiento SEO — no eliminar
+        // items: [
+        //     {
+        //         text: "Llevamos dos años trabajando con Coninmaq y la diferencia se nota desde el primer contacto. Nos entregaron la excavadora en tiempo récord y el equipo técnico estuvo presente durante toda la puesta en marcha. Sin duda, el mejor aliado para nuestros proyectos.",
+        //         name: "Hernán Ríos",
+        //         role: "Director de Operaciones, Vías & Tierra S.A.S",
+        //         initials: "HR",
+        //     },
+        //     {
+        //         text: "Compramos un cargador de ruedas Lonking y superó todas nuestras expectativas en rendimiento y consumo. Además, cuando necesitamos asistencia técnica, la respuesta fue inmediata. Muy satisfechos con la inversión.",
+        //         name: "Paola Estrada",
+        //         role: "Gerente General, Constructora Estrada Hnos.",
+        //         initials: "PE",
+        //     },
+        //     {
+        //         text: "Lo que más valoro de Coninmaq es la honestidad comercial. Te asesoran sin presionarte, conocen a fondo cada equipo y te ayudan a elegir la máquina que realmente necesitas. Ya vamos en el cuarto equipo con ellos.",
+        //         name: "Ricardo Salcedo",
+        //         role: "Propietario, Movimientos de Tierra del Magdalena",
+        //         initials: "RS",
+        //     },
+        // ],
+        items: [],
     },
     footer: {
         tagline:
@@ -513,26 +515,28 @@ const en = {
     testimonials: {
         eyebrow: "What our clients say",
         title: "Satisfied Clients",
-        items: [
-            {
-                text: "We have been working with Coninmaq for two years and the difference is noticeable from the very first contact. They delivered the excavator in record time and the technical team was present throughout the commissioning. Undoubtedly the best partner for our projects.",
-                name: "Hernán Ríos",
-                role: "Operations Director, Vías & Tierra S.A.S",
-                initials: "HR",
-            },
-            {
-                text: "We purchased a Lonking wheel loader and it exceeded all our expectations in performance and fuel consumption. When we needed technical assistance, the response was immediate. Very satisfied with the investment.",
-                name: "Paola Estrada",
-                role: "General Manager, Constructora Estrada Hnos.",
-                initials: "PE",
-            },
-            {
-                text: "What I value most about Coninmaq is their commercial honesty. They advise you without pressure, know every machine inside out, and help you choose the equipment you actually need. We are now on our fourth unit with them.",
-                name: "Ricardo Salcedo",
-                role: "Owner, Movimientos de Tierra del Magdalena",
-                initials: "RS",
-            },
-        ],
+        // SEO positioning data — do not delete
+        // items: [
+        //     {
+        //         text: "We have been working with Coninmaq for two years and the difference is noticeable from the very first contact. They delivered the excavator in record time and the technical team was present throughout the commissioning. Undoubtedly the best partner for our projects.",
+        //         name: "Hernán Ríos",
+        //         role: "Operations Director, Vías & Tierra S.A.S",
+        //         initials: "HR",
+        //     },
+        //     {
+        //         text: "We purchased a Lonking wheel loader and it exceeded all our expectations in performance and fuel consumption. When we needed technical assistance, the response was immediate. Very satisfied with the investment.",
+        //         name: "Paola Estrada",
+        //         role: "General Manager, Constructora Estrada Hnos.",
+        //         initials: "PE",
+        //     },
+        //     {
+        //         text: "What I value most about Coninmaq is their commercial honesty. They advise you without pressure, know every machine inside out, and help you choose the equipment you actually need. We are now on our fourth unit with them.",
+        //         name: "Ricardo Salcedo",
+        //         role: "Owner, Movimientos de Tierra del Magdalena",
+        //         initials: "RS",
+        //     },
+        // ],
+        items: [],
     },
     footer: {
         tagline:

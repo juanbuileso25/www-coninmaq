@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 import SectionTitle from "./SectionTitle";
 import ProductImage from "./ProductImage";
 import { useInView } from "../hooks/useInView";
@@ -14,6 +15,8 @@ import {
   PRODUCT_GRADIENTS,
   TESTIMONIALS,
 } from "../data";
+
+const BASE_URL = import.meta.env.VITE_API_URL ?? "https://api.coninmaqsas.com";
 
 /* ── Services Strip ──────────────────────────────────────────────────────── */
 export function ServicesStrip() {
@@ -349,48 +352,133 @@ export function CTABanner() {
 }
 
 /* ── Testimonials ────────────────────────────────────────────────────────── */
+type ApiTestimonial = {
+  id: number;
+  comment: string | null;
+  reviewer_name: string | null;
+  reviewer_role: string | null;
+  average_score: number;
+};
+
+const PAGE_SIZE = 3;
+
+function getInitials(name: string | null): string {
+  if (!name) return "—";
+  return name
+    .split(" ")
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("");
+}
+
+function TestimonialCard({ item, visible }: { item: ApiTestimonial; visible: boolean }) {
+  return (
+    <div
+      className={`bg-white border-l-4 border-brand-accent shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 p-7 relative group transition-all duration-300 ease-out ${
+        visible ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <span
+        className="absolute top-3 right-5 font-black text-[64px] text-brand-accent/20 leading-none select-none group-hover:text-brand-accent/30 transition-colors duration-300"
+        aria-hidden="true"
+      >
+        "
+      </span>
+      <div className="flex gap-0.5 text-brand-accent mb-4">
+        {[...Array(5)].map((_, j) => (
+          <Icon key={j} icon={j < Math.round(item.average_score) ? "mdi:star" : "mdi:star-outline"} width={14} />
+        ))}
+      </div>
+      <p className="text-[14px] text-zinc-500 font-normal leading-relaxed mb-5">
+        {item.comment ?? ""}
+      </p>
+      <div className="flex items-center gap-3 border-t border-zinc-100 pt-4">
+        <div className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300">
+          {getInitials(item.reviewer_name)}
+        </div>
+        <div>
+          <div className="font-bold text-[14px] uppercase text-zinc-900">
+            {item.reviewer_name ?? "Cliente"}
+          </div>
+          <div className="text-[12px] text-zinc-400">{item.reviewer_role ?? ""}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Testimonials() {
   const { t } = useTranslation();
   const { ref, inView } = useInView(0.1);
-  const items = t("testimonials.items", { returnObjects: true }) as typeof TESTIMONIALS;
+
+  const [items, setItems] = useState<ApiTestimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/reviews/testimonials`)
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: ApiTestimonial[]) => setItems(data))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  const totalPages = Math.ceil(items.length / PAGE_SIZE);
+  const hasCarousel = totalPages > 1;
+
+  // Auto-advance every 6 s when there are multiple pages
+  useEffect(() => {
+    if (!hasCarousel) return;
+    const id = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setPage((p) => (p + 1) % totalPages);
+        setVisible(true);
+      }, 350);
+    }, 6000);
+    return () => clearInterval(id);
+  }, [hasCarousel, totalPages]);
+
+  const goTo = (p: number) => {
+    if (p === page) return;
+    setVisible(false);
+    setTimeout(() => { setPage(p); setVisible(true); }, 350);
+  };
+
+  // Don't render anything while loading or if no API testimonials
+  if (loading || items.length === 0) return null;
+
+  const pageItems = items.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
 
   return (
     <section className="py-20 bg-zinc-50">
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle eyebrow={t("testimonials.eyebrow")} title={t("testimonials.title")} />
+
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {(items.length ? items : TESTIMONIALS).map((t2, i) => (
-            <div
-              key={i}
-              className={`bg-white border-l-4 border-brand-accent shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-300 p-7 relative group ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
-            >
-              <span
-                className="absolute top-3 right-5 font-black text-[64px] text-brand-accent/20 leading-none select-none group-hover:text-brand-accent/30 transition-colors duration-300"
-                aria-hidden="true"
-              >
-                "
-              </span>
-              <div className="flex gap-0.5 text-brand-accent mb-4">
-                {[...Array(5)].map((_, j) => <Icon key={j} icon="mdi:star" width={14} />)}
-              </div>
-              <p className="text-[14px] text-zinc-500 font-normal leading-relaxed mb-5">
-                {t2.text}
-              </p>
-              <div className="flex items-center gap-3 border-t border-zinc-100 pt-4">
-                <div className="w-11 h-11 bg-zinc-900 flex items-center justify-center font-black text-[15px] text-brand-accent flex-shrink-0 group-hover:bg-brand-accent group-hover:text-zinc-900 transition-all duration-300">
-                  {t2.initials}
-                </div>
-                <div>
-                  <div className="font-bold text-[14px] uppercase text-zinc-900">{t2.name}</div>
-                  <div className="text-[12px] text-zinc-400">{t2.role}</div>
-                </div>
-              </div>
-            </div>
+          {pageItems.map((item) => (
+            <TestimonialCard key={item.id} item={item} visible={visible} />
           ))}
         </div>
+
+        {/* Dot indicators — only when carousel */}
+        {hasCarousel && (
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Página ${i + 1}`}
+                className={`transition-all duration-300 rounded-full ${
+                  i === page
+                    ? "w-6 h-2.5 bg-brand-accent"
+                    : "w-2.5 h-2.5 bg-zinc-300 hover:bg-zinc-400"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
