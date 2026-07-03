@@ -13,7 +13,6 @@ import {
   ABOUT_FEATURES,
   PRODUCTS,
   PRODUCT_GRADIENTS,
-  TESTIMONIALS,
 } from "../data";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "https://api.coninmaqsas.com";
@@ -409,7 +408,7 @@ function TestimonialCard({ item, visible }: { item: ApiTestimonial; visible: boo
 
 export function Testimonials() {
   const { t } = useTranslation();
-  const { ref, inView } = useInView(0.1);
+  const { ref } = useInView(0.1);
 
   const [items, setItems] = useState<ApiTestimonial[]>([]);
   const [loading, setLoading] = useState(true);

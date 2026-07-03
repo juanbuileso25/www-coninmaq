@@ -204,7 +204,7 @@ export default function CalificarPage() {
   if (submitted) {
     return (
       <>
-        <SEO title="¡Gracias por calificarnos! — Coninmaq" path="/calificar" />
+        <SEO title="¡Gracias por calificarnos! — Coninmaq" description="Gracias por calificar tu experiencia con CONINMAQ." path="/calificar" />
         <div className="min-h-[70vh] flex items-center justify-center px-6 py-20 bg-zinc-50">
           <div className="max-w-md w-full text-center space-y-6">
             <div className="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center mx-auto shadow-[0_8px_32px_rgba(255,200,55,0.4)]">
