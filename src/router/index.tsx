@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import HomePage from "../pages/HomePage";
 import NosotrosPage from "../pages/NosotrosPage";
@@ -15,7 +15,7 @@ const router = createBrowserRouter(
     children: [
       { index: true, element: <HomePage /> },
       { path: "nosotros", element: <NosotrosPage /> },
-      { path: "trabaja-con-nosotros", element: <NosotrosPage /> },
+      { path: "trabaja-con-nosotros", element: <Navigate to="/nosotros" replace /> },
 
       /* Maquinaria */
       { path: "maquinaria-pesada", element: <MaquinariaPage /> },
@@ -35,7 +35,7 @@ const router = createBrowserRouter(
       /* Other */
       { path: "calificar", element: <CalificarPage /> },
       { path: "contacto", element: <ContactoPage /> },
-      { path: "tienda", element: <HomePage /> },
+      { path: "tienda", element: <Navigate to="/" replace /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
