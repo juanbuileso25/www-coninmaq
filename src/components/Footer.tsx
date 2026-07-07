@@ -58,6 +58,28 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+
+            {/* RIT */}
+            <a
+              href="https://pub-6140276489b44c2fa4eb130bd186943d.r2.dev/rit/1ace38d9-af4c-45ff-be89-d9e612c15c1b.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 mt-5 group"
+              aria-label="Ver RIT - Registro de Información Tributaria"
+            >
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent("https://pub-6140276489b44c2fa4eb130bd186943d.r2.dev/rit/1ace38d9-af4c-45ff-be89-d9e612c15c1b.pdf")}&bgcolor=FFFFFF&color=111111&margin=2`}
+                alt="QR RIT Coninmaq"
+                width={48}
+                height={48}
+                className="w-12 h-12 flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+              <div>
+                <p className="text-[12px] font-bold text-white uppercase tracking-wider leading-tight">RIT</p>
+                <p className="text-[11px] text-zinc-500 leading-tight">Registro de Información Tributaria</p>
+              </div>
+            </a>
           </div>
 
           {/* Link columns */}
