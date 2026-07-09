@@ -105,62 +105,20 @@ export default function Hero() {
       {/* Stats bar */}
       <div className="relative z-10 bg-brand-accent/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-3">
-            {stats.map((s, i) => {
-              const isLast = i === stats.length - 1;
-
-              if (isLast) {
-                return (
-                  <Link
-                    key={i}
-                    to="/calificar"
-                    className="py-5 px-3 group hover:bg-zinc-900/10 transition-colors border-l border-zinc-900/10 flex flex-row items-center justify-center gap-3"
-                  >
-                    {/* Stat text */}
-                    <div className="text-center">
-                      <span className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom">
-                        {s.num}
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] font-semibold text-black/60 uppercase tracking-wider">
-                        {s.label}
-                      </span>
-                    </div>
-
-                    {/* Divider */}
-                    <div className="w-px h-10 bg-zinc-900/20 flex-shrink-0" />
-
-                    {/* QR + CTA */}
-                    <div className="flex flex-row items-center gap-2">
-                      <img
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent("https://coninmaqsas.com/calificar")}&bgcolor=FFC837&color=1a1a1a&margin=2`}
-                        alt="QR para calificarnos"
-                        width={40}
-                        height={40}
-                        className="w-10 h-10 flex-shrink-0 opacity-90 group-hover:opacity-100 transition-opacity"
-                        loading="lazy"
-                      />
-                      <span className="text-[10px] sm:text-[11px] font-bold text-zinc-900/75 uppercase tracking-wide leading-tight max-w-[72px] group-hover:text-zinc-900 transition-colors">
-                        ¡Cuéntanos tu experiencia!
-                      </span>
-                    </div>
-                  </Link>
-                );
-              }
-
-              return (
-                <div
-                  key={i}
-                  className="text-center py-5 px-3 group hover:bg-zinc-900/10 transition-colors cursor-default border-r border-zinc-900/10"
-                >
-                  <span className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom">
-                    {s.num}
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-black/60 uppercase tracking-wider">
-                    {s.label}
-                  </span>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-2">
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className={`text-center py-5 px-3 group hover:bg-zinc-900/10 transition-colors cursor-default ${i < stats.length - 1 ? "border-r border-zinc-900/10" : ""}`}
+              >
+                <span className="block font-black text-[28px] sm:text-[30px] text-zinc-900 leading-none group-hover:scale-105 transition-transform duration-200 origin-bottom">
+                  {s.num}
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-semibold text-black/60 uppercase tracking-wider">
+                  {s.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

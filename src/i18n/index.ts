@@ -43,7 +43,6 @@ const es = {
     stats: [
         { num: "+10", label: "Años de experiencia" },
         { num: "+500", label: "Máquinas vendidas" },
-        { num: "100%", label: "Satisfacción garantizada" },
     ],
     services: [
         {
@@ -394,9 +393,9 @@ const en = {
         openMenu: "Open menu",
     },
     hero: {
-        badge: "Leaders in Colombia",
-        title1: "Official",
-        title2: "Lonking Distributors",
+        badge: "Official Lonking Distributors",
+        title1: "#1 in after-sales",
+        title2: "in Colombia",
         desc: "Heavy machinery solutions backed by world-class power and technology. New equipment, spare parts and specialized support for construction, mining and industry.",
         cta1: "View Machinery",
         cta2: "Request a Quote",
@@ -404,7 +403,6 @@ const en = {
     stats: [
         { num: "+10", label: "Years of experience" },
         { num: "+500", label: "Machines sold" },
-        { num: "100%", label: "Guaranteed satisfaction" },
     ],
     services: [
         { title: "New Machinery", desc: "Direct import, latest versions" },
@@ -463,11 +461,11 @@ const en = {
         cta: "Learn more",
         features: [
             "New machinery sales",
-            "Used equipment imports",
+            "Used machinery sales",
+            "Machinery rental",
             "Original spare parts",
             "Preventive maintenance",
             "Certified technical service",
-            "Financing available",
         ],
     },
     products: {
