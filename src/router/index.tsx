@@ -6,6 +6,7 @@ import { MaquinariaPage, ContactoPage, NotFoundPage } from "../pages/OtherPages"
 import MaquinaDetailPage from "../pages/MaquinaDetailPage";
 import { RepuestosListPage, RepuestoDetailPage } from "../pages/RepuestosPage";
 import CalificarPage from "../pages/CalificarPage";
+import PoliticaDatosPage from "../pages/PoliticaDatosPage";
 
 const router = createBrowserRouter(
   [
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       /* Other */
       { path: "calificar", element: <CalificarPage /> },
       { path: "contacto", element: <ContactoPage /> },
+      { path: "politica-privacidad", element: <PoliticaDatosPage /> },
       { path: "tienda", element: <Navigate to="/" replace /> },
       { path: "*", element: <NotFoundPage /> },
     ],
