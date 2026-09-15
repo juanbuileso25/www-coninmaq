@@ -259,7 +259,7 @@ export default function CalificarPage() {
           <div className="bg-white border border-zinc-100 shadow-sm p-6 space-y-4">
             <div className="flex items-start gap-3">
               <span className="w-7 h-7 bg-brand-accent text-zinc-900 font-black text-[13px] flex items-center justify-center flex-shrink-0 mt-0.5">
-                8
+                {QUESTIONS.length + 1}
               </span>
               <p className="font-semibold text-zinc-800 text-[15px] leading-snug">
                 En una escala de 0 a 10, ¿qué tan probable es que recomiende CONINMAQ a un colega o empresa?
