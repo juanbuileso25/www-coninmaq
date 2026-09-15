@@ -21,11 +21,6 @@ const QUESTIONS = [
     labels: ["Muy lento", "Lento", "Aceptable", "Rápido", "Muy rápido"],
   },
   {
-    key: "q4_quality" as const,
-    text: "¿Cómo califica la calidad de nuestros productos o servicios?",
-    labels: ["Muy mala", "Mala", "Regular", "Buena", "Excelente"],
-  },
-  {
     key: "q5_understanding" as const,
     text: "¿Nuestro equipo entendió sus necesidades y le ofreció una solución adecuada?",
     labels: ["Totalmente en desacuerdo", "En desacuerdo", "Neutral", "De acuerdo", "Totalmente de acuerdo"],
@@ -35,21 +30,14 @@ const QUESTIONS = [
     text: "¿Cómo califica la relación entre calidad y precio?",
     labels: ["Muy mala", "Mala", "Regular", "Buena", "Excelente"],
   },
-  {
-    key: "q7_overall" as const,
-    text: "¿Qué tan satisfecho(a) está con la experiencia general con CONINMAQ?",
-    labels: ["Muy insatisfecho", "Insatisfecho", "Neutral", "Satisfecho", "Muy satisfecho"],
-  },
 ];
 
 type FormData = {
   q1_attention:     number;
   q2_information:   number;
   q3_response_time: number;
-  q4_quality:       number;
   q5_understanding: number;
   q6_value:         number;
-  q7_overall:       number;
   q8_nps:           number;
   comment:          string;
   reviewer_name:    string;
@@ -146,10 +134,8 @@ export default function CalificarPage() {
     q1_attention: 0,
     q2_information: 0,
     q3_response_time: 0,
-    q4_quality: 0,
     q5_understanding: 0,
     q6_value: 0,
-    q7_overall: 0,
     q8_nps: -1,
     comment: "",
     reviewer_name: "",
@@ -178,10 +164,8 @@ export default function CalificarPage() {
         q1_attention:     form.q1_attention,
         q2_information:   form.q2_information,
         q3_response_time: form.q3_response_time,
-        q4_quality:       form.q4_quality,
         q5_understanding: form.q5_understanding,
         q6_value:         form.q6_value,
-        q7_overall:       form.q7_overall,
         q8_nps:           form.q8_nps,
         comment:          form.comment || undefined,
         reviewer_name:    form.reviewer_name || undefined,
