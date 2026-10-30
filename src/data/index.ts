@@ -26,20 +26,22 @@ export const NAV_ITEMS: NavItem[] = [
             { label: "Maquinaria Nueva", href: "/maquinaria-pesada/nueva" },
             { label: "Maquinaria Usada", href: "/maquinaria-pesada/usada" },
             { label: "Excavadoras", href: "/maquinaria-pesada/excavadoras" },
-            { label: "Bulldozers", href: "/maquinaria-pesada/bulldozers" },
+            {
+                label: "Miniexcavadoras",
+                href: "/maquinaria-pesada/miniexcavadoras",
+            },
+            {
+                label: "Cargadores",
+                href: "/maquinaria-pesada/cargadores",
+            },
             {
                 label: "Minicargadores",
                 href: "/maquinaria-pesada/minicargadores",
             },
             {
-                label: "Compactadores",
-                href: "/maquinaria-pesada/compactadores",
+                label: "Retrocargadoras",
+                href: "/maquinaria-pesada/retrocargadoras",
             },
-            {
-                label: "Motoniveladoras",
-                href: "/maquinaria-pesada/motoniveladoras",
-            },
-            { label: "Aditamentos", href: "/maquinaria-pesada/aditamentos" },
         ],
     },
     {
@@ -58,7 +60,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const STATS: Stat[] = [
-    { num: "+7", label: "Años de experiencia" },
+    { num: "+10", label: "Años de experiencia" },
     { num: "+500", label: "Máquinas vendidas" },
     { num: "+8", label: "Marcas disponibles" },
     { num: "100%", label: "Satisfacción garantizada" },
@@ -95,16 +97,22 @@ export const SERVICES: Service[] = [
 export const CATEGORIES: Category[] = [
     {
         label: "Excavadoras",
-        desc: "CASE, Hitachi, Caterpillar — Nuevas y usadas",
+        desc: "LONKING, CASE, Hitachi — Nuevas y usadas",
         code: "EXC",
         href: "/maquinaria-pesada/excavadoras",
         span: true,
     },
     {
-        label: "Bulldozers",
-        desc: "CASE Construction — Serie 1150M, 1650M, 2050M",
-        code: "BULL",
-        href: "/maquinaria-pesada/bulldozers",
+        label: "Miniexcavadoras",
+        desc: "LONKING CDM6035 — Compactas para espacios reducidos",
+        code: "MINIEXC",
+        href: "/maquinaria-pesada/miniexcavadoras",
+    },
+    {
+        label: "Cargadores",
+        desc: "LONKING CDM835H, CDM856H — Cargadores de ruedas",
+        code: "CARG",
+        href: "/maquinaria-pesada/cargadores",
     },
     {
         label: "Minicargadores",
@@ -113,16 +121,10 @@ export const CATEGORIES: Category[] = [
         href: "/maquinaria-pesada/minicargadores",
     },
     {
-        label: "Compactadores",
-        desc: "DYNAPAC — Suelo, doble rodillo, neumáticos",
-        code: "COMP",
-        href: "/maquinaria-pesada/compactadores",
-    },
-    {
-        label: "Motoniveladoras",
-        desc: "CASE Construction — 845C, 865C Tier 4",
-        code: "MOTO",
-        href: "/maquinaria-pesada/motoniveladoras",
+        label: "Retrocargadoras",
+        desc: "LONKING 83D — Cargador y excavador en un solo equipo",
+        code: "RETRO",
+        href: "/maquinaria-pesada/retrocargadoras",
     },
     {
         label: "Repuestos",
@@ -261,36 +263,6 @@ export const USED_PRODUCTS: Product[] = [
         horasUso: "4.200 hrs",
     },
     {
-        brand: "Komatsu",
-        model: "Bulldozer D65EX-17",
-        desc: "Motor Komatsu SAA6D114E de 168 HP. Tren de rodaje al 70%, ideal para movimiento de tierra.",
-        code: "D65EX",
-        badge: "Usada",
-        href: "/maquinaria-pesada/bulldozers/d65ex-usada",
-        anio: 2017,
-        horasUso: "7.800 hrs",
-    },
-    {
-        brand: "Caterpillar",
-        model: "Motoniveladora 120K",
-        desc: "Motor Cat C7.1 de 149 HP, hoja de 3.7 m. Revisada y certificada, lista para proyectos viales.",
-        code: "120K",
-        badge: "Usada",
-        href: "/maquinaria-pesada/motoniveladoras/120k-usada",
-        anio: 2018,
-        horasUso: "6.500 hrs",
-    },
-    {
-        brand: "DYNAPAC",
-        model: "Compactador CA250D",
-        desc: "Rodillo vibratorio de 10 ton, frecuencia doble. Operativo y con inspección técnica reciente.",
-        code: "CA250",
-        badge: "Usada",
-        href: "/maquinaria-pesada/compactadores/ca250d-usada",
-        anio: 2020,
-        horasUso: "3.100 hrs",
-    },
-    {
         brand: "Bobcat",
         model: "Minicargador S650",
         desc: "Motor Bobcat de 74 HP, capacidad de carga 1.066 kg. En buenas condiciones, listo para entregar.",
@@ -340,10 +312,10 @@ export const FOOTER_LINKS: FooterLinks = {
         "Maquinaria Nueva",
         "Maquinaria Usada",
         "Excavadoras",
-        "Bulldozers",
-        "Compactadores",
-        "Motoniveladoras",
-        "Aditamentos",
+        "Miniexcavadoras",
+        "Cargadores",
+        "Minicargadores",
+        "Retrocargadoras",
     ],
     Repuestos: [
         "Caterpillar",

@@ -66,7 +66,7 @@ export const ORGANIZATION_LD = {
     "https://www.facebook.com/Coninmaq",
   ],
   description:
-    "Coninmaq S.A.S — Más de 7 años como líderes en maquinaria pesada en Colombia. Venta, importación y mantenimiento de excavadoras, bulldozers, compactadores, motoniveladoras y más. Repuestos CASE, Caterpillar, Komatsu, Bobcat.",
+    "Coninmaq S.A.S — Más de 10 años como líderes en maquinaria pesada en Colombia. Distribuidor oficial LONKING. Venta, importación y renta de excavadoras, miniexcavadoras, cargadores, minicargadores y retrocargadoras. Repuestos CASE, Caterpillar, Komatsu, Bobcat.",
 };
 
 export const LOCAL_BUSINESS_LD = {

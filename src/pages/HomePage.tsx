@@ -25,9 +25,9 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        title="Maquinaria Pesada en Colombia — Excavadoras, Bulldozers, Compactadores"
-        description="Coninmaq S.A.S — Líderes en maquinaria pesada en Colombia. Venta e importación de excavadoras, bulldozers, compactadores, motoniveladoras nuevas y usadas. Marcas CASE, Caterpillar, Hitachi, DYNAPAC. Repuestos originales. Antioquia."
-        keywords="Coninmaq, maquinaria pesada Colombia, excavadoras venta Colombia, bulldozers Colombia, compactadores Colombia, motoniveladoras Colombia, maquinaria CASE Colombia, Caterpillar Colombia, Hitachi Colombia, DYNAPAC Colombia, maquinaria nueva usada Antioquia, importacion maquinaria Colombia, maquinaria construccion Colombia, maquinaria mineria Colombia"
+        title="Maquinaria Pesada en Colombia — Excavadoras, Cargadores, Retrocargadoras"
+        description="Coninmaq S.A.S — Distribuidor oficial LONKING y líderes en maquinaria pesada en Colombia. Venta, importación y renta de excavadoras, miniexcavadoras, cargadores, minicargadores y retrocargadoras nuevas y usadas. Repuestos CASE, Caterpillar, Komatsu, Bobcat. Antioquia."
+        keywords="Coninmaq, maquinaria pesada Colombia, maquinaria amarilla Colombia, excavadoras venta Colombia, miniexcavadoras Colombia, cargadores Colombia, minicargadores Colombia, retrocargadoras Colombia, LONKING Colombia, maquinaria nueva usada Antioquia, importacion maquinaria Colombia, maquinaria construccion Colombia, maquinaria mineria Colombia"
         path="/"
         jsonLd={[LOCAL_BUSINESS_LD, homeSchema]}
       />

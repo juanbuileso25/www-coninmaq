@@ -22,7 +22,7 @@ export default function NosotrosPage() {
     name: "Sobre Nosotros — Coninmaq S.A.S",
     url: "https://coninmaqsas.com/nosotros",
     description:
-      "CONINMAQ S.A.S nació con el propósito de brindar soluciones integrales al sector de la construcción y la minería en Colombia. Más de 7 años de experiencia en maquinaria pesada.",
+      "CONINMAQ S.A.S nació con el propósito de brindar soluciones integrales al sector de la construcción y la minería en Colombia. Más de 10 años de experiencia en maquinaria pesada.",
     mainEntity: {
       "@id": "https://coninmaqsas.com/#organization",
     },
@@ -32,7 +32,7 @@ export default function NosotrosPage() {
     <>
       <SEO
         title="Nosotros — Empresa de Maquinaria Pesada en Colombia"
-        description="Conoce a Coninmaq S.A.S: más de 7 años de experiencia en venta, importación y mantenimiento de maquinaria pesada en Colombia. Distribuidores CASE, Caterpillar, Hitachi, DYNAPAC en Antioquia."
+        description="Conoce a Coninmaq S.A.S: más de 10 años de experiencia en venta, importación y mantenimiento de maquinaria pesada en Colombia. Distribuidor oficial LONKING y repuestos CASE, Caterpillar, Hitachi en Antioquia."
         keywords="Coninmaq empresa, sobre Coninmaq, empresa maquinaria pesada Colombia, distribuidor CASE Colombia, distribuidor Caterpillar Colombia, maquinaria Antioquia, Copacabana maquinaria"
         path="/nosotros"
         jsonLd={[ORGANIZATION_LD, aboutSchema]}

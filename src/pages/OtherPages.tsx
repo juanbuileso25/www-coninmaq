@@ -8,6 +8,7 @@ import { PRODUCT_GRADIENTS } from "../data";
 import { useMachines } from "../hooks/useMachines";
 import type { ApiMachine, Product } from "../types";
 import SEO from "../components/SEO";
+import CategorySeo, { categoryFaqSchema } from "../components/CategorySeo";
 
 const DOT_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFC837' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`;
 
@@ -89,23 +90,23 @@ export function MaquinariaPage() {
 
   const machineryMeta = isRenta
     ? {
-        title: "Renta de Maquinaria Pesada en Colombia — Alquiler de Excavadoras y Bulldozers",
-        description: "Alquiler y renta de maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores y más equipos certificados disponibles. Coninmaq S.A.S.",
-        keywords: "renta maquinaria pesada Colombia, alquiler excavadoras Colombia, renta bulldozers Colombia, arriendo maquinaria construccion Colombia, Coninmaq renta",
+        title: "Renta de Maquinaria Pesada en Colombia — Alquiler de Excavadoras y Cargadores",
+        description: "Alquiler y renta de maquinaria pesada en Colombia. Excavadoras, miniexcavadoras, cargadores, minicargadores y retrocargadoras certificadas disponibles. Coninmaq S.A.S.",
+        keywords: "renta maquinaria pesada Colombia, alquiler excavadoras Colombia, alquiler cargadores Colombia, arriendo maquinaria construccion Colombia, Coninmaq renta",
         path: "/renta",
       }
     : isUsada
     ? {
-        title: "Maquinaria Pesada Usada en Colombia — Excavadoras, Bulldozers Certificados",
-        description: "Compra maquinaria pesada usada certificada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras revisadas con garantía. Entrega inmediata en todo Colombia. Coninmaq S.A.S.",
-        keywords: "maquinaria usada Colombia, excavadoras usadas Colombia, bulldozers usados Colombia, maquinaria pesada segunda mano Colombia, maquinaria certificada Colombia",
+        title: "Maquinaria Pesada Usada en Colombia — Excavadoras y Cargadores Certificados",
+        description: "Compra maquinaria pesada usada certificada en Colombia. Excavadoras, miniexcavadoras, cargadores, minicargadores y retrocargadoras revisadas. Entrega inmediata en todo Colombia. Coninmaq S.A.S.",
+        keywords: "maquinaria usada Colombia, excavadoras usadas Colombia, cargadores usados Colombia, maquinaria pesada segunda mano Colombia, maquinaria certificada Colombia",
         path: "/maquinaria-pesada/usada",
       }
     : isNueva
     ? {
-        title: "Maquinaria Pesada Nueva en Colombia — Importación Directa CASE, Caterpillar",
-        description: "Maquinaria pesada nueva con garantía de fábrica en Colombia. Importación directa de excavadoras, bulldozers, compactadores y motoniveladoras. CASE, Caterpillar, Hitachi, DYNAPAC. Coninmaq S.A.S.",
-        keywords: "maquinaria nueva Colombia, excavadoras nuevas Colombia, bulldozers nuevos Colombia, importacion maquinaria pesada Colombia, maquinaria garantia fabrica Colombia",
+        title: "Maquinaria Pesada Nueva en Colombia — Importación Directa LONKING",
+        description: "Maquinaria pesada nueva con garantía de fábrica en Colombia. Importación directa LONKING de excavadoras, miniexcavadoras, cargadores, minicargadores y retrocargadoras. Coninmaq S.A.S.",
+        keywords: "maquinaria nueva Colombia, excavadoras nuevas Colombia, cargadores nuevos Colombia, LONKING Colombia, importacion maquinaria pesada Colombia, maquinaria garantia fabrica Colombia",
         path: "/maquinaria-pesada/nueva",
       }
     : categoria === "excavadoras"
@@ -144,9 +145,9 @@ export function MaquinariaPage() {
         path: "/maquinaria-pesada/minicargadores",
       }
     : {
-        title: "Maquinaria Pesada en Colombia — Excavadoras, Bulldozers, Compactadores",
-        description: "Coninmaq S.A.S — Venta e importación de maquinaria pesada en Colombia. Excavadoras, bulldozers, compactadores y motoniveladoras nuevas y usadas. CASE, Caterpillar, Hitachi, DYNAPAC.",
-        keywords: "maquinaria pesada Colombia, excavadoras Colombia, bulldozers Colombia, compactadores Colombia, motoniveladoras Colombia, Coninmaq, maquinaria construccion Colombia",
+        title: "Maquinaria Pesada en Colombia — Excavadoras, Cargadores, Retrocargadoras",
+        description: "Coninmaq S.A.S — Distribuidor oficial LONKING. Venta, importación y renta de maquinaria pesada en Colombia: excavadoras, miniexcavadoras, cargadores, minicargadores y retrocargadoras nuevas y usadas.",
+        keywords: "maquinaria pesada Colombia, maquinaria amarilla Colombia, excavadoras Colombia, cargadores Colombia, minicargadores Colombia, retrocargadoras Colombia, LONKING Colombia, Coninmaq, maquinaria construccion Colombia",
         path: "/maquinaria-pesada",
       };
 
@@ -164,6 +165,8 @@ export function MaquinariaPage() {
     })),
   };
 
+  const faqSchema = categoryFaqSchema(categoria);
+
   return (
     <>
       <SEO
@@ -171,7 +174,7 @@ export function MaquinariaPage() {
         description={machineryMeta.description}
         keywords={machineryMeta.keywords}
         path={machineryMeta.path}
-        jsonLd={machineryListSchema}
+        jsonLd={faqSchema ? [machineryListSchema, faqSchema] : machineryListSchema}
       />
       {/* Page header */}
       <div className="bg-zinc-900 py-16 relative overflow-hidden">
@@ -260,6 +263,8 @@ export function MaquinariaPage() {
           )}
         </div>
       </section>
+
+      <CategorySeo categoria={categoria} />
 
       <CTABanner />
     </>
