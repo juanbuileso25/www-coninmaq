@@ -392,6 +392,12 @@ export function NotFoundPage() {
   const { t } = useTranslation();
 
   return (
+    <>
+    <SEO
+      title={t("pages.notFound.title")}
+      description={t("pages.notFound.desc")}
+      noIndex
+    />
     <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
       <div className="text-center px-6">
         <span className="font-black text-[72px] md:text-[120px] text-brand-accent/20 select-none block leading-none">
@@ -409,5 +415,6 @@ export function NotFoundPage() {
         </Link>
       </div>
     </div>
+    </>
   );
 }

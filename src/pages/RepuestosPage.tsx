@@ -244,6 +244,12 @@ export function RepuestoDetailPage() {
 
   if (!part) {
     return (
+      <>
+      <SEO
+        title={t("pages.parts.notFoundTitle")}
+        description={t("pages.parts.notFoundTitle")}
+        noIndex
+      />
       <div className="bg-zinc-900 min-h-[60vh] flex items-center justify-center">
         <div className="text-center px-6">
           <span className="font-black text-[80px] text-brand-accent/20 block">?</span>
@@ -259,6 +265,7 @@ export function RepuestoDetailPage() {
           </Link>
         </div>
       </div>
+      </>
     );
   }
 
